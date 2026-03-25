@@ -1,10 +1,11 @@
-import { motion } from 'motion/react';
-import { Calendar, User as UserIcon, ArrowRight, Search, Zap, Clock, Flame } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Calendar, User as UserIcon, ArrowRight, Search, Zap, Clock, Flame, X } from 'lucide-react';
 import { blogPosts } from '../data';
 import { useState } from 'react';
 
 export default function Blog() {
   const [search, setSearch] = useState('');
+  const [selectedPost, setSelectedPost] = useState<typeof blogPosts[0] | null>(null);
 
   const filteredPosts = blogPosts.filter(post => 
     post.title.toLowerCase().includes(search.toLowerCase()) || 
@@ -56,6 +57,7 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               className="group cursor-pointer"
+              onClick={() => setSelectedPost(post)}
             >
               <div className="relative h-64 rounded-3xl overflow-hidden mb-8">
                 <img 
@@ -136,6 +138,69 @@ export default function Blog() {
           </p>
         </div>
       </section>
+
+      {/* Blog Post Modal */}
+      <AnimatePresence>
+        {selectedPost && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setSelectedPost(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="bg-zinc-950 border border-white/10 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative h-64 md:h-96 w-full">
+                <img 
+                  src={selectedPost.image} 
+                  alt={selectedPost.title} 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+                <button 
+                  onClick={() => setSelectedPost(null)}
+                  className="absolute top-6 right-6 bg-black/50 hover:bg-red-600 text-white p-2 rounded-full backdrop-blur-md transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              
+              <div className="p-8 md:p-12">
+                <div className="flex flex-wrap items-center gap-6 text-xs font-black uppercase tracking-widest text-gray-500 mb-6">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-red-600" />
+                    {selectedPost.date}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <UserIcon className="w-4 h-4 text-red-600" />
+                    {selectedPost.author}
+                  </div>
+                  <span className="bg-red-600/10 text-red-600 px-3 py-1 rounded-full">
+                    Expert Tip
+                  </span>
+                </div>
+                
+                <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tight mb-8">
+                  {selectedPost.title}
+                </h2>
+                
+                <div className="prose prose-invert prose-red max-w-none">
+                  <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-line">
+                    {selectedPost.content}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

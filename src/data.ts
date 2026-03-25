@@ -671,5 +671,29 @@ export const blogPosts = [
     author: 'Coach Mike',
     date: '2024-03-25',
     image: 'https://picsum.photos/seed/consistency/800/400'
+  },
+  {
+    id: 6,
+    title: 'The Rise of Wearable Tech in Fitness',
+    content: 'From smartwatches to biometric rings, wearable technology is revolutionizing how we track our health. These devices now monitor heart rate variability (HRV), sleep stages, and blood oxygen levels, giving athletes unprecedented insights into your recovery. The future of the fitness industry lies in data-driven personalization, allowing you to tailor your workouts based on your body\'s daily readiness score.',
+    author: 'TechFit Daily',
+    date: '2026-03-20',
+    image: 'https://picsum.photos/seed/wearable/800/400'
+  },
+  {
+    id: 7,
+    title: 'Functional Fitness: Why It\'s Here to Stay',
+    content: 'Gone are the days when fitness was solely about bodybuilding aesthetics. The industry is seeing a massive shift towards functional fitness—training that prepares your body for real-life movements. By incorporating kettlebells, sandbags, and multi-planar exercises, functional training improves joint stability, core strength, and overall longevity. It\'s not just about looking good; it\'s about moving well into your later years.',
+    author: 'Coach Sarah',
+    date: '2026-03-22',
+    image: 'https://picsum.photos/seed/functional/800/400'
+  },
+  {
+    id: 8,
+    title: 'The Importance of Gut Health for Athletic Performance',
+    content: 'The fitness industry is finally waking up to the gut microbiome. Your gut health dictates how well you absorb nutrients, synthesize vitamins, and manage inflammation. A poor microbiome can lead to sluggish recovery and decreased energy levels. Incorporating prebiotics, probiotics, and fermented foods into your diet isn\'t just a wellness trend—it\'s a legitimate performance enhancer that every serious athlete should prioritize.',
+    author: 'Dr. Wellness',
+    date: '2026-03-24',
+    image: 'https://picsum.photos/seed/guthealth/800/400'
   }
 ];

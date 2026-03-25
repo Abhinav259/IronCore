@@ -158,8 +158,8 @@ export default function WorkoutPlans() {
         </header>
 
         {/* Filters & Search */}
-        <div className="bg-zinc-900/50 border border-white/10 p-8 rounded-3xl mb-16 space-y-8">
-          <div className="flex flex-col lg:flex-row items-center gap-6">
+        <div className="bg-zinc-900/50 border border-white/10 p-6 md:p-8 rounded-3xl mb-12 md:mb-16 space-y-6 md:space-y-8">
+          <div className="flex flex-col lg:flex-row items-center gap-4 md:gap-6">
             <div className="relative flex-1 w-full">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
               <input 
@@ -170,25 +170,25 @@ export default function WorkoutPlans() {
                 className="w-full bg-black border border-white/10 rounded-xl pl-12 pr-4 py-4 text-sm focus:outline-none focus:border-red-600 transition-colors"
               />
             </div>
-            <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-4 w-full lg:w-auto">
               <select 
                 value={filter.goal}
                 onChange={(e) => setFilter({ ...filter, goal: e.target.value })}
-                className="bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none min-w-[160px]"
+                className="w-full sm:w-auto sm:flex-1 bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none min-w-[160px]"
               >
                 {goals.map(g => <option key={g.id} value={g.id}>{g.label}</option>)}
               </select>
               <select 
                 value={filter.level}
                 onChange={(e) => setFilter({ ...filter, level: e.target.value })}
-                className="bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none min-w-[160px]"
+                className="w-full sm:w-auto sm:flex-1 bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none min-w-[160px]"
               >
                 {levels.map(l => <option key={l.id} value={l.id}>{l.label}</option>)}
               </select>
               <select 
                 value={filter.preference}
                 onChange={(e) => setFilter({ ...filter, preference: e.target.value })}
-                className="bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none min-w-[160px]"
+                className="w-full sm:w-auto sm:flex-1 bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none min-w-[160px]"
               >
                 {preferences.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
               </select>
@@ -257,7 +257,7 @@ export default function WorkoutPlans() {
       {/* Detail Modal */}
       <AnimatePresence>
         {selectedPlan && (
-          <div className="fixed inset-0 z-[60] flex items-center justify-center px-6">
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-6">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -267,22 +267,22 @@ export default function WorkoutPlans() {
             ></motion.div>
             <motion.div 
               layoutId={selectedPlan.id}
-              className="bg-zinc-900 w-full max-w-4xl rounded-3xl overflow-hidden relative z-10 border border-white/10 shadow-2xl"
+              className="bg-zinc-900 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-10 border border-white/10 shadow-2xl flex flex-col"
             >
               <button 
                 onClick={() => setSelectedPlan(null)}
-                className="absolute top-6 right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
+                className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
               >
                 <X className="w-6 h-6" />
               </button>
 
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="p-12 bg-zinc-800/50">
-                  <div className="inline-block bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+                <div className="p-6 md:p-12 bg-zinc-800/50">
+                  <div className="inline-block bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 md:mb-6 mt-8 md:mt-0">
                     {selectedPlan.goal.replace('-', ' ')}
                   </div>
-                  <h2 className="text-4xl font-black uppercase italic tracking-tighter mb-6">{selectedPlan.title}</h2>
-                  <p className="text-gray-400 leading-relaxed mb-10">
+                  <h2 className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter mb-4 md:mb-6 pr-8 md:pr-0">{selectedPlan.title}</h2>
+                  <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8 md:mb-10">
                     {selectedPlan.description}
                   </p>
                   
@@ -298,17 +298,17 @@ export default function WorkoutPlans() {
                   </div>
                 </div>
 
-                <div className="p-12">
-                  <div className="flex items-center justify-between mb-8">
+                <div className="p-6 md:p-12 flex flex-col">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-8">
                     <h3 className="text-xl font-black uppercase italic flex items-center gap-3">
-                      <Zap className="w-6 h-6 text-red-600" />
+                      <Zap className="w-6 h-6 text-red-600 shrink-0" />
                       Workout Routine
                     </h3>
                     {selectedPlan && (
                       <select
                         value={selectedMuscleFilter}
                         onChange={(e) => setSelectedMuscleFilter(e.target.value)}
-                        className="bg-black border border-white/10 rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none"
+                        className="bg-black border border-white/10 rounded-xl px-4 py-3 md:py-2 text-xs font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none w-full sm:w-auto"
                       >
                         <option value="all">All Muscles</option>
                         {Array.from(
@@ -324,7 +324,7 @@ export default function WorkoutPlans() {
                       </select>
                     )}
                   </div>
-                  <div className="space-y-8 max-h-[50vh] overflow-y-auto pr-2 custom-scrollbar">
+                  <div className="space-y-6 md:space-y-8 md:max-h-[50vh] md:overflow-y-auto md:pr-2 custom-scrollbar">
                     {(() => {
                       const exercises = JSON.parse(selectedPlan.exercises);
                       
@@ -363,17 +363,17 @@ export default function WorkoutPlans() {
                                   className={`flex items-center justify-between p-4 ${isRest ? '' : 'cursor-pointer hover:bg-white/5'}`}
                                   onClick={() => !isRest && setExpandedExercise(expandedExercise === uniqueKey ? null : uniqueKey)}
                                 >
-                                  <div>
-                                    <p className="font-bold text-white flex items-center gap-2">
+                                  <div className="flex-1 pr-4">
+                                    <p className="font-bold text-white flex flex-wrap items-center gap-2 text-sm md:text-base">
                                       {ex.name}
-                                      {!isRest && (expandedExercise === uniqueKey ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />)}
+                                      {!isRest && (expandedExercise === uniqueKey ? <ChevronUp className="w-4 h-4 text-gray-500 shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-500 shrink-0" />)}
                                     </p>
-                                    {!isRest && <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{ex.sets} Sets</p>}
+                                    {!isRest && <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">{ex.sets} Sets</p>}
                                   </div>
                                   {!isRest && (
-                                    <div className="text-right">
-                                      <span className="text-red-600 font-black italic">{ex.reps}</span>
-                                      <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Reps</p>
+                                    <div className="text-right shrink-0">
+                                      <span className="text-red-600 font-black italic text-sm md:text-base">{ex.reps}</span>
+                                      <p className="text-[8px] md:text-[10px] text-gray-500 uppercase tracking-widest font-bold">Reps</p>
                                     </div>
                                   )}
                                 </div>
@@ -456,13 +456,13 @@ export default function WorkoutPlans() {
                       ));
                     })()}
                   </div>
-                  <div className="flex gap-4 mt-10">
-                    <button className="flex-1 bg-red-600 hover:bg-red-700 text-white font-black uppercase tracking-widest py-5 rounded-2xl transition-all active:scale-95 shadow-lg shadow-red-600/20">
+                  <div className="flex flex-col sm:flex-row gap-4 mt-8 md:mt-10">
+                    <button className="flex-1 bg-red-600 hover:bg-red-700 text-white font-black uppercase tracking-widest py-4 md:py-5 rounded-2xl transition-all active:scale-95 shadow-lg shadow-red-600/20 text-sm md:text-base">
                       Start
                     </button>
                     <button 
                       onClick={() => downloadPDF(selectedPlan)}
-                      className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white font-black uppercase tracking-widest py-5 rounded-2xl transition-all active:scale-95 border border-white/10 flex items-center justify-center gap-2"
+                      className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white font-black uppercase tracking-widest py-4 md:py-5 rounded-2xl transition-all active:scale-95 border border-white/10 flex items-center justify-center gap-2 text-sm md:text-base"
                     >
                       <Download className="w-5 h-5" />
                       PDF

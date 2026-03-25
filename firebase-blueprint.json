@@ -1,0 +1,114 @@
+{
+  "entities": {
+    "users": {
+      "title": "User",
+      "description": "User profile and fitness preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "gender": { "type": "string", "enum": ["male", "female", "other"] },
+        "age": { "type": "number" },
+        "fitnessLevel": { "type": "string", "enum": ["beginner", "intermediate", "advanced"] },
+        "goal": { "type": "string", "enum": ["muscle-gain", "fat-loss", "weight-management", "strength", "endurance", "flexibility"] },
+        "trainingPreference": { "type": "string", "enum": ["gym", "home"] },
+        "dietPreference": { "type": "string", "enum": ["vegetarian", "non-vegetarian"] }
+      },
+      "required": ["uid", "email"]
+    },
+    "workoutPlans": {
+      "title": "Workout Plan",
+      "description": "A curated workout plan for specific goals",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "goal": { "type": "string" },
+        "level": { "type": "string" },
+        "gender": { "type": "string" },
+        "preference": { "type": "string" },
+        "exercises": { "type": "string", "description": "JSON stringified list of exercises" },
+        "description": { "type": "string" }
+      },
+      "required": ["title", "goal", "level"]
+    },
+    "dietPlans": {
+      "title": "Diet Plan",
+      "description": "A curated diet plan for specific goals",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "goal": { "type": "string" },
+        "type": { "type": "string", "enum": ["vegetarian", "non-vegetarian"] },
+        "meals": { "type": "string", "description": "JSON stringified list of meals (breakfast, lunch, dinner, snacks)" },
+        "calorieGuidance": { "type": "string" }
+      },
+      "required": ["title", "goal", "type"]
+    },
+    "supplements": {
+      "title": "Supplement",
+      "description": "Information about a supplement",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "benefits": { "type": "string" },
+        "usage": { "type": "string" },
+        "type": { "type": "string", "enum": ["vegetarian", "non-vegetarian", "both"] },
+        "category": { "type": "string" }
+      },
+      "required": ["name", "category"]
+    },
+    "consultations": {
+      "title": "Consultation",
+      "description": "A request for expert consultation",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "contacted"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "message"]
+    },
+    "blogPosts": {
+      "title": "Blog Post",
+      "description": "A fitness tip or article",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "author": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "imageUrl": { "type": "string" }
+      },
+      "required": ["title", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "Individual user profiles"
+    },
+    "/workoutPlans/{planId}": {
+      "schema": "workoutPlans",
+      "description": "Curated workout plans"
+    },
+    "/dietPlans/{planId}": {
+      "schema": "dietPlans",
+      "description": "Curated diet plans"
+    },
+    "/supplements/{supplementId}": {
+      "schema": "supplements",
+      "description": "Supplement information"
+    },
+    "/consultations/{consultationId}": {
+      "schema": "consultations",
+      "description": "Consultation requests"
+    },
+    "/blogPosts/{postId}": {
+      "schema": "blogPosts",
+      "description": "Fitness blog posts"
+    }
+  }
+}

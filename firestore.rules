@@ -1,0 +1,138 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: users
+    // Document ID: userId (uid)
+    // Fields:
+    //   - uid: string (required)
+    //   - displayName: string
+    //   - email: string (required, email format)
+    //   - gender: string (enum: male, female, other)
+    //   - age: number
+    //   - fitnessLevel: string (enum: beginner, intermediate, advanced)
+    //   - goal: string (enum: muscle-gain, fat-loss, weight-management, strength, endurance, flexibility)
+    //   - trainingPreference: string (enum: gym, home)
+    //   - dietPreference: string (enum: vegetarian, non-vegetarian)
+    //
+    // Collection: workoutPlans
+    // Document ID: planId
+    // Fields:
+    //   - title: string (required)
+    //   - goal: string (required)
+    //   - level: string (required)
+    //   - gender: string
+    //   - preference: string
+    //   - exercises: string (JSON stringified)
+    //   - description: string
+    //
+    // Collection: dietPlans
+    // Document ID: planId
+    // Fields:
+    //   - title: string (required)
+    //   - goal: string (required)
+    //   - type: string (required, enum: vegetarian, non-vegetarian)
+    //   - meals: string (JSON stringified)
+    //   - calorieGuidance: string
+    //
+    // Collection: supplements
+    // Document ID: supplementId
+    // Fields:
+    //   - name: string (required)
+    //   - benefits: string
+    //   - usage: string
+    //   - type: string (enum: vegetarian, non-vegetarian, both)
+    //   - category: string (required)
+    //
+    // Collection: consultations
+    // Document ID: consultationId
+    // Fields:
+    //   - userId: string (required)
+    //   - userEmail: string
+    //   - message: string (required)
+    //   - status: string (enum: pending, contacted)
+    //   - createdAt: timestamp
+    //
+    // Collection: blogPosts
+    // Document ID: postId
+    // Fields:
+    //   - title: string (required)
+    //   - content: string (required)
+    //   - author: string
+    //   - createdAt: timestamp
+    //   - imageUrl: string
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+         (request.auth.token.email == "abhinavj@leewayhertz.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email']) &&
+             data.uid == request.auth.uid &&
+             isValidEmail(data.email) &&
+             (!('gender' in data) || data.gender in ['male', 'female', 'other']) &&
+             (!('fitnessLevel' in data) || data.fitnessLevel in ['beginner', 'intermediate', 'advanced']) &&
+             (!('goal' in data) || data.goal in ['muscle-gain', 'fat-loss', 'weight-management', 'strength', 'endurance', 'flexibility']) &&
+             (!('trainingPreference' in data) || data.trainingPreference in ['gym', 'home']) &&
+             (!('dietPreference' in data) || data.dietPreference in ['vegetarian', 'non-vegetarian']);
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId) && isValidUser(request.resource.data);
+      allow update: if isOwner(userId) && isValidUser(request.resource.data) && request.resource.data.uid == resource.data.uid;
+    }
+
+    match /workoutPlans/{planId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /dietPlans/{planId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /supplements/{supplementId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /consultations/{consultationId} {
+      allow read: if isAdmin() || (isAuthenticated() && request.auth.uid == resource.data.userId);
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAdmin();
+    }
+
+    match /blogPosts/{postId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

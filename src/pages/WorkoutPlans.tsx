@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Filter, Search, ChevronRight, Dumbbell, Zap, Trophy, Users, Clock, Flame, X, Download, ChevronDown, ChevronUp, Play, Youtube } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { workoutPlans } from '../data';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -152,9 +153,18 @@ export default function WorkoutPlans() {
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">
             Workout <span className="text-red-600">Library</span>
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed mb-8">
             Scientifically designed training programs for every goal. Filter by your objective and level to find your perfect match.
           </p>
+          <div className="flex justify-center gap-4">
+            <Link 
+              to="/muscle-groups" 
+              className="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-white px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-widest transition-colors"
+            >
+              <Dumbbell className="w-4 h-4 text-red-600" />
+              Browse by Muscle Group
+            </Link>
+          </div>
         </header>
 
         {/* Filters & Search */}

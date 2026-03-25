@@ -12,6 +12,7 @@ import Supplements from './pages/Supplements';
 import Profile from './pages/Profile';
 import Consultation from './pages/Consultation';
 import Blog from './pages/Blog';
+import MuscleGroups from './pages/MuscleGroups';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
@@ -59,6 +60,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/workouts" element={<WorkoutPlans />} />
+              <Route path="/muscle-groups" element={<MuscleGroups />} />
               <Route path="/diets" element={<DietPlans />} />
               <Route path="/supplements" element={<Supplements />} />
               <Route path="/profile" element={<Profile user={user} />} />

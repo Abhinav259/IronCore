@@ -26,6 +26,7 @@ export default function Navbar({ user }: { user: User | null }) {
 
   const navLinks = [
     { name: 'Workouts', path: '/workouts' },
+    { name: 'Muscle Groups', path: '/muscle-groups' },
     { name: 'Diets', path: '/diets' },
     { name: 'Supplements', path: '/supplements' },
     { name: 'Consultation', path: '/consultation' },

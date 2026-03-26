@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, ChevronRight, Dumbbell, Activity, Target, Zap, Shield, Flame, X, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 
 const muscleGroupsData = [
   {
@@ -195,6 +196,11 @@ export default function MuscleGroups() {
 
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
+      <SEO 
+        title="Muscle Groups" 
+        description="Find targeted exercises and routines for every major muscle group. Build your perfect physique with precision." 
+        urlPath="/muscle-groups" 
+      />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">

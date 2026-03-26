@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, Play, Users, Trophy, Zap, ChevronDown } from 
 import { Link } from 'react-router-dom';
 import { testimonials } from '../data';
 import { useState } from 'react';
+import { SEO } from '../components/SEO';
 
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -16,6 +17,11 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden">
+      <SEO 
+        title="Iron Core" 
+        description="Explore the best gym workout plans for muscle gain, fat loss, and strength. Access expert routines, exercise guides, and fitness tips for beginners to advanced levels." 
+        urlPath="/" 
+      />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-20">
         <div className="absolute inset-0 z-0">

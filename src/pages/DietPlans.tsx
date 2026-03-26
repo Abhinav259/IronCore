@@ -4,6 +4,7 @@ import { Search, ChevronRight, Apple, Flame, Zap, X, Coffee, Utensils, Moon, Coo
 import { dietPlans, mealAlternatives } from '../data';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import { SEO } from '../components/SEO';
 
 export default function DietPlans() {
   const [filter, setFilter] = useState({ goal: 'all', type: 'all' });
@@ -90,6 +91,11 @@ export default function DietPlans() {
 
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
+      <SEO 
+        title="Diet Plans" 
+        description="Fuel your performance with expert-curated meal plans. Whether you're plant-based or an omnivore, we have the right fuel for your fire." 
+        urlPath="/diets" 
+      />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">

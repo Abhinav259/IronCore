@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { workoutPlans } from '../data';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { SEO } from '../components/SEO';
 
 const getExerciseDetails = (name: string) => {
   const n = name.toLowerCase();
@@ -148,6 +149,11 @@ export default function WorkoutPlans() {
 
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
+      <SEO 
+        title="Workout Plans" 
+        description="Browse our extensive library of scientifically designed workout plans for muscle gain, fat loss, and strength. Find the perfect routine for your fitness level." 
+        urlPath="/workouts" 
+      />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">

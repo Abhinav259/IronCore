@@ -4,6 +4,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { db, handleFirestoreError, OperationType, signInWithGoogle } from '../firebase';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, Send, CheckCircle2, User as UserIcon, Star, ShieldCheck, Zap } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 export default function Consultation({ user }: { user: User | null }) {
   const [message, setMessage] = useState('');
@@ -39,6 +40,11 @@ export default function Consultation({ user }: { user: User | null }) {
 
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
+      <SEO 
+        title="Expert Consultation" 
+        description="Get personalized advice from our world-class trainers and nutritionists. Your journey to greatness starts with a conversation." 
+        urlPath="/consultation" 
+      />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-20 text-center">
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">

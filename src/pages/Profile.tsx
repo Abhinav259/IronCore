@@ -5,6 +5,7 @@ import { db, handleFirestoreError, OperationType, signInWithGoogle } from '../fi
 import { motion } from 'motion/react';
 import { User as UserIcon, Settings, Trophy, Zap, Apple, Dumbbell, Save, LogOut } from 'lucide-react';
 import { logout } from '../firebase';
+import { SEO } from '../components/SEO';
 
 export default function Profile({ user }: { user: User | null }) {
   const [profile, setProfile] = useState<any>(null);
@@ -75,6 +76,11 @@ export default function Profile({ user }: { user: User | null }) {
 
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
+      <SEO 
+        title="Your Profile" 
+        description="View and manage your personalized fitness profile, stats, and goals." 
+        urlPath="/profile" 
+      />
       <div className="max-w-5xl mx-auto px-6">
         <header className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
           <div className="flex items-center gap-8">

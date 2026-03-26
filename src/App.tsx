@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { auth, db } from './firebase';
@@ -52,25 +53,27 @@ export default function App() {
   }
 
   return (
-    <Router>
-      <div className="min-h-screen bg-black text-white font-sans selection:bg-red-600 selection:text-white">
-        <Navbar user={user} />
-        <main className="pt-20">
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/workouts" element={<WorkoutPlans />} />
-              <Route path="/muscle-groups" element={<MuscleGroups />} />
-              <Route path="/diets" element={<DietPlans />} />
-              <Route path="/supplements" element={<Supplements />} />
-              <Route path="/profile" element={<Profile user={user} />} />
-              <Route path="/consultation" element={<Consultation user={user} />} />
-              <Route path="/blog" element={<Blog />} />
-            </Routes>
-          </AnimatePresence>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-red-600 selection:text-white">
+          <Navbar user={user} />
+          <main className="pt-20">
+            <AnimatePresence mode="wait">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/workouts" element={<WorkoutPlans />} />
+                <Route path="/muscle-groups" element={<MuscleGroups />} />
+                <Route path="/diets" element={<DietPlans />} />
+                <Route path="/supplements" element={<Supplements />} />
+                <Route path="/profile" element={<Profile user={user} />} />
+                <Route path="/consultation" element={<Consultation user={user} />} />
+                <Route path="/blog" element={<Blog />} />
+              </Routes>
+            </AnimatePresence>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }

@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Pill, ShieldCheck, Zap, Info, CheckCircle2, AlertTriangle, Search } from 'lucide-react';
 import { supplements } from '../data';
 import { useState } from 'react';
+import { SEO } from '../components/SEO';
 
 export default function Supplements() {
   const [search, setSearch] = useState('');
@@ -18,6 +19,11 @@ export default function Supplements() {
 
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
+      <SEO 
+        title="Supplements Guide" 
+        description="Optimize your results with the right supplementation. We break down the science, benefits, and usage for maximum gains." 
+        urlPath="/supplements" 
+      />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">

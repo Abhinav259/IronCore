@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, User as UserIcon, ArrowRight, Search, Zap, Clock, Flame, X } from 'lucide-react';
 import { blogPosts } from '../data';
 import { useState } from 'react';
+import { SEO } from '../components/SEO';
 
 export default function Blog() {
   const [search, setSearch] = useState('');
@@ -14,6 +15,11 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
+      <SEO 
+        title="Fitness Insights Blog" 
+        description="Stay informed with the latest tips on training, nutrition, and recovery from our team of experts." 
+        urlPath="/blog" 
+      />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-20 text-center">
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">

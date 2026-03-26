@@ -11,6 +11,7 @@ const muscleGroupsData = [
     level: 'Beginner / Intermediate',
     popular: true,
     icon: Dumbbell,
+    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80',
     exercises: ['Bench Press', 'Incline Dumbbell Press', 'Push-ups', 'Cable Crossovers', 'Dips'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -21,6 +22,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: true,
     icon: Activity,
+    image: 'https://images.unsplash.com/photo-1603287681836-b174ce5074c2?auto=format&fit=crop&w=800&q=80',
     exercises: ['Pull-ups', 'Barbell Rows', 'Lat Pulldowns', 'T-Bar Rows', 'Seated Cable Rows'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -31,6 +33,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: true,
     icon: Target,
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80',
     exercises: ['Overhead Press', 'Lateral Raises', 'Front Raises', 'Reverse Pec Deck', 'Arnold Press'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Dumbbell-Only Plan']
   },
@@ -41,6 +44,7 @@ const muscleGroupsData = [
     level: 'Beginner',
     popular: true,
     icon: Zap,
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
     exercises: ['Barbell Curls', 'Dumbbell Hammer Curls', 'Preacher Curls', 'Incline Dumbbell Curls', 'Cable Curls'],
     relatedPlans: ['Bodybuilder Bro Split', 'Dumbbell-Only Plan']
   },
@@ -51,6 +55,7 @@ const muscleGroupsData = [
     level: 'Beginner',
     popular: true,
     icon: Shield,
+    image: 'https://images.unsplash.com/photo-1530822847156-5df684ec5ee1?auto=format&fit=crop&w=800&q=80',
     exercises: ['Triceps Pushdowns', 'Skull Crushers', 'Overhead Extensions', 'Close-Grip Bench Press', 'Dips'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -61,6 +66,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Dumbbell,
+    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80',
     exercises: ['Wrist Curls', 'Reverse Curls', 'Farmers Walk', 'Dead Hangs', 'Plate Pinches'],
     relatedPlans: ['Strongman & Odd-Object Training', 'Bodybuilder Bro Split']
   },
@@ -71,6 +77,7 @@ const muscleGroupsData = [
     level: 'Beginner / Advanced',
     popular: true,
     icon: Flame,
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80',
     exercises: ['Crunches', 'Planks', 'Hanging Leg Raises', 'Russian Twists', 'Cable Crunches'],
     relatedPlans: ['Fat-Loss & Conditioning', 'Calisthenics Plan']
   },
@@ -81,6 +88,7 @@ const muscleGroupsData = [
     level: 'Intermediate / Advanced',
     popular: true,
     icon: Zap,
+    image: 'https://images.unsplash.com/photo-1434682881908-b43d0467b798?auto=format&fit=crop&w=800&q=80',
     exercises: ['Back Squats', 'Front Squats', 'Leg Press', 'Bulgarian Split Squats', 'Leg Extensions'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Strength / Powerlifting Plan']
   },
@@ -91,6 +99,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Activity,
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80',
     exercises: ['Romanian Deadlifts', 'Lying Leg Curls', 'Seated Leg Curls', 'Good Mornings', 'Glute-Ham Raises'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Strength / Powerlifting Plan']
   },
@@ -101,6 +110,7 @@ const muscleGroupsData = [
     level: 'Beginner / Intermediate',
     popular: true,
     icon: Target,
+    image: 'https://images.unsplash.com/photo-1508215885820-4585e56135c8?auto=format&fit=crop&w=800&q=80',
     exercises: ['Hip Thrusts', 'Glute Bridges', 'Walking Lunges', 'Cable Kickbacks', 'Kettlebell Swings'],
     relatedPlans: ['Fat-Loss & Conditioning', 'Postpartum Core Rebuilding']
   },
@@ -111,6 +121,7 @@ const muscleGroupsData = [
     level: 'Beginner',
     popular: false,
     icon: Shield,
+    image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=800&q=80',
     exercises: ['Standing Calf Raises', 'Seated Calf Raises', 'Donkey Calf Raises', 'Jump Rope', 'Toe Presses on Leg Press'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -121,6 +132,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Activity,
+    image: 'https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=800&q=80',
     exercises: ['Face Pulls', 'Rear Delt Flyes', 'Chest-Supported Rows', 'Band Pull-Aparts', 'Y-T-W Raises'],
     relatedPlans: ['Desk-Worker Posture Correction', 'Pre-hab & Joint Armor']
   },
@@ -131,6 +143,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Shield,
+    image: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=800&q=80',
     exercises: ['Back Extensions', 'Deadlifts', 'Good Mornings', 'Bird Dogs', 'Superman Holds'],
     relatedPlans: ['Strength / Powerlifting Plan', 'Desk-Worker Posture Correction']
   },
@@ -141,6 +154,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Target,
+    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80',
     exercises: ['Wide-Grip Pull-ups', 'Straight-Arm Pulldowns', 'Lat Pulldowns', 'Dumbbell Pullovers', 'Single-Arm Cable Rows'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -151,6 +165,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Dumbbell,
+    image: 'https://images.unsplash.com/photo-1581009137042-c552e485697a?auto=format&fit=crop&w=800&q=80',
     exercises: ['Barbell Shrugs', 'Dumbbell Shrugs', 'Farmer\'s Walks', 'Upright Rows', 'Rack Pulls'],
     relatedPlans: ['Strongman & Odd-Object Training', 'Bodybuilder Bro Split']
   },
@@ -161,6 +176,7 @@ const muscleGroupsData = [
     level: 'Advanced',
     popular: true,
     icon: Zap,
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80',
     exercises: ['Burpees', 'Clean and Press', 'Thrusters', 'Kettlebell Swings', 'Man Makers'],
     relatedPlans: ['Beginner Full-Body Plan', 'Functional Grid & Metcon']
   }
@@ -218,13 +234,21 @@ export default function MuscleGroups() {
                     key={`popular-${group.id}`}
                     whileHover={{ scale: 1.02 }}
                     onClick={() => setSelectedGroup(group)}
-                    className="bg-zinc-900 border border-white/5 rounded-2xl p-6 cursor-pointer hover:border-red-600/50 transition-all group"
+                    className="bg-zinc-900 border border-white/5 rounded-2xl p-6 cursor-pointer hover:border-red-600/50 transition-all group relative overflow-hidden"
                   >
-                    <div className="w-12 h-12 rounded-full bg-red-600/10 flex items-center justify-center mb-4 group-hover:bg-red-600 transition-colors">
-                      <Icon className="w-6 h-6 text-red-600 group-hover:text-white transition-colors" />
+                    <img 
+                      src={group.image} 
+                      alt={group.title} 
+                      className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="relative z-10">
+                      <div className="w-12 h-12 rounded-full bg-red-600/10 flex items-center justify-center mb-4 group-hover:bg-red-600 transition-colors">
+                        <Icon className="w-6 h-6 text-red-600 group-hover:text-white transition-colors" />
+                      </div>
+                      <h3 className="text-xl font-black uppercase italic mb-2">{group.title}</h3>
+                      <p className="text-gray-400 text-sm line-clamp-2">{group.description}</p>
                     </div>
-                    <h3 className="text-xl font-black uppercase italic mb-2">{group.title}</h3>
-                    <p className="text-gray-400 text-sm line-clamp-2">{group.description}</p>
                   </motion.div>
                 );
               })}
@@ -248,14 +272,20 @@ export default function MuscleGroups() {
                   className="bg-zinc-900 border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/50 transition-all duration-300 flex flex-col"
                 >
                   <div className="h-40 bg-zinc-800 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent z-10"></div>
+                    <img 
+                      src={group.image} 
+                      alt={group.title} 
+                      className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent z-10"></div>
                     <div className="absolute top-4 right-4 z-20">
                       <span className="bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
                         {group.level}
                       </span>
                     </div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:scale-110 transition-transform duration-500">
-                      <Icon className="w-24 h-24 text-white" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:scale-110 transition-transform duration-500 z-10">
+                      <Icon className="w-20 h-20 text-white drop-shadow-lg" />
                     </div>
                   </div>
                   <div className="p-8 flex-1 flex flex-col">
@@ -327,37 +357,47 @@ export default function MuscleGroups() {
               </button>
 
               <div className="grid grid-cols-1 md:grid-cols-5">
-                <div className="p-6 md:p-10 bg-zinc-800/50 md:col-span-2 flex flex-col">
-                  <div className="inline-block bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 md:mb-6 mt-8 md:mt-0 self-start">
-                    {selectedGroup.level}
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter mb-4 md:mb-6 pr-8 md:pr-0">{selectedGroup.title}</h2>
-                  <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8">
-                    {selectedGroup.description}
-                  </p>
+                <div className="p-6 md:p-10 bg-zinc-800/50 md:col-span-2 flex flex-col relative overflow-hidden">
+                  <img 
+                    src={selectedGroup.image} 
+                    alt={selectedGroup.title} 
+                    className="absolute inset-0 w-full h-full object-cover opacity-10"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-zinc-900"></div>
                   
-                  <div className="mt-auto pt-8 border-t border-white/10">
-                    <h4 className="text-sm font-bold uppercase tracking-widest text-white mb-4">Related Workout Plans</h4>
-                    <ul className="space-y-3">
-                      {selectedGroup.relatedPlans.map((plan, idx) => (
-                        <li key={idx}>
-                          <Link 
-                            to="/workouts" 
-                            className="flex items-center gap-2 text-sm text-gray-400 hover:text-red-600 transition-colors group"
-                          >
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            {plan}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-8">
-                      <Link 
-                        to="/workouts"
-                        className="inline-flex items-center justify-center w-full bg-red-600 hover:bg-red-700 text-white font-black uppercase tracking-widest py-4 rounded-xl transition-all active:scale-95 text-sm"
-                      >
-                        View All Workouts
-                      </Link>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="inline-block bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 md:mb-6 mt-8 md:mt-0 self-start">
+                      {selectedGroup.level}
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter mb-4 md:mb-6 pr-8 md:pr-0">{selectedGroup.title}</h2>
+                    <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8">
+                      {selectedGroup.description}
+                    </p>
+                    
+                    <div className="mt-auto pt-8 border-t border-white/10">
+                      <h4 className="text-sm font-bold uppercase tracking-widest text-white mb-4">Related Workout Plans</h4>
+                      <ul className="space-y-3">
+                        {selectedGroup.relatedPlans.map((plan, idx) => (
+                          <li key={idx}>
+                            <Link 
+                              to="/workouts" 
+                              className="flex items-center gap-2 text-sm text-gray-400 hover:text-red-600 transition-colors group"
+                            >
+                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                              {plan}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-8">
+                        <Link 
+                          to="/workouts"
+                          className="inline-flex items-center justify-center w-full bg-red-600 hover:bg-red-700 text-white font-black uppercase tracking-widest py-4 rounded-xl transition-all active:scale-95 text-sm"
+                        >
+                          View All Workouts
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>

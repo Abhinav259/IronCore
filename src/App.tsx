@@ -11,7 +11,6 @@ import WorkoutPlans from './pages/WorkoutPlans';
 import DietPlans from './pages/DietPlans';
 import Supplements from './pages/Supplements';
 import Profile from './pages/Profile';
-import Consultation from './pages/Consultation';
 import Blog from './pages/Blog';
 import MuscleGroups from './pages/MuscleGroups';
 import { motion, AnimatePresence } from 'motion/react';
@@ -66,7 +65,6 @@ export default function App() {
                 <Route path="/diets" element={<DietPlans />} />
                 <Route path="/supplements" element={<Supplements />} />
                 <Route path="/profile" element={<Profile user={user} />} />
-                <Route path="/consultation" element={<Consultation user={user} />} />
                 <Route path="/blog" element={<Blog />} />
               </Routes>
             </AnimatePresence>

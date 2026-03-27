@@ -1,7 +1,7 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { User } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db, handleFirestoreError, OperationType, signInWithGoogle } from '../firebase';
+import { db, handleFirestoreError, OperationType } from '../firebase';
 import { motion } from 'motion/react';
 import { User as UserIcon, Settings, Trophy, Zap, Apple, Dumbbell, Save, LogOut } from 'lucide-react';
 import { logout } from '../firebase';
@@ -55,13 +55,7 @@ export default function Profile({ user }: { user: User | null }) {
           <UserIcon className="w-12 h-12 text-red-600" />
         </div>
         <h2 className="text-4xl font-black uppercase italic tracking-tighter mb-4">Access Denied</h2>
-        <p className="text-gray-400 mb-10 max-w-sm">Please sign in to view and manage your personalized fitness profile.</p>
-        <button 
-          onClick={signInWithGoogle}
-          className="bg-red-600 hover:bg-red-700 text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-600/20"
-        >
-          Sign In with Google
-        </button>
+        <p className="text-gray-400 mb-10 max-w-sm">You must be signed in to view and manage your personalized fitness profile.</p>
       </div>
     );
   }
@@ -125,14 +119,6 @@ export default function Profile({ user }: { user: User | null }) {
                   <span className="text-xs font-black uppercase text-red-600">{profile?.dietPreference || 'Not Set'}</span>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-red-600 p-8 rounded-3xl shadow-2xl shadow-red-600/20">
-              <h4 className="text-xl font-black uppercase italic mb-4">Premium Status</h4>
-              <p className="text-white/80 text-sm mb-6 leading-relaxed">Unlock exclusive workout plans and 1-on-1 coaching with IronCore Elite.</p>
-              <button className="w-full bg-white text-red-600 font-black uppercase tracking-widest py-3 rounded-xl text-xs transition-all hover:scale-105 active:scale-95">
-                Upgrade Now
-              </button>
             </div>
           </div>
 

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Dumbbell, Instagram, Twitter, Facebook, Youtube, Mail, MapPin, Phone } from 'lucide-react';
+import { Dumbbell } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="bg-zinc-950 pt-20 pb-10 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
         <div className="space-y-6">
           <Link to="/" className="flex items-center gap-2 group">
             <div className="bg-red-600 p-1.5 rounded-lg">
@@ -17,23 +17,12 @@ export default function Footer() {
           <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
             Empowering your fitness journey with expert-led workout plans, personalized nutrition, and a supportive community.
           </p>
-          <div className="flex items-center gap-4">
-            {[Instagram, Twitter, Facebook, Youtube].map((Icon, i) => (
-              <a 
-                key={i} 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors group"
-              >
-                <Icon className="w-5 h-5 text-gray-400 group-hover:text-white" />
-              </a>
-            ))}
-          </div>
         </div>
 
         <div>
           <h4 className="text-white font-bold uppercase tracking-widest mb-6">Quick Links</h4>
           <ul className="space-y-4">
-            {['Workouts', 'Diets', 'Supplements', 'Consultation', 'Blog'].map((item) => (
+            {['Workouts', 'Diets', 'Supplements', 'Blog'].map((item) => (
               <li key={item}>
                 <Link 
                   to={`/${item.toLowerCase()}`} 
@@ -47,38 +36,18 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-white font-bold uppercase tracking-widest mb-6">Contact Us</h4>
-          <ul className="space-y-4">
-            <li className="flex items-start gap-3 text-gray-400 text-sm">
-              <MapPin className="w-5 h-5 text-red-600 shrink-0" />
-              <span>123 Fitness Ave, Muscle City, MC 45678</span>
-            </li>
-            <li className="flex items-center gap-3 text-gray-400 text-sm">
-              <Phone className="w-5 h-5 text-red-600 shrink-0" />
-              <span>+1 (555) 123-4567</span>
-            </li>
-            <li className="flex items-center gap-3 text-gray-400 text-sm">
-              <Mail className="w-5 h-5 text-red-600 shrink-0" />
-              <span>support@ironcore.fit</span>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-white font-bold uppercase tracking-widest mb-6">Newsletter</h4>
-          <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-            Subscribe to get the latest fitness tips and exclusive offers.
-          </p>
-          <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="Your email address"
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-red-600 transition-colors"
-            />
-            <button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg transition-all active:scale-95 uppercase tracking-widest text-xs">
-              Subscribe
-            </button>
-          </form>
+          <h4 className="text-white font-bold uppercase tracking-widest mb-6">About</h4>
+          <div className="space-y-4">
+            <p className="text-gray-400 text-sm leading-relaxed">
+              A dedicated platform providing free, high-quality fitness resources for everyone. No paywalls, just gains.
+            </p>
+            <div className="pt-4 border-t border-white/10">
+              <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Created By</p>
+              <p className="text-xl font-black uppercase italic tracking-tight text-white">
+                Abhinav <span className="text-red-600">Jain</span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 

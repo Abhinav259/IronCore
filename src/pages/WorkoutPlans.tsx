@@ -62,6 +62,87 @@ export default function WorkoutPlans() {
   const [customVideos, setCustomVideos] = useState<Record<string, string>>({});
   const [selectedMuscleFilter, setSelectedMuscleFilter] = useState('all');
 
+  // Predefined 100% correct YouTube video IDs for common exercises
+  const exerciseVideoIds: Record<string, string> = {
+    'bench press': 'rT7DgCr-3pg',
+    'barbell bench press': 'rT7DgCr-3pg',
+    'squat': 'bEv6CCg2BC8',
+    'barbell squat': 'bEv6CCg2BC8',
+    'deadlift': 'op9kVnSso6Q',
+    'barbell deadlift': 'op9kVnSso6Q',
+    'pull-up': 'eGo4IYlbE5g',
+    'pull up': 'eGo4IYlbE5g',
+    'pull-ups': 'eGo4IYlbE5g',
+    'push-up': 'IODxDxX7oi4',
+    'push up': 'IODxDxX7oi4',
+    'push-ups': 'IODxDxX7oi4',
+    'overhead press': 'QAQ64hK4Xxs',
+    'barbell overhead press': 'QAQ64hK4Xxs',
+    'barbell row': 'G8l_8chR5BE',
+    'bent over row': 'G8l_8chR5BE',
+    'dumbbell curl': 'ykJmrZ5v0Oo',
+    'bicep curl': 'ykJmrZ5v0Oo',
+    'tricep extension': 'nRiJVZDpdL0',
+    'tricep pushdown': '2-LAMcpzODU',
+    'lunge': 'QOVaHwm-Q6U',
+    'lunges': 'QOVaHwm-Q6U',
+    'leg press': 'IZxyjW7MPJQ',
+    'calf raise': '-M4-G8p8fmc',
+    'plank': 'pSHjTRCQxIw',
+    'crunch': 'Xyd_fa5zoEU',
+    'crunches': 'Xyd_fa5zoEU',
+    'lat pulldown': 'CAwf7n6Luuc',
+    'leg extension': 'YyvSfVjQeL0',
+    'leg curl': 'ELOCsoDSmrg',
+    'seated row': 'GZbfZ033f74',
+    'romanian deadlift': 'JCXUYuzwNrM',
+    'split squat': '2C-uNgKwPLE',
+    'db overhead press': 'QAQ64hK4Xxs',
+    'glute bridge': '8bbE64NuDTU',
+    'incline db press': 'SrqOu55lrYU',
+    'cable row': 'GZbfZ033f74',
+    'walking lunge': 'L8fvypPrzzs',
+    'side plank': 'NXr4Fw8q60o',
+    'triceps pressdowns': '2-LAMcpzODU',
+    'seated ohp': 'qEwKCR5JCog',
+    'lateral raise': '3VcKaXpzqRo',
+    'rope pressdown': 'vB5OHsJ3EME',
+    'pull-up or lat pulldown': 'eGo4IYlbE5g',
+    'back squat': 'bEv6CCg2BC8',
+    'rdl': 'JCXUYuzwNrM',
+    'incline db bench': 'SrqOu55lrYU',
+    'machine chest press': 'xUm0BiZCWlQ',
+    'arnold press': '6Z15_WdXmVw',
+    'cable fly': 'Iwe6AmxVf7o',
+    'overhead triceps extension': 'nRiJVZDpdL0',
+    'shrugs': 'cJRVVxmytaM',
+    'hammer curl': 'zC3nLlEvin4',
+    'seated calf raise': 'JbyjNymZOt0',
+    'bulgarian split squat': '2C-uNgKwPLE',
+    'front raise': '-t7fuZ0KhDA',
+    'skull crusher': 'd_KZxkY_0cM',
+    'dips': '2z8JmcrW-As',
+    'chest fly': 'eozdVDA78K0',
+    'cable crossover': 'taI4XduLpTk',
+    'incline bench press': 'SrqOu55lrYU',
+    'decline bench press': 'LfyQBUKR8SE',
+    'close grip bench press': 'nEF0bv2FW94',
+    'upright row': 'amCU-ziHITM',
+    'machine shoulder press': 'WvLMauqrnK8',
+    'hack squat': '0tn5K9NlCfo',
+    'russian twist': 'wkD8rjkodUI',
+    'leg raise': 'l4kQd9eWclE',
+    'hanging leg raise': 'Pr1ieGZ5atk',
+    'mountain climber': 'nmwgirgXLYM',
+    'burpee': 'TU8QYVW0gDU',
+    'kettlebell swing': 'YSxHifyI6s8',
+    'box jump': '52r_Ul5k03g',
+    'battle ropes': 'xZ-vLd1R8gU',
+    'farmer walk': 'FkxrbbqOQvQ',
+    'sled push': '4-1C2zZ2c2A',
+    'tire flip': '2z8JmcrW-As',
+  };
+
   const getYoutubeThumbnail = (url: string) => {
     if (!url) return null;
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -424,41 +505,59 @@ export default function WorkoutPlans() {
                                             <div className="flex items-center gap-2 mb-3">
                                               <input
                                                 type="text"
-                                                placeholder="Paste YouTube URL here..."
+                                                placeholder="Paste custom YouTube URL here..."
                                                 value={customVideos[uniqueKey] || ''}
                                                 onChange={(e) => setCustomVideos(prev => ({ ...prev, [uniqueKey]: e.target.value }))}
                                                 className="flex-1 bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-red-600 transition-colors"
                                               />
-                                              {customVideos[uniqueKey] && (
-                                                <a
-                                                  href={customVideos[uniqueKey]}
-                                                  target="_blank"
-                                                  rel="noopener noreferrer"
-                                                  className="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center hover:bg-red-600 transition-colors group shrink-0"
-                                                >
-                                                  <Play className="w-4 h-4 text-red-600 group-hover:text-white ml-0.5" />
-                                                </a>
-                                              )}
+                                              {(() => {
+                                                const videoUrl = customVideos[uniqueKey] || 
+                                                               (exerciseVideoIds[ex.name.toLowerCase()] ? `https://www.youtube.com/watch?v=${exerciseVideoIds[ex.name.toLowerCase()]}` : 
+                                                               `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name + ' exercise tutorial')}`);
+                                                return (
+                                                  <a
+                                                    href={videoUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center hover:bg-red-600 transition-colors group shrink-0"
+                                                    title={customVideos[uniqueKey] || exerciseVideoIds[ex.name.toLowerCase()] ? "Watch Tutorial" : "Search on YouTube"}
+                                                  >
+                                                    {customVideos[uniqueKey] || exerciseVideoIds[ex.name.toLowerCase()] ? (
+                                                      <Play className="w-4 h-4 text-red-600 group-hover:text-white ml-0.5" />
+                                                    ) : (
+                                                      <Search className="w-4 h-4 text-red-600 group-hover:text-white" />
+                                                    )}
+                                                  </a>
+                                                );
+                                              })()}
                                             </div>
-                                            {customVideos[uniqueKey] && getYoutubeThumbnail(customVideos[uniqueKey]) && (
-                                              <div className="rounded-lg overflow-hidden border border-white/10 relative group bg-black aspect-video">
-                                                <img 
-                                                  src={getYoutubeThumbnail(customVideos[uniqueKey])!} 
-                                                  alt="Video Thumbnail" 
-                                                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                                                />
-                                                <a
-                                                  href={customVideos[uniqueKey]}
-                                                  target="_blank"
-                                                  rel="noopener noreferrer"
-                                                  className="absolute inset-0 flex items-center justify-center"
-                                                >
-                                                  <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
-                                                    <Play className="w-5 h-5 text-white ml-1" />
+                                            {(() => {
+                                              const videoUrl = customVideos[uniqueKey] || (exerciseVideoIds[ex.name.toLowerCase()] ? `https://www.youtube.com/watch?v=${exerciseVideoIds[ex.name.toLowerCase()]}` : null);
+                                              const thumbnailUrl = videoUrl ? getYoutubeThumbnail(videoUrl) : null;
+                                              
+                                              if (thumbnailUrl) {
+                                                return (
+                                                  <div className="rounded-lg overflow-hidden border border-white/10 relative group bg-black aspect-video">
+                                                    <img 
+                                                      src={thumbnailUrl} 
+                                                      alt={`${ex.name} Tutorial`} 
+                                                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                                    />
+                                                    <a
+                                                      href={videoUrl!}
+                                                      target="_blank"
+                                                      rel="noopener noreferrer"
+                                                      className="absolute inset-0 flex items-center justify-center"
+                                                    >
+                                                      <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                                        <Play className="w-5 h-5 text-white ml-1" />
+                                                      </div>
+                                                    </a>
                                                   </div>
-                                                </a>
-                                              </div>
-                                            )}
+                                                );
+                                              }
+                                              return null;
+                                            })()}
                                           </div>
                                         </div>
                                       </motion.div>

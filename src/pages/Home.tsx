@@ -63,12 +63,6 @@ export default function Home() {
               >
                 Start Training <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link 
-                to="/consultation" 
-                className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/10 text-white px-10 py-5 rounded-xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all"
-              >
-                Free Consultation
-              </Link>
             </div>
 
             <div className="mt-16 flex items-center gap-12">
@@ -142,38 +136,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-32 bg-black">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-black uppercase italic tracking-tighter mb-6">
-              Real <span className="text-red-600">Transformations</span>
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Don't just take our word for it. Hear from the thousands of members who have reclaimed their health and confidence with IronCore.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {testimonials.map((t) => (
-              <div key={t.id} className="bg-zinc-900 p-10 rounded-3xl border border-white/5 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Trophy className="w-24 h-24 text-red-600" />
-                </div>
-                <div className="flex items-center gap-6 mb-8">
-                  <img src={t.image} alt={t.name} className="w-20 h-20 rounded-2xl object-cover border-2 border-red-600" referrerPolicy="no-referrer" />
-                  <div>
-                    <h4 className="text-xl font-black uppercase tracking-tight">{t.name}</h4>
-                    <p className="text-red-600 text-sm font-bold uppercase tracking-widest">{t.transformation}</p>
-                  </div>
-                </div>
-                <p className="text-gray-300 text-lg italic leading-relaxed">"{t.quote}"</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section className="py-32 bg-zinc-950">
         <div className="max-w-3xl mx-auto px-6">
@@ -230,7 +192,7 @@ export default function Home() {
             to="/workouts" 
             className="inline-flex bg-red-600 hover:bg-red-700 text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-lg transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/40"
           >
-            Join IronCore Today
+            Start Training Today
           </Link>
         </div>
       </section>

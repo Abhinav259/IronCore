@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { User } from 'firebase/auth';
 import { Dumbbell, User as UserIcon, LogOut, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { logout, signInWithGoogle } from '../firebase';
+import { logout } from '../firebase';
 import { motion, AnimatePresence } from 'motion/react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -29,7 +29,6 @@ export default function Navbar({ user }: { user: User | null }) {
     { name: 'Muscle Groups', path: '/muscle-groups' },
     { name: 'Diets', path: '/diets' },
     { name: 'Supplements', path: '/supplements' },
-    { name: 'Consultation', path: '/consultation' },
     { name: 'Blog', path: '/blog' },
   ];
 
@@ -63,7 +62,7 @@ export default function Navbar({ user }: { user: User | null }) {
             </Link>
           ))}
           
-          {user ? (
+          {user && (
             <div className="flex items-center gap-4 pl-4 border-l border-white/10">
               <Link to="/profile" className="flex items-center gap-2 hover:text-red-600 transition-colors">
                 <UserIcon className="w-5 h-5" />
@@ -77,13 +76,6 @@ export default function Navbar({ user }: { user: User | null }) {
                 <LogOut className="w-5 h-5 text-gray-400" />
               </button>
             </div>
-          ) : (
-            <button
-              onClick={signInWithGoogle}
-              className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95"
-            >
-              Join Now
-            </button>
           )}
         </div>
 
@@ -118,7 +110,7 @@ export default function Navbar({ user }: { user: User | null }) {
                 {link.name}
               </Link>
             ))}
-            {user ? (
+            {user && (
               <>
                 <Link 
                   to="/profile" 
@@ -134,13 +126,6 @@ export default function Navbar({ user }: { user: User | null }) {
                   Logout
                 </button>
               </>
-            ) : (
-              <button
-                onClick={() => { signInWithGoogle(); setIsOpen(false); }}
-                className="bg-red-600 text-white px-6 py-3 rounded-xl text-lg font-bold uppercase tracking-widest"
-              >
-                Join Now
-              </button>
             )}
           </motion.div>
         )}

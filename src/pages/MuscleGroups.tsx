@@ -244,9 +244,12 @@ export default function MuscleGroups() {
                   >
                     <img 
                       src={group.image} 
+                      srcSet={`${group.image.replace('w=800', 'w=400')} 400w, ${group.image} 800w`}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       alt={group.title} 
                       className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-500"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
                     />
                     <div className="relative z-10">
                       <div className="w-12 h-12 rounded-full bg-red-600/10 flex items-center justify-center mb-4 group-hover:bg-red-600 transition-colors">
@@ -280,9 +283,12 @@ export default function MuscleGroups() {
                   <div className="h-40 bg-zinc-800 relative overflow-hidden">
                     <img 
                       src={group.image} 
+                      srcSet={`${group.image.replace('w=800', 'w=400')} 400w, ${group.image} 800w`}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       alt={group.title} 
                       className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent z-10"></div>
                     <div className="absolute top-4 right-4 z-20">
@@ -366,9 +372,12 @@ export default function MuscleGroups() {
                 <div className="p-6 md:p-10 bg-zinc-800/50 md:col-span-2 flex flex-col relative overflow-hidden">
                   <img 
                     src={selectedGroup.image} 
+                    srcSet={`${selectedGroup.image.replace('w=800', 'w=400')} 400w, ${selectedGroup.image} 800w`}
+                    sizes="(max-width: 768px) 100vw, 800px"
                     alt={selectedGroup.title} 
                     className="absolute inset-0 w-full h-full object-cover opacity-10"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-zinc-900"></div>
                   

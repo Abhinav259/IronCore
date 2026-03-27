@@ -540,8 +540,11 @@ export default function WorkoutPlans() {
                                                   <div className="rounded-lg overflow-hidden border border-white/10 relative group bg-black aspect-video">
                                                     <img 
                                                       src={thumbnailUrl} 
+                                                      srcSet={`${thumbnailUrl.replace('hqdefault', 'mqdefault')} 320w, ${thumbnailUrl} 480w`}
+                                                      sizes="(max-width: 768px) 100vw, 480px"
                                                       alt={`${ex.name} Tutorial`} 
                                                       className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                                      loading="lazy"
                                                     />
                                                     <a
                                                       href={videoUrl!}

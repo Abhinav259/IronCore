@@ -68,9 +68,12 @@ export default function Blog() {
               <div className="relative h-64 rounded-3xl overflow-hidden mb-8">
                 <img 
                   src={post.image} 
+                  srcSet={`${post.image.replace('800/400', '400/200')} 400w, ${post.image} 800w`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   alt={post.title} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                 <div className="absolute top-4 left-4 z-20">
@@ -165,9 +168,12 @@ export default function Blog() {
               <div className="relative h-64 md:h-96 w-full">
                 <img 
                   src={selectedPost.image} 
+                  srcSet={`${selectedPost.image.replace('800/400', '400/200')} 400w, ${selectedPost.image} 800w`}
+                  sizes="(max-width: 768px) 100vw, 800px"
                   alt={selectedPost.title} 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
                 <button 

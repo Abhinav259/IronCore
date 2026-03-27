@@ -80,9 +80,12 @@ export default function Profile({ user }: { user: User | null }) {
           <div className="flex items-center gap-8">
             <img 
               src={user.photoURL || `https://picsum.photos/seed/${user.uid}/200/200`} 
+              srcSet={`${user.photoURL || `https://picsum.photos/seed/${user.uid}/100/100`} 100w, ${user.photoURL || `https://picsum.photos/seed/${user.uid}/200/200`} 200w`}
+              sizes="128px"
               alt={user.displayName || 'User'} 
               className="w-32 h-32 rounded-3xl object-cover border-4 border-red-600 shadow-2xl shadow-red-600/20"
               referrerPolicy="no-referrer"
+              loading="lazy"
             />
             <div>
               <h1 className="text-5xl font-black uppercase italic tracking-tighter mb-2">{user.displayName}</h1>

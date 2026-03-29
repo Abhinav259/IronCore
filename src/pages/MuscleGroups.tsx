@@ -23,7 +23,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: true,
     icon: Activity,
-    image: 'https://images.unsplash.com/photo-1603287681836-b174ce5074c2?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
     exercises: ['Pull-ups', 'Barbell Rows', 'Lat Pulldowns', 'T-Bar Rows', 'Seated Cable Rows'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -45,7 +45,7 @@ const muscleGroupsData = [
     level: 'Beginner',
     popular: true,
     icon: Zap,
-    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581009137042-c552e485697a?auto=format&fit=crop&w=800&q=80',
     exercises: ['Barbell Curls', 'Dumbbell Hammer Curls', 'Preacher Curls', 'Incline Dumbbell Curls', 'Cable Curls'],
     relatedPlans: ['Bodybuilder Bro Split', 'Dumbbell-Only Plan']
   },
@@ -78,7 +78,7 @@ const muscleGroupsData = [
     level: 'Beginner / Advanced',
     popular: true,
     icon: Flame,
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
     exercises: ['Crunches', 'Planks', 'Hanging Leg Raises', 'Russian Twists', 'Cable Crunches'],
     relatedPlans: ['Fat-Loss & Conditioning', 'Calisthenics Plan']
   },
@@ -89,7 +89,7 @@ const muscleGroupsData = [
     level: 'Intermediate / Advanced',
     popular: true,
     icon: Zap,
-    image: 'https://images.unsplash.com/photo-1434682881908-b43d0467b798?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80',
     exercises: ['Back Squats', 'Front Squats', 'Leg Press', 'Bulgarian Split Squats', 'Leg Extensions'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Strength / Powerlifting Plan']
   },
@@ -100,7 +100,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Activity,
-    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
     exercises: ['Romanian Deadlifts', 'Lying Leg Curls', 'Seated Leg Curls', 'Good Mornings', 'Glute-Ham Raises'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Strength / Powerlifting Plan']
   },
@@ -111,7 +111,7 @@ const muscleGroupsData = [
     level: 'Beginner / Intermediate',
     popular: true,
     icon: Target,
-    image: 'https://images.unsplash.com/photo-1508215885820-4585e56135c8?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
     exercises: ['Hip Thrusts', 'Glute Bridges', 'Walking Lunges', 'Cable Kickbacks', 'Kettlebell Swings'],
     relatedPlans: ['Fat-Loss & Conditioning', 'Postpartum Core Rebuilding']
   },
@@ -133,7 +133,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Activity,
-    image: 'https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
     exercises: ['Face Pulls', 'Rear Delt Flyes', 'Chest-Supported Rows', 'Band Pull-Aparts', 'Y-T-W Raises'],
     relatedPlans: ['Desk-Worker Posture Correction', 'Pre-hab & Joint Armor']
   },
@@ -144,7 +144,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Shield,
-    image: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
     exercises: ['Back Extensions', 'Deadlifts', 'Good Mornings', 'Bird Dogs', 'Superman Holds'],
     relatedPlans: ['Strength / Powerlifting Plan', 'Desk-Worker Posture Correction']
   },
@@ -155,7 +155,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Target,
-    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
     exercises: ['Wide-Grip Pull-ups', 'Straight-Arm Pulldowns', 'Lat Pulldowns', 'Dumbbell Pullovers', 'Single-Arm Cable Rows'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -166,7 +166,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Dumbbell,
-    image: 'https://images.unsplash.com/photo-1581009137042-c552e485697a?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
     exercises: ['Barbell Shrugs', 'Dumbbell Shrugs', 'Farmer\'s Walks', 'Upright Rows', 'Rack Pulls'],
     relatedPlans: ['Strongman & Odd-Object Training', 'Bodybuilder Bro Split']
   },

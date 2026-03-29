@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Filter, Search, ChevronRight, Dumbbell, Zap, Trophy, Users, Clock, Flame, X, Download, ChevronDown, ChevronUp, Play, Youtube } from 'lucide-react';
+import { Filter, Search, ChevronRight, Dumbbell, Zap, Trophy, Users, Clock, Flame, X, Download, ChevronDown, ChevronUp, Play, Youtube, Pause, RotateCcw, Timer } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { workoutPlans } from '../data';
 import { jsPDF } from 'jspdf';
@@ -10,48 +10,180 @@ import { SEO } from '../components/SEO';
 const getExerciseDetails = (name: string) => {
   const n = name.toLowerCase();
   
+  // Specific overrides first to prevent incorrect matching
+  if (n.includes('leg curl')) return { muscle: 'Hamstrings', equipment: 'Machine', tips: 'Squeeze your hamstrings at the top of the movement.', image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('leg extension')) return { muscle: 'Quadriceps', equipment: 'Machine', tips: 'Squeeze your quads at the top of the movement.', image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('calf raise')) return { muscle: 'Calves', equipment: 'Bodyweight / Machine', tips: 'Push through the balls of your feet and hold the contraction.', image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('back extension')) return { muscle: 'Lower Back, Hamstrings, Glutes', equipment: 'Machine / Bodyweight', tips: 'Hinge at the hips and avoid hyperextending your lower back.', image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('chest press') || n.includes('machine press') || n.includes('floor press') || n.includes('incline press')) return { muscle: 'Chest, Triceps, Anterior Deltoids', equipment: 'Machine / Barbell / Dumbbells', tips: 'Keep your chest up and shoulders back.', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('incline bench') || n.includes('close-grip bench') || n.includes('bench press') || n.includes('bench (light speed)')) return { muscle: 'Chest, Triceps, Anterior Deltoids', equipment: 'Barbell/Dumbbells, Bench', tips: 'Keep feet flat, maintain a slight arch in your lower back, and control the descent.', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('sled push')) return { muscle: 'Full Body, Legs, Conditioning', equipment: 'Sled', tips: 'Keep your body low and drive through your legs.', image: 'https://images.unsplash.com/photo-1434596922112-19c563067271?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('ladder drills') || n.includes('bounds') || n.includes('high knees')) return { muscle: 'Legs, Agility, Conditioning', equipment: 'Agility Ladder / Bodyweight', tips: 'Stay light on your feet and focus on quick ground contact.', image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('push press')) return { muscle: 'Shoulders, Triceps, Legs', equipment: 'Barbell/Dumbbells', tips: 'Use a slight dip in the legs to drive the weight overhead.', image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('rear delt fly')) return { muscle: 'Rear Deltoids, Rhomboids', equipment: 'Dumbbells / Machine', tips: 'Focus on pulling with your rear delts, not your back.', image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('clean') || n.includes('snatch') || n.includes('jerk')) return { muscle: 'Full Body, Explosive Power', equipment: 'Barbell / Dumbbells / Kettlebell', tips: 'Focus on explosive hip extension and a fast pull under the bar.', image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=200&auto=format&fit=crop' };
+  
   // Chest & Push
-  if (n.includes('bench press') || n.includes('chest') || n.includes('push-up') || n.includes('push up') || n.includes('dip') || n.includes('fly')) return { muscle: 'Chest, Triceps, Anterior Deltoids', equipment: 'Barbell/Dumbbells, Bench, Bodyweight', tips: 'Keep feet flat, maintain a slight arch in your lower back, and control the descent.' };
+  if (n.includes('bench') || n.includes('chest') || n.includes('push-up') || n.includes('push up') || n.includes('dip') || n.includes('fly')) return { muscle: 'Chest, Triceps, Anterior Deltoids', equipment: 'Barbell/Dumbbells, Bench, Bodyweight', tips: 'Keep feet flat, maintain a slight arch in your lower back, and control the descent.', image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=200&auto=format&fit=crop' };
   
   // Legs & Squats
-  if (n.includes('squat') || n.includes('leg press') || n.includes('lunge') || n.includes('step-up') || n.includes('step up')) return { muscle: 'Quadriceps, Glutes, Hamstrings', equipment: 'Barbell, Squat Rack / Machine / Dumbbells', tips: 'Keep your chest up, brace your core, and push your knees out as you descend.' };
+  if (n.includes('squat') || n.includes('leg press') || n.includes('lunge') || n.includes('step-up') || n.includes('step up')) return { muscle: 'Quadriceps, Glutes, Hamstrings', equipment: 'Barbell, Squat Rack / Machine / Dumbbells', tips: 'Keep your chest up, brace your core, and push your knees out as you descend.', image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=200&auto=format&fit=crop' };
   
   // Posterior Chain & Deadlifts
-  if (n.includes('deadlift') || n.includes('rdl') || n.includes('hip thrust') || n.includes('glute bridge') || n.includes('back extension') || n.includes('hip hinge')) return { muscle: 'Hamstrings, Glutes, Lower Back', equipment: 'Barbell, Plates, Bodyweight', tips: 'Keep the bar close to your body, maintain a neutral spine, and hinge at the hips.' };
+  if (n.includes('deadlift') || n.includes('rdl') || n.includes('hip thrust') || n.includes('glute bridge') || n.includes('hip hinge')) return { muscle: 'Hamstrings, Glutes, Lower Back', equipment: 'Barbell, Plates, Bodyweight', tips: 'Keep the bar close to your body, maintain a neutral spine, and hinge at the hips.', image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=200&auto=format&fit=crop' };
   
   // Back & Pull
-  if (n.includes('row') || n.includes('pull') || n.includes('lat') || n.includes('shrug') || n.includes('face pull')) return { muscle: 'Latissimus Dorsi, Rhomboids, Biceps, Traps', equipment: 'Barbell/Dumbbells/Cable', tips: 'Pull with your elbows, squeeze your shoulder blades together at the top.' };
+  if (n.includes('row') || n.includes('pull') || n.includes('lat') || n.includes('shrug') || n.includes('face pull')) return { muscle: 'Latissimus Dorsi, Rhomboids, Biceps, Traps', equipment: 'Barbell/Dumbbells/Cable', tips: 'Pull with your elbows, squeeze your shoulder blades together at the top.', image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=200&auto=format&fit=crop' };
   
   // Shoulders & Press
-  if (n.includes('press') || n.includes('shoulder') || n.includes('ohp') || n.includes('lateral raise') || n.includes('arnold')) return { muscle: 'Deltoids, Triceps', equipment: 'Barbell/Dumbbells', tips: 'Brace your core to avoid over-arching your lower back. Press straight up.' };
+  if (n.includes('press') || n.includes('shoulder') || n.includes('ohp') || n.includes('lateral raise') || n.includes('arnold')) return { muscle: 'Deltoids, Triceps', equipment: 'Barbell/Dumbbells', tips: 'Brace your core to avoid over-arching your lower back. Press straight up.', image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=200&auto=format&fit=crop' };
   
   // Arms (Biceps & Triceps)
-  if (n.includes('curl')) return { muscle: 'Biceps', equipment: 'Dumbbells/Barbell/Cable', tips: 'Keep your elbows pinned to your sides and avoid using momentum.' };
-  if (n.includes('extension') || n.includes('pressdown') || n.includes('skull crusher')) return { muscle: 'Triceps', equipment: 'Machine/Cable/Dumbbells', tips: 'Focus on the stretch and squeeze at the end of the movement.' };
+  if (n.includes('curl')) return { muscle: 'Biceps', equipment: 'Dumbbells/Barbell/Cable', tips: 'Keep your elbows pinned to your sides and avoid using momentum.', image: 'https://images.unsplash.com/photo-1581009137042-c552e485697a?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('extension') || n.includes('pressdown') || n.includes('skull crusher')) return { muscle: 'Triceps', equipment: 'Machine/Cable/Dumbbells', tips: 'Focus on the stretch and squeeze at the end of the movement.', image: 'https://images.unsplash.com/photo-1530822847156-5df684ec5ee1?q=80&w=200&auto=format&fit=crop' };
   
   // Core, Abs & Recovery
-  if (n.includes('plank') || n.includes('crunch') || n.includes('twist') || n.includes('raise') || n.includes('dead bug') || n.includes('wood chop') || n.includes('hollow') || n.includes('sit') || n.includes('bend') || n.includes('breathing') || n.includes('kegel') || n.includes('pelvic') || n.includes('mcgill') || n.includes('bird dog')) return { muscle: 'Core, Abs, Obliques, Pelvic Floor', equipment: 'Bodyweight / Mat / Cable', tips: 'Focus on contracting the core muscles rather than just going through the motion. Breathe steadily.' };
+  if (n.includes('plank') || n.includes('crunch') || n.includes('twist') || n.includes('raise') || n.includes('dead bug') || n.includes('wood chop') || n.includes('hollow') || n.includes('sit') || n.includes('bend') || n.includes('breathing') || n.includes('kegel') || n.includes('pelvic') || n.includes('mcgill') || n.includes('bird dog')) return { muscle: 'Core, Abs, Obliques, Pelvic Floor', equipment: 'Bodyweight / Mat / Cable', tips: 'Focus on contracting the core muscles rather than just going through the motion. Breathe steadily.', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=200&auto=format&fit=crop' };
   
   // Cardio, Conditioning & Mobility
-  if (n.includes('burpee') || n.includes('climber') || n.includes('swing') || n.includes('jump') || n.includes('sled') || n.includes('sprint') || n.includes('run') || n.includes('clean') || n.includes('emom') || n.includes('tabata') || n.includes('amrap') || n.includes('wod') || n.includes('chipper') || n.includes('snatch') || n.includes('thruster')) return { muscle: 'Full Body, Core, Cardiovascular', equipment: 'Bodyweight / Kettlebell / Sled', tips: 'Maintain a brisk pace but don\'t sacrifice form. Keep your core tight.' };
-  if (n.includes('walk') || n.includes('cycle') || n.includes('cardio') || n.includes('bike') || n.includes('rower') || n.includes('intervals') || n.includes('tempo') || n.includes('session') || n.includes('march') || n.includes('jog')) return { muscle: 'Cardiovascular System', equipment: 'Treadmill / Bike / Rower / Bodyweight', tips: 'Maintain a steady breathing rhythm and stay within your target heart rate zone.' };
-  if (n.includes('mobility') || n.includes('stretch') || n.includes('angel') || n.includes('y-t-w') || n.includes('halo') || n.includes('get-up')) return { muscle: 'Full Body Mobility, Posture', equipment: 'Bodyweight / Mat / Band', tips: 'Move through a full range of motion without forcing any painful positions.' };
-  if (n.includes('carry') || n.includes('yoke') || n.includes('sandbag') || n.includes('stone') || n.includes('log') || n.includes('axle')) return { muscle: 'Core, Forearms, Traps, Full Body (Strongman)', equipment: 'Odd Objects / Heavy Weights', tips: 'Keep your chest up, brace your core heavily, and move with controlled steps.' };
+  if (n.includes('burpee') || n.includes('climber') || n.includes('swing') || n.includes('jump') || n.includes('sled') || n.includes('sprint') || n.includes('run') || n.includes('emom') || n.includes('tabata') || n.includes('amrap') || n.includes('wod') || n.includes('chipper') || n.includes('thruster')) return { muscle: 'Full Body, Core, Cardiovascular', equipment: 'Bodyweight / Kettlebell / Sled', tips: 'Maintain a brisk pace but don\'t sacrifice form. Keep your core tight.', image: 'https://images.unsplash.com/photo-1434596922112-19c563067271?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('walk') || n.includes('cycle') || n.includes('cardio') || n.includes('bike') || n.includes('rower') || n.includes('intervals') || n.includes('tempo') || n.includes('session') || n.includes('march') || n.includes('jog')) return { muscle: 'Cardiovascular System', equipment: 'Treadmill / Bike / Rower / Bodyweight', tips: 'Maintain a steady breathing rhythm and stay within your target heart rate zone.', image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('mobility') || n.includes('stretch') || n.includes('angel') || n.includes('y-t-w') || n.includes('halo') || n.includes('get-up')) return { muscle: 'Full Body Mobility, Posture', equipment: 'Bodyweight / Mat / Band', tips: 'Move through a full range of motion without forcing any painful positions.', image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=200&auto=format&fit=crop' };
+  if (n.includes('carry') || n.includes('yoke') || n.includes('sandbag') || n.includes('stone') || n.includes('log') || n.includes('axle')) return { muscle: 'Core, Forearms, Traps, Full Body (Strongman)', equipment: 'Odd Objects / Heavy Weights', tips: 'Keep your chest up, brace your core heavily, and move with controlled steps.', image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=200&auto=format&fit=crop' };
   
   // Combat & Power
-  if (n.includes('bag') || n.includes('sprawl') || n.includes('shadowboxing') || n.includes('slam') || n.includes('throw') || n.includes('rope')) return { muscle: 'Full Body, Explosive Power, Conditioning', equipment: 'Heavy Bag / Med Ball / Battle Ropes', tips: 'Focus on explosive power generation from the hips and core.' };
+  if (n.includes('bag') || n.includes('sprawl') || n.includes('shadowboxing') || n.includes('slam') || n.includes('throw') || n.includes('rope')) return { muscle: 'Full Body, Explosive Power, Conditioning', equipment: 'Heavy Bag / Med Ball / Battle Ropes', tips: 'Focus on explosive power generation from the hips and core.', image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=200&auto=format&fit=crop' };
 
   // Aquatic
-  if (n.includes('water') || n.includes('aqua') || n.includes('pool') || n.includes('swim') || n.includes('tread')) return { muscle: 'Full Body (Low Impact)', equipment: 'Pool / Aqua Dumbbells', tips: 'Use the water\'s resistance to control the movement. Keep movements smooth.' };
+  if (n.includes('water') || n.includes('aqua') || n.includes('pool') || n.includes('swim') || n.includes('tread')) return { muscle: 'Full Body (Low Impact)', equipment: 'Pool / Aqua Dumbbells', tips: 'Use the water\'s resistance to control the movement. Keep movements smooth.', image: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=200&auto=format&fit=crop' };
 
   // Gymnastics & Rings
-  if (n.includes('ring') || n.includes('muscle-up') || n.includes('skin the cat') || n.includes('lever') || n.includes('hang')) return { muscle: 'Upper Body, Core, Stabilizers', equipment: 'Gymnastics Rings / Pull-up Bar', tips: 'Maintain strict body tension (hollow body) and control the eccentric phase.' };
+  if (n.includes('ring') || n.includes('muscle-up') || n.includes('skin the cat') || n.includes('lever') || n.includes('hang')) return { muscle: 'Upper Body, Core, Stabilizers', equipment: 'Gymnastics Rings / Pull-up Bar', tips: 'Maintain strict body tension (hollow body) and control the eccentric phase.', image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=200&auto=format&fit=crop' };
   
   return {
     muscle: 'Targeted Muscle Groups',
     equipment: 'Standard Gym Equipment',
-    tips: 'Maintain proper form, control the eccentric portion of the movement, and breathe properly.'
+    tips: 'Maintain proper form, control the eccentric portion of the movement, and breathe properly.',
+    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=200&auto=format&fit=crop'
   };
+};
+
+const WorkoutTimer = () => {
+  const [stopwatchTime, setStopwatchTime] = useState(0);
+  const [isStopwatchRunning, setIsStopwatchRunning] = useState(false);
+  
+  const [restTime, setRestTime] = useState(0);
+  const [isRestTimerRunning, setIsRestTimerRunning] = useState(false);
+
+  useEffect(() => {
+    let interval: any;
+    if (isStopwatchRunning) {
+      interval = setInterval(() => {
+        setStopwatchTime(prev => prev + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isStopwatchRunning]);
+
+  useEffect(() => {
+    let interval: any;
+    if (isRestTimerRunning && restTime > 0) {
+      interval = setInterval(() => {
+        setRestTime(prev => prev - 1);
+      }, 1000);
+    } else if (restTime === 0 && isRestTimerRunning) {
+      setIsRestTimerRunning(false);
+    }
+    return () => clearInterval(interval);
+  }, [isRestTimerRunning, restTime]);
+
+  const formatTime = (seconds: number) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    if (h > 0) {
+      return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  };
+
+  const startRestTimer = (seconds: number) => {
+    setRestTime(seconds);
+    setIsRestTimerRunning(true);
+  };
+
+  return (
+    <div className="bg-black/40 rounded-2xl border border-white/5 p-4 mb-6 flex flex-col sm:flex-row gap-6">
+      {/* Stopwatch */}
+      <div className="flex-1">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold flex items-center gap-1.5">
+            <Clock className="w-3 h-3" /> Workout Duration
+          </span>
+          <span className="text-2xl font-black italic text-white font-mono">{formatTime(stopwatchTime)}</span>
+        </div>
+        <div className="flex gap-2">
+          <button 
+            onClick={() => setIsStopwatchRunning(!isStopwatchRunning)}
+            className={`flex-1 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-colors flex items-center justify-center gap-2 ${isStopwatchRunning ? 'bg-red-600/20 text-red-500 hover:bg-red-600/30' : 'bg-white/10 text-white hover:bg-white/20'}`}
+          >
+            {isStopwatchRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+            {isStopwatchRunning ? 'Pause' : 'Start'}
+          </button>
+          <button 
+            onClick={() => { setIsStopwatchRunning(false); setStopwatchTime(0); }}
+            className="px-3 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-gray-400 transition-colors"
+            title="Reset Stopwatch"
+          >
+            <RotateCcw className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Rest Timer */}
+      <div className="flex-1 border-t sm:border-t-0 sm:border-l border-white/10 pt-4 sm:pt-0 sm:pl-6">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold flex items-center gap-1.5">
+            <Timer className="w-3 h-3" /> Rest Timer
+          </span>
+          <span className={`text-2xl font-black italic font-mono ${restTime > 0 && restTime <= 10 ? 'text-red-500 animate-pulse' : 'text-white'}`}>
+            {formatTime(restTime)}
+          </span>
+        </div>
+        
+        {!isRestTimerRunning && restTime === 0 ? (
+          <div className="flex gap-2">
+            {[30, 60, 90, 120].map(t => (
+              <button
+                key={t}
+                onClick={() => startRestTimer(t)}
+                className="flex-1 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-bold text-gray-300 transition-colors"
+              >
+                {t}s
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="flex gap-2">
+            <button 
+              onClick={() => setIsRestTimerRunning(!isRestTimerRunning)}
+              className={`flex-1 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-colors flex items-center justify-center gap-2 ${isRestTimerRunning ? 'bg-red-600/20 text-red-500 hover:bg-red-600/30' : 'bg-white/10 text-white hover:bg-white/20'}`}
+            >
+              {isRestTimerRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              {isRestTimerRunning ? 'Pause' : 'Resume'}
+            </button>
+            <button 
+              onClick={() => { setIsRestTimerRunning(false); setRestTime(0); }}
+              className="px-3 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-gray-400 transition-colors"
+              title="Cancel Rest"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default function WorkoutPlans() {
@@ -315,9 +447,13 @@ export default function WorkoutPlans() {
                     {plan.preference}
                   </span>
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:scale-110 transition-transform duration-500">
-                  <Dumbbell className="w-32 h-32 text-white" />
-                </div>
+                {plan.image ? (
+                  <img src={plan.image} alt={plan.title} referrerPolicy="no-referrer" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:scale-110 transition-transform duration-500">
+                    <Dumbbell className="w-32 h-32 text-white" />
+                  </div>
+                )}
               </div>
               <div className="p-8">
                 <h3 className="text-2xl font-black uppercase italic mb-3 group-hover:text-red-600 transition-colors">{plan.title}</h3>
@@ -374,28 +510,37 @@ export default function WorkoutPlans() {
               </button>
 
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="p-6 md:p-12 bg-zinc-800/50">
-                  <div className="inline-block bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 md:mb-6 mt-8 md:mt-0">
-                    {selectedPlan.goal.replace('-', ' ')}
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter mb-4 md:mb-6 pr-8 md:pr-0">{selectedPlan.title}</h2>
-                  <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8 md:mb-10">
-                    {selectedPlan.description}
-                  </p>
-                  
-                  <div className="grid grid-cols-2 gap-8">
-                    <div className="space-y-1">
-                      <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Level</span>
-                      <p className="text-lg font-black uppercase italic">{selectedPlan.level}</p>
+                <div className="p-6 md:p-12 bg-zinc-800/50 relative overflow-hidden">
+                  {selectedPlan.image && (
+                    <div className="absolute inset-0 z-0 opacity-20">
+                      <img src={selectedPlan.image} alt={selectedPlan.title} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/80 to-transparent"></div>
                     </div>
-                    <div className="space-y-1">
-                      <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Type</span>
-                      <p className="text-lg font-black uppercase italic">{selectedPlan.preference}</p>
+                  )}
+                  <div className="relative z-10">
+                    <div className="inline-block bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 md:mb-6 mt-8 md:mt-0">
+                      {selectedPlan.goal.replace('-', ' ')}
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter mb-4 md:mb-6 pr-8 md:pr-0">{selectedPlan.title}</h2>
+                    <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8 md:mb-10">
+                      {selectedPlan.description}
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-8">
+                      <div className="space-y-1">
+                        <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Level</span>
+                        <p className="text-lg font-black uppercase italic">{selectedPlan.level}</p>
+                      </div>
+                      <div className="space-y-1">
+                        <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Type</span>
+                        <p className="text-lg font-black uppercase italic">{selectedPlan.preference}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 <div className="p-6 md:p-12 flex flex-col">
+                  <WorkoutTimer />
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-8">
                     <h3 className="text-xl font-black uppercase italic flex items-center gap-3">
                       <Zap className="w-6 h-6 text-red-600 shrink-0" />
@@ -460,12 +605,17 @@ export default function WorkoutPlans() {
                                   className={`flex items-center justify-between p-4 ${isRest ? '' : 'cursor-pointer hover:bg-white/5'}`}
                                   onClick={() => !isRest && setExpandedExercise(expandedExercise === uniqueKey ? null : uniqueKey)}
                                 >
-                                  <div className="flex-1 pr-4">
-                                    <p className="font-bold text-white flex flex-wrap items-center gap-2 text-sm md:text-base">
-                                      {ex.name}
-                                      {!isRest && (expandedExercise === uniqueKey ? <ChevronUp className="w-4 h-4 text-gray-500 shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-500 shrink-0" />)}
-                                    </p>
-                                    {!isRest && <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">{ex.sets} Sets</p>}
+                                  <div className="flex-1 pr-4 flex items-center gap-3">
+                                    {!isRest && (
+                                      <img src={details.image} alt={ex.name} className="w-10 h-10 object-cover rounded-lg border border-white/10 shrink-0" referrerPolicy="no-referrer" />
+                                    )}
+                                    <div>
+                                      <p className="font-bold text-white flex flex-wrap items-center gap-2 text-sm md:text-base">
+                                        {ex.name}
+                                        {!isRest && (expandedExercise === uniqueKey ? <ChevronUp className="w-4 h-4 text-gray-500 shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-500 shrink-0" />)}
+                                      </p>
+                                      {!isRest && <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">{ex.sets} Sets</p>}
+                                    </div>
                                   </div>
                                   {!isRest && (
                                     <div className="text-right shrink-0">

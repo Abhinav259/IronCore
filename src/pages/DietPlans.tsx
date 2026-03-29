@@ -270,7 +270,7 @@ export default function DietPlans() {
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-1">
                             <p className="text-[10px] uppercase tracking-widest text-red-600 font-black">{meal}</p>
-                            {mealAlternatives[meal as keyof typeof mealAlternatives] && (
+                            {mealAlternatives[selectedPlan.type as keyof typeof mealAlternatives]?.[meal as 'breakfast' | 'lunch' | 'dinner' | 'snacks'] && (
                               <div className="relative group/select">
                                 <select 
                                   onChange={(e) => handleSwapMeal(meal, e.target.value)}
@@ -278,7 +278,7 @@ export default function DietPlans() {
                                   className="appearance-none bg-black/50 border border-white/10 rounded-lg pl-3 pr-8 py-1.5 text-[10px] uppercase tracking-widest text-gray-400 focus:outline-none focus:border-red-600 cursor-pointer hover:bg-black/80 transition-colors"
                                 >
                                   <option value={desc}>Current: {desc.substring(0, 20)}...</option>
-                                  {mealAlternatives[meal as keyof typeof mealAlternatives]
+                                  {mealAlternatives[selectedPlan.type as keyof typeof mealAlternatives][meal as 'breakfast' | 'lunch' | 'dinner' | 'snacks']
                                     .filter(alt => alt !== desc)
                                     .map((alt, idx) => (
                                       <option key={idx} value={alt}>{alt}</option>

@@ -43,9 +43,15 @@ export default function Footer() {
             </p>
             <div className="pt-4 border-t border-white/10">
               <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Created By</p>
-              <p className="text-xl font-black uppercase italic tracking-tight text-white">
+              <p className="text-xl font-black uppercase italic tracking-tight text-white mb-2">
                 Abhinav <span className="text-red-600">Jain</span>
               </p>
+              <a 
+                href="mailto:abhinavjain28121998@gmail.com" 
+                className="text-gray-400 hover:text-red-600 transition-colors text-xs font-medium block"
+              >
+                abhinavjain28121998@gmail.com
+              </a>
             </div>
           </div>
         </div>

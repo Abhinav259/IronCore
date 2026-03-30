@@ -351,6 +351,23 @@ export default function WorkoutPlans() {
           </div>
         </header>
 
+        {/* Why Choose Our Plans? */}
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { title: "Science-Backed", desc: "Every routine is built on proven hypertrophy and strength principles.", icon: Zap },
+            { title: "Expert Form", desc: "Detailed cues and video guides for every single movement.", icon: Trophy },
+            { title: "Progressive", desc: "Structured for long-term growth with clear progression paths.", icon: Users }
+          ].map((item, i) => (
+            <div key={i} className="bg-zinc-900/30 border border-white/5 p-8 rounded-3xl hover:bg-zinc-900/50 transition-colors">
+              <div className="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center mb-6">
+                <item.icon className="w-6 h-6 text-red-600" />
+              </div>
+              <h3 className="text-xl font-black uppercase italic mb-3">{item.title}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </section>
+
         {/* Filters & Search */}
         <div className="bg-zinc-900/50 border border-white/10 p-6 md:p-8 rounded-3xl mb-12 md:mb-16 space-y-6 md:space-y-8">
           <div className="flex flex-col lg:flex-row items-center gap-4 md:gap-6">

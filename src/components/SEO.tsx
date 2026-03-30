@@ -9,7 +9,7 @@ interface SEOProps {
 }
 
 export const SEO: React.FC<SEOProps> = ({ title, description, urlPath, schema }) => {
-  const baseUrl = 'https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app';
+  const baseUrl = 'https://iron-core-neon.vercel.app';
   const fullUrl = `${baseUrl}${urlPath}`;
 
   return (

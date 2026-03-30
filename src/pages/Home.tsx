@@ -30,24 +30,24 @@ export default function Home() {
           "@graph": [
             {
               "@type": "Organization",
-              "@id": "https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app/#organization",
+              "@id": "https://iron-core-neon.vercel.app/#organization",
               "name": "Iron Core",
-              "url": "https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app",
+              "url": "https://iron-core-neon.vercel.app",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app/logo.png"
+                "url": "https://iron-core-neon.vercel.app/logo.png"
               },
               "description": "The ultimate fitness platform for those who demand more. Personalized workouts, expert nutrition, and a community of warriors."
             },
             {
               "@type": "WebSite",
-              "@id": "https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app/#website",
-              "url": "https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app",
+              "@id": "https://iron-core-neon.vercel.app/#website",
+              "url": "https://iron-core-neon.vercel.app",
               "name": "Iron Core",
-              "publisher": { "@id": "https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app/#organization" },
+              "publisher": { "@id": "https://iron-core-neon.vercel.app/#organization" },
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app/workouts?q={search_term_string}",
+                "target": "https://iron-core-neon.vercel.app/workouts?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             },

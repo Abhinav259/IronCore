@@ -62,7 +62,7 @@ export default function Navbar({ user }: { user: User | null }) {
             </Link>
           ))}
           
-          {user && (
+          {user ? (
             <div className="flex items-center gap-4 pl-4 border-l border-white/10">
               <Link to="/profile" className="flex items-center gap-2 hover:text-red-600 transition-colors">
                 <UserIcon className="w-5 h-5" />
@@ -76,6 +76,13 @@ export default function Navbar({ user }: { user: User | null }) {
                 <LogOut className="w-5 h-5 text-gray-400" />
               </button>
             </div>
+          ) : (
+            <Link 
+              to="/profile" 
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-lg shadow-red-600/20"
+            >
+              Join Now
+            </Link>
           )}
         </div>
 

@@ -96,7 +96,7 @@ export default function DietPlans() {
       <SEO 
         title="Muscle Gain & Vegetarian Diet Plans" 
         description="Explore muscle gain diet plans, 7-day vegetarian diet plans for muscle gain, and weight loss nutrition guides." 
-        urlPath="/diet" 
+        urlPath="/diets" 
         schema={{
           "@context": "https://schema.org",
           "@type": "ItemList",

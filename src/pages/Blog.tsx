@@ -27,7 +27,7 @@ export default function Blog() {
           "@type": "Blog",
           "name": "Fitness Insights Blog",
           "description": "Stay informed with the latest tips on training, nutrition, and recovery from our team of experts.",
-          "url": "https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app/blog",
+          "url": "https://iron-core-neon.vercel.app/blog",
           "blogPost": blogPosts.map(post => ({
             "@type": "BlogPosting",
             "headline": post.title,

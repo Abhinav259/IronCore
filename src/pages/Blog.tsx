@@ -110,10 +110,6 @@ export default function Blog() {
                     <Calendar className="w-3 h-3 text-red-600" />
                     {post.date}
                   </div>
-                  <div className="flex items-center gap-2">
-                    <UserIcon className="w-3 h-3 text-red-600" />
-                    {post.author}
-                  </div>
                 </div>
                 
                 <h3 className="text-2xl font-black uppercase italic tracking-tight leading-tight group-hover:text-red-600 transition-colors">
@@ -230,10 +226,6 @@ export default function Blog() {
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-red-600" />
                     {selectedPost.date}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <UserIcon className="w-4 h-4 text-red-600" />
-                    {selectedPost.author}
                   </div>
                   <span className="bg-red-600/10 text-red-600 px-3 py-1 rounded-full">
                     Expert Tip

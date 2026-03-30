@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Search, ChevronRight, Apple, Flame, Zap, X, Coffee, Utensils, Moon, Cookie, RefreshCw } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { dietPlans, mealAlternatives } from '../data';
+import { DietPlan } from '../types';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { SEO } from '../components/SEO';
@@ -11,12 +12,12 @@ import { getMealImage, getFeaturedImage } from '../utils/dietUtils';
 export default function DietPlans() {
   const [filter, setFilter] = useState({ goal: 'all', type: 'all' });
   const [search, setSearch] = useState('');
-  const [selectedPlan, setSelectedPlan] = useState<any | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<DietPlan | null>(null);
   const [customMeals, setCustomMeals] = useState<Record<string, string>>({});
 
-  const handleSelectPlan = (plan: any) => {
+  const handleSelectPlan = (plan: DietPlan) => {
     setSelectedPlan(plan);
-    setCustomMeals(JSON.parse(plan.meals));
+    setCustomMeals(plan.meals);
   };
 
   const handleClosePlan = () => {

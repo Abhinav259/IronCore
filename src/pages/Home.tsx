@@ -215,10 +215,6 @@ export default function Home() {
                         <Calendar className="w-3 h-3 text-red-600" />
                         {post.date}
                       </div>
-                      <div className="flex items-center gap-1">
-                        <UserIcon className="w-3 h-3 text-red-600" />
-                        {post.author}
-                      </div>
                     </div>
                     
                     <h3 className="text-xl font-black uppercase italic tracking-tight leading-tight group-hover:text-red-600 transition-colors">

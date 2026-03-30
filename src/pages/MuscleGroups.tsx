@@ -4,6 +4,7 @@ import { Search, ChevronRight, Dumbbell, Activity, Target, Zap, Shield, Flame, X
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { getExerciseDetails } from '../utils/exerciseUtils';
+import { ExerciseModal } from '../components/ExerciseModal';
 
 const muscleGroupsData = [
   {
@@ -203,6 +204,7 @@ const muscleGroupsData = [
 export default function MuscleGroups() {
   const [search, setSearch] = useState('');
   const [selectedGroup, setSelectedGroup] = useState<typeof muscleGroupsData[0] | null>(null);
+  const [selectedExerciseForModal, setSelectedExerciseForModal] = useState<string | null>(null);
 
   const filteredGroups = muscleGroupsData.filter(group => 
     group.title.toLowerCase().includes(search.toLowerCase()) || 
@@ -480,7 +482,11 @@ export default function MuscleGroups() {
                     {selectedGroup.exercises.map((exercise, idx) => {
                       const details = getExerciseDetails(exercise);
                       return (
-                        <div key={idx} className="bg-black/40 rounded-2xl border border-white/5 p-4 flex items-center gap-4 hover:bg-white/5 transition-colors group/item">
+                        <div 
+                          key={idx} 
+                          className="bg-black/40 rounded-2xl border border-white/5 p-4 flex items-center gap-4 hover:bg-white/5 transition-colors group/item cursor-pointer"
+                          onClick={() => setSelectedExerciseForModal(exercise)}
+                        >
                           <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-white/10">
                             <img 
                               src={details.image} 
@@ -516,6 +522,12 @@ export default function MuscleGroups() {
           </div>
         )}
       </AnimatePresence>
+
+      <ExerciseModal 
+        isOpen={!!selectedExerciseForModal} 
+        onClose={() => setSelectedExerciseForModal(null)} 
+        exerciseName={selectedExerciseForModal || ''} 
+      />
     </div>
   );
 }

@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Filter, Search, ChevronRight, Dumbbell, Zap, Trophy, Users, Clock, Flame, X, Download, ChevronDown, ChevronUp, Play, Youtube, Pause, RotateCcw, Timer, Apple } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { workoutPlans } from '../data';
+import { WorkoutPlan } from '../types';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { SEO } from '../components/SEO';
 import { getExerciseDetails, exerciseVideoIds } from '../utils/exerciseUtils';
+import { ExerciseModal } from '../components/ExerciseModal';
 
 const WorkoutTimer = () => {
   const [stopwatchTime, setStopwatchTime] = useState(0);
@@ -129,7 +131,7 @@ const WorkoutTimer = () => {
 export default function WorkoutPlans() {
   const [filter, setFilter] = useState({ goal: 'all', level: 'all', preference: 'all' });
   const [search, setSearch] = useState('');
-  const [selectedPlan, setSelectedPlan] = useState<any | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<WorkoutPlan | null>(null);
   const [selectedExerciseForModal, setSelectedExerciseForModal] = useState<any | null>(null);
   const [customVideos, setCustomVideos] = useState<Record<string, string>>({});
   const [selectedMuscleFilter, setSelectedMuscleFilter] = useState('all');
@@ -551,7 +553,7 @@ export default function WorkoutPlans() {
                   </div>
                   <div className="space-y-6 md:space-y-8 md:max-h-[50vh] md:overflow-y-auto md:pr-2 custom-scrollbar">
                     {(() => {
-                      const exercises = JSON.parse(selectedPlan.exercises);
+                      const exercises = selectedPlan.exercises;
                       
                       const filteredExercises = exercises.filter((ex: any) => {
                         if (selectedMuscleFilter === 'all') return true;
@@ -634,121 +636,11 @@ export default function WorkoutPlans() {
       </AnimatePresence>
 
       {/* Exercise Detail Modal */}
-      <AnimatePresence>
-        {selectedExerciseForModal && (
-          <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 md:p-6">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedExerciseForModal(null)}
-              className="absolute inset-0 bg-black/95 backdrop-blur-md"
-            ></motion.div>
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-zinc-900 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-10 border border-white/10 shadow-2xl p-6 md:p-10 custom-scrollbar"
-            >
-              <button 
-                onClick={() => setSelectedExerciseForModal(null)}
-                className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="space-y-8">
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-video bg-zinc-800">
-                  <img 
-                    src={selectedExerciseForModal.details.image} 
-                    alt={selectedExerciseForModal.details.alt} 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6">
-                    <h3 className="text-3xl font-black uppercase italic text-white tracking-tighter">
-                      {selectedExerciseForModal.name}
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
-                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-2">Primary Muscle</span>
-                    <p className="text-xl font-black uppercase italic text-red-600">{selectedExerciseForModal.details.primaryMuscle}</p>
-                  </div>
-                  <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
-                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-2">Equipment</span>
-                    <p className="text-xl font-black uppercase italic text-white">{selectedExerciseForModal.details.equipment}</p>
-                  </div>
-                  {selectedExerciseForModal.details.secondaryMuscles.length > 0 && (
-                    <div className="bg-white/5 p-6 rounded-2xl border border-white/5 md:col-span-2 lg:col-span-1">
-                      <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-2">Secondary Muscles</span>
-                      <p className="text-lg font-black uppercase italic text-gray-300">
-                        {selectedExerciseForModal.details.secondaryMuscles.join(', ')}
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
-                  <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-3">Form Tips</span>
-                  <p className="text-gray-300 leading-relaxed italic">
-                    "{selectedExerciseForModal.details.tips}"
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-white/10">
-                  <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-4 flex items-center gap-2">
-                    <Youtube className="w-4 h-4 text-red-600" />
-                    Video Tutorial
-                  </span>
-                  {(() => {
-                    const videoUrl = exerciseVideoIds[selectedExerciseForModal.name.toLowerCase()] ? 
-                                   `https://www.youtube.com/watch?v=${exerciseVideoIds[selectedExerciseForModal.name.toLowerCase()]}` : 
-                                   `https://www.youtube.com/results?search_query=${encodeURIComponent(selectedExerciseForModal.name + ' exercise tutorial')}`;
-                    const thumbnailUrl = getYoutubeThumbnail(videoUrl);
-
-                    return (
-                      <div className="space-y-4">
-                        {thumbnailUrl && (
-                          <div className="rounded-2xl overflow-hidden border border-white/10 relative group bg-black aspect-video">
-                            <img 
-                              src={thumbnailUrl} 
-                              alt={`${selectedExerciseForModal.details.alt} Tutorial`} 
-                              className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
-                            />
-                            <a
-                              href={videoUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="absolute inset-0 flex items-center justify-center"
-                            >
-                              <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-2xl transform scale-90 group-hover:scale-100 transition-transform">
-                                <Play className="w-6 h-6 text-white ml-1" />
-                              </div>
-                            </a>
-                          </div>
-                        )}
-                        <a
-                          href={videoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-3 w-full bg-red-600 hover:bg-red-700 text-white font-black uppercase tracking-widest py-4 rounded-xl transition-all active:scale-95"
-                        >
-                          <Youtube className="w-5 h-5" />
-                          Watch on YouTube
-                        </a>
-                      </div>
-                    );
-                  })()}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <ExerciseModal 
+        isOpen={!!selectedExerciseForModal} 
+        onClose={() => setSelectedExerciseForModal(null)} 
+        exerciseName={selectedExerciseForModal?.name || ''} 
+      />
     </div>
   );
 }

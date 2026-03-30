@@ -110,21 +110,6 @@ export default function Home() {
                 Start Training <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
-
-            <div className="mt-16 flex items-center gap-12">
-              <div className="flex flex-col">
-                <span className="text-3xl font-black text-white">10K+</span>
-                <span className="text-xs uppercase tracking-widest text-gray-500 font-bold">Active Members</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-3xl font-black text-white">500+</span>
-                <span className="text-xs uppercase tracking-widest text-gray-500 font-bold">Workout Plans</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-3xl font-black text-white">50+</span>
-                <span className="text-xs uppercase tracking-widest text-gray-500 font-bold">Expert Coaches</span>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -328,15 +313,6 @@ export default function Home() {
           <h2 className="text-6xl md:text-8xl font-display font-black uppercase italic tracking-tighter mb-8">
             Ready to <span className="text-red-600">Commit?</span>
           </h2>
-          <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-            Join the elite circle of fitness enthusiasts. Your transformation starts with a single step.
-          </p>
-          <Link 
-            to="/workouts" 
-            className="inline-flex bg-red-600 hover:bg-red-700 text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-lg transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/40"
-          >
-            Start Training Today
-          </Link>
         </div>
       </section>
     </div>

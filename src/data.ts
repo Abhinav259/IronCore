@@ -1,5 +1,27 @@
 export const workoutPlans = [
   {
+    "id": "best-weight-loss-workout",
+    "title": "Best Workout Plan for Weight Loss",
+    "goal": "fat-loss",
+    "level": "intermediate",
+    "gender": "both",
+    "preference": "gym",
+    "description": "The best workout plan for weight loss combines high-intensity interval training (HIIT) with strength training to maximize calorie burn and preserve lean muscle mass.",
+    "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop",
+    "exercises": "[{\"name\":\"Goblet Squat\",\"sets\":4,\"reps\":\"12-15\",\"day\":\"Monday\"},{\"name\":\"Dumbbell Bench Press\",\"sets\":4,\"reps\":\"10-12\",\"day\":\"Monday\"},{\"name\":\"Bent-Over Row\",\"sets\":4,\"reps\":\"10-12\",\"day\":\"Monday\"},{\"name\":\"Kettlebell Swings\",\"sets\":4,\"reps\":\"20\",\"day\":\"Monday\"},{\"name\":\"HIIT Treadmill Sprints\",\"sets\":8,\"reps\":\"30s sprint/30s rest\",\"day\":\"Tuesday\"},{\"name\":\"Plank\",\"sets\":3,\"reps\":\"60 sec\",\"day\":\"Tuesday\"},{\"name\":\"Romanian Deadlift\",\"sets\":4,\"reps\":\"10-12\",\"day\":\"Wednesday\"},{\"name\":\"Overhead Press\",\"sets\":4,\"reps\":\"10-12\",\"day\":\"Wednesday\"},{\"name\":\"Lat Pulldown\",\"sets\":4,\"reps\":\"12-15\",\"day\":\"Wednesday\"},{\"name\":\"Walking Lunges\",\"sets\":3,\"reps\":\"15/leg\",\"day\":\"Wednesday\"},{\"name\":\"Active Recovery (Light Walk/Cycle)\",\"sets\":1,\"reps\":\"45 min\",\"day\":\"Thursday\"},{\"name\":\"Leg Press\",\"sets\":4,\"reps\":\"15\",\"day\":\"Friday\"},{\"name\":\"Push-ups\",\"sets\":4,\"reps\":\"To failure\",\"day\":\"Friday\"},{\"name\":\"Seated Cable Row\",\"sets\":4,\"reps\":\"12-15\",\"day\":\"Friday\"},{\"name\":\"Mountain Climbers\",\"sets\":4,\"reps\":\"45 sec\",\"day\":\"Friday\"},{\"name\":\"Rowing Machine Intervals\",\"sets\":10,\"reps\":\"1 min hard/1 min easy\",\"day\":\"Saturday\"},{\"name\":\"Rest\",\"sets\":0,\"reps\":\"0\",\"day\":\"Sunday\"}]"
+  },
+  {
+    "id": "gym-workout-muscle-gain",
+    "title": "Gym Workout Plan for Muscle Gain",
+    "goal": "muscle-gain",
+    "level": "advanced",
+    "gender": "both",
+    "preference": "gym",
+    "description": "A comprehensive gym workout plan for muscle gain focusing on progressive overload, compound movements, and targeted isolation exercises for maximum hypertrophy.",
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop",
+    "exercises": "[{\"name\":\"Barbell Back Squat\",\"sets\":4,\"reps\":\"6-8\",\"day\":\"Monday\"},{\"name\":\"Leg Press\",\"sets\":3,\"reps\":\"10-12\",\"day\":\"Monday\"},{\"name\":\"Romanian Deadlift\",\"sets\":4,\"reps\":\"8-10\",\"day\":\"Monday\"},{\"name\":\"Leg Curl\",\"sets\":3,\"reps\":\"12-15\",\"day\":\"Monday\"},{\"name\":\"Calf Raise\",\"sets\":4,\"reps\":\"15-20\",\"day\":\"Monday\"},{\"name\":\"Barbell Bench Press\",\"sets\":4,\"reps\":\"6-8\",\"day\":\"Tuesday\"},{\"name\":\"Incline Dumbbell Press\",\"sets\":3,\"reps\":\"8-10\",\"day\":\"Tuesday\"},{\"name\":\"Overhead Press\",\"sets\":3,\"reps\":\"8-10\",\"day\":\"Tuesday\"},{\"name\":\"Lateral Raise\",\"sets\":4,\"reps\":\"12-15\",\"day\":\"Tuesday\"},{\"name\":\"Triceps Pushdown\",\"sets\":3,\"reps\":\"10-12\",\"day\":\"Tuesday\"},{\"name\":\"Rest\",\"sets\":0,\"reps\":\"0\",\"day\":\"Wednesday\"},{\"name\":\"Pull-ups\",\"sets\":4,\"reps\":\"8-10\",\"day\":\"Thursday\"},{\"name\":\"Barbell Row\",\"sets\":4,\"reps\":\"6-8\",\"day\":\"Thursday\"},{\"name\":\"Lat Pulldown\",\"sets\":3,\"reps\":\"10-12\",\"day\":\"Thursday\"},{\"name\":\"Face Pulls\",\"sets\":3,\"reps\":\"12-15\",\"day\":\"Thursday\"},{\"name\":\"Barbell Curls\",\"sets\":3,\"reps\":\"10-12\",\"day\":\"Thursday\"},{\"name\":\"Front Squat\",\"sets\":3,\"reps\":\"8-10\",\"day\":\"Friday\"},{\"name\":\"Bulgarian Split Squat\",\"sets\":3,\"reps\":\"10-12/leg\",\"day\":\"Friday\"},{\"name\":\"Dumbbell Bench Press\",\"sets\":3,\"reps\":\"8-10\",\"day\":\"Friday\"},{\"name\":\"Cable Crossovers\",\"sets\":3,\"reps\":\"12-15\",\"day\":\"Friday\"},{\"name\":\"Seated Cable Row\",\"sets\":3,\"reps\":\"10-12\",\"day\":\"Saturday\"},{\"name\":\"Dumbbell Pullover\",\"sets\":3,\"reps\":\"12-15\",\"day\":\"Saturday\"},{\"name\":\"Hammer Curls\",\"sets\":3,\"reps\":\"10-12\",\"day\":\"Saturday\"},{\"name\":\"Skull Crushers\",\"sets\":3,\"reps\":\"10-12\",\"day\":\"Saturday\"},{\"name\":\"Rest\",\"sets\":0,\"reps\":\"0\",\"day\":\"Sunday\"}]"
+  },
+  {
     "id": "beginner-1",
     "title": "Beginner Full-Body Plan",
     "goal": "muscle-gain",
@@ -357,10 +379,10 @@ export const mealAlternatives = {
   vegetarian: {
     breakfast: [
       'Oatmeal with berries and almond butter',
-      'Scrambled eggs with spinach and whole-grain toast',
+      'Paneer bhurji (scrambled paneer) with spinach and whole-grain toast',
       'Greek yogurt parfait with granola and honey',
       'Protein smoothie with banana and spinach',
-      'Avocado toast with poached eggs',
+      'Avocado toast with grilled paneer and hemp seeds',
       'Protein pancakes made with oats and whey'
     ],
     lunch: [
@@ -568,6 +590,14 @@ export const mealAlternatives = {
 };
 
 export const dietPlans = [
+  {
+    "id": "7-day-vegetarian-diet",
+    "title": "7-Day Vegetarian Diet Plan for Muscle Gain",
+    "goal": "muscle-gain",
+    "type": "vegetarian",
+    "calorieGuidance": "2500-2800 kcal",
+    "meals": "{\"breakfast\":\"Protein smoothie with whey/plant protein, oats, banana, and peanut butter\",\"lunch\":\"Large bowl of lentil dal, brown rice, and mixed vegetable curry with a side of paneer/tofu\",\"dinner\":\"Whole wheat roti, chickpea (chana) masala, and a large spinach salad\",\"snacks\":\"Greek yogurt with mixed nuts, or roasted edamame\"}"
+  },
   {
     "id": "wl-veg",
     "title": "Lean Green Machine",
@@ -798,7 +828,7 @@ export const dietPlans = [
     "goal": "general-fitness",
     "type": "vegetarian",
     "calorieGuidance": "2000-2400 kcal",
-    "meals": "{\"breakfast\":\"Avocado toast on whole grain bread with poached eggs\",\"lunch\":\"Lentil soup with a side salad and vinaigrette\",\"dinner\":\"Vegetable stir-fry with tofu and brown rice\",\"snacks\":\"Apple slices with almond butter\"}"
+    "meals": "{\"breakfast\":\"Avocado toast on whole grain bread with grilled paneer and seeds\",\"lunch\":\"Lentil soup with a side salad and vinaigrette\",\"dinner\":\"Vegetable stir-fry with tofu and brown rice\",\"snacks\":\"Apple slices with almond butter\"}"
   },
   {
     "id": "gf-nonveg",
@@ -958,5 +988,69 @@ export const blogPosts = [
     author: 'Dr. Wellness',
     date: '2026-03-24',
     image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 9,
+    title: 'The Science of Hypertrophy: How Muscle Grows',
+    content: 'Muscle hypertrophy occurs through three primary mechanisms: mechanical tension, metabolic stress, and muscle damage.\n\n1. Mechanical Tension: This is the most critical driver. It is achieved by lifting heavy weights through a full range of motion. When you lift a heavy load, the muscle fibers experience a stretching force that triggers chemical signals for growth.\n\n2. Metabolic Stress: Often felt as "the pump," this involves the accumulation of metabolites like lactate, hydrogen ions, and inorganic phosphate. This stress signals the body to adapt by increasing muscle size and glycogen storage.\n\n3. Muscle Damage: While not strictly necessary, localized damage to muscle fibers (micro-tears) triggers an inflammatory response and activates satellite cells, which help repair and thicken the fibers.\n\nTo maximize growth, focus on progressive overload—gradually increasing weight, reps, or sets over time. Aim for 10-20 sets per muscle group per week, distributed across 2-3 sessions for optimal recovery.',
+    author: 'Coach Mike',
+    date: '2026-03-26',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 10,
+    title: 'The Role of Micronutrients in Performance',
+    content: 'While macros (protein, carbs, fats) get all the attention, micronutrients (vitamins and minerals) are the unsung heroes of performance and longevity.\n\n- Magnesium: Essential for over 300 biochemical reactions, including muscle contraction, relaxation, and energy production. Low levels can lead to cramping and poor sleep.\n- Zinc: Supports testosterone production, protein synthesis, and immune function. It is vital for recovery after intense training sessions.\n- Iron: Crucial for oxygen transport. Iron-deficiency anemia can significantly impair aerobic capacity and lead to chronic fatigue.\n- Vitamin D: Acts more like a hormone, influencing muscle strength, bone density, and immune health. Most athletes are deficient, especially in winter months.\n\nDeficiencies in these can lead to fatigue, cramping, and poor recovery. Eat a "rainbow" of vegetables, fruits, seeds, and lean meats to ensure you\'re covering your micro needs. Consider a high-quality multivitamin if your diet is restricted.',
+    author: 'Dr. Fitness',
+    date: '2026-03-27',
+    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 11,
+    title: 'Understanding Periodization for Long-Term Gains',
+    content: 'Periodization is the systematic planning of athletic training to prevent overtraining and ensure peak performance at specific times.\n\n- Macrocycle: The entire training year or season.\n- Mesocycle: A specific training block, usually 4-6 weeks, focusing on a particular goal (e.g., hypertrophy, strength, or power).\n- Microcycle: A single week of training.\n\nLinear Periodization: Gradually increases intensity (weight) while decreasing volume (reps/sets). This is great for beginners to build a solid foundation.\n\nBlock Periodization: Focuses on one specific quality at a time. For example, a 4-week block dedicated purely to building work capacity, followed by a 4-week block for maximum strength.\n\nBy varying your training stimulus, you avoid plateaus, manage fatigue, and keep your body adapting safely. Remember, you can\'t go 100% all year round; deload weeks are essential for long-term progress.',
+    author: 'Coach Sarah',
+    date: '2026-03-28',
+    image: 'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 12,
+    title: 'The Impact of Stress on Physical Transformation',
+    content: 'Cortisol, the "stress hormone," can be a major roadblock to your fitness goals if left unchecked.\n\nWhen you are chronically stressed—whether from work, relationships, or lack of sleep—your body stays in a "fight or flight" state. Elevated cortisol levels can:\n- Promote visceral fat storage (the dangerous fat around your organs).\n- Trigger muscle protein breakdown (catabolism).\n- Suppress the immune system, leading to more frequent illness.\n- Disrupt sleep patterns, which are crucial for growth hormone release.\n\nFurthermore, high stress often leads to emotional eating and poor decision-making. Managing stress through daily meditation, deep breathing exercises, adequate rest, and balanced training is just as important as the workout itself. A healthy body starts with a healthy mind.',
+    author: 'Dr. Wellness',
+    date: '2026-03-29',
+    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 13,
+    title: 'The Truth About Supplements: What Actually Works?',
+    content: 'The supplement industry is a multi-billion dollar machine, but only a handful of products are backed by robust scientific evidence.\n\n1. Creatine Monohydrate: The most researched supplement in history. It increases phosphocreatine stores, allowing for more ATP production during high-intensity exercise. It is safe, effective, and cheap.\n\n2. Caffeine: A powerful ergogenic aid that reduces perceived exertion and improves focus. It is effective for both strength and endurance athletes.\n\n3. Whey Protein: A convenient way to hit your daily protein targets. It has a high leucine content, which is the primary trigger for muscle protein synthesis.\n\n4. Beta-Alanine: Helps buffer lactic acid in the muscles, improving performance in the 1-4 minute intensity range.\n\nMost other supplements (like fat burners or testosterone boosters) have little to no evidence supporting their efficacy. Focus on your training and nutrition first; supplements are just the "cherry on top."',
+    author: 'Dr. Fitness',
+    date: '2026-03-30',
+    image: 'https://images.unsplash.com/photo-1593094276947-2202ed28c3d5?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 14,
+    title: 'Mastering the Squat: Technique and Common Mistakes',
+    content: 'The squat is often called the "king of all exercises," but it is also one of the most commonly butchered movements.\n\nKey Technical Cues:\n- Foot Placement: Shoulder-width apart with toes slightly pointed out.\n- Bracing: Take a deep breath into your belly and tighten your core (the Valsalva maneuver) before descending.\n- Hips First: Initiate the movement by pushing your hips back, not just bending your knees.\n- Depth: Aim for "parallel"—where the crease of your hip is level with the top of your knee.\n\nCommon Mistakes:\n- Knees Caving In (Valgus): This puts immense stress on the ACL. Focus on "pushing the floor apart" with your feet.\n- Rounding the Back: Usually caused by a weak core or poor ankle mobility. Keep your chest up and eyes forward.\n- Heel Lift: If your heels come off the ground, you likely have tight ankles. Work on dorsiflexion mobility or use weightlifting shoes.',
+    author: 'Coach Mike',
+    date: '2026-03-31',
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 15,
+    title: 'The Importance of Mobility for Strength Athletes',
+    content: 'Mobility is NOT the same as flexibility. Flexibility is the passive range of motion, while mobility is the ability to control your joints through their full range of motion.\n\nFor strength athletes, poor mobility leads to:\n- Compensatory Movements: Your body will find a way to move the weight, often by stressing joints that aren\'t meant to handle the load (e.g., lower back taking over for tight hips).\n- Reduced Power Output: You can\'t generate maximum force if your joints are restricted.\n- Increased Injury Risk: Tight tissues are more prone to strains and tears.\n\nIncorporate a 10-minute dynamic warm-up before every session focusing on your "problem areas"—usually the hips, ankles, and thoracic spine. Use foam rolling for recovery, but don\'t rely on it as a substitute for active mobility work.',
+    author: 'Coach Sarah',
+    date: '2026-04-01',
+    image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 16,
+    title: 'How to Track Progress Beyond the Scale',
+    content: 'The scale is a useful tool, but it is a terrible master. Body weight can fluctuate by several pounds daily due to water retention, glycogen levels, and inflammation.\n\nBetter ways to track your transformation:\n1. Progress Photos: Take them in the same lighting and time of day (ideally morning) every 2-4 weeks. The mirror often sees what the scale misses.\n2. Body Measurements: Track your waist, chest, arms, and thighs. If your waist is shrinking while your weight stays the same, you are losing fat and gaining muscle (recomposition).\n3. Performance Markers: Are you getting stronger? Is your resting heart rate dropping? Can you do more reps with the same weight? These are objective signs of physiological adaptation.\n4. Energy & Mood: How do you feel? Better sleep and higher daily energy levels are huge indicators of a successful program.\n\nDon\'t let a single number define your success. Look at the big picture.',
+    author: 'Alex Johnson',
+    date: '2026-04-02',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop'
   }
 ];

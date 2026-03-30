@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Search, ChevronRight, Dumbbell, Activity, Target, Zap, Shield, Flame, X, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
+import { getExerciseDetails } from '../utils/exerciseUtils';
 
 const muscleGroupsData = [
   {
@@ -12,7 +13,8 @@ const muscleGroupsData = [
     level: 'Beginner / Intermediate',
     popular: true,
     icon: Dumbbell,
-    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80',
+    alt: 'Athlete performing a heavy barbell bench press',
     exercises: ['Bench Press', 'Incline Dumbbell Press', 'Push-ups', 'Cable Crossovers', 'Dips'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -23,7 +25,8 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: true,
     icon: Activity,
-    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1526506114861-f3c500078f4b?auto=format&fit=crop&w=800&q=80',
+    alt: 'Person performing wide-grip pull-ups for back development',
     exercises: ['Pull-ups', 'Barbell Rows', 'Lat Pulldowns', 'T-Bar Rows', 'Seated Cable Rows'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -34,7 +37,8 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: true,
     icon: Target,
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80',
+    alt: 'Person performing overhead dumbbell shoulder presses',
     exercises: ['Overhead Press', 'Lateral Raises', 'Front Raises', 'Reverse Pec Deck', 'Arnold Press'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Dumbbell-Only Plan']
   },
@@ -46,6 +50,7 @@ const muscleGroupsData = [
     popular: true,
     icon: Zap,
     image: 'https://images.unsplash.com/photo-1581009137042-c552e485697a?auto=format&fit=crop&w=800&q=80',
+    alt: 'Close up of bicep curls with dumbbells',
     exercises: ['Barbell Curls', 'Dumbbell Hammer Curls', 'Preacher Curls', 'Incline Dumbbell Curls', 'Cable Curls'],
     relatedPlans: ['Bodybuilder Bro Split', 'Dumbbell-Only Plan']
   },
@@ -57,6 +62,7 @@ const muscleGroupsData = [
     popular: true,
     icon: Shield,
     image: 'https://images.unsplash.com/photo-1530822847156-5df684ec5ee1?auto=format&fit=crop&w=800&q=80',
+    alt: 'Person performing triceps rope pushdowns',
     exercises: ['Triceps Pushdowns', 'Skull Crushers', 'Overhead Extensions', 'Close-Grip Bench Press', 'Dips'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -68,6 +74,7 @@ const muscleGroupsData = [
     popular: false,
     icon: Dumbbell,
     image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80',
+    alt: 'Athlete with developed forearms holding a barbell',
     exercises: ['Wrist Curls', 'Reverse Curls', 'Farmers Walk', 'Dead Hangs', 'Plate Pinches'],
     relatedPlans: ['Strongman & Odd-Object Training', 'Bodybuilder Bro Split']
   },
@@ -78,7 +85,8 @@ const muscleGroupsData = [
     level: 'Beginner / Advanced',
     popular: true,
     icon: Flame,
-    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1566241142559-40e1bfc26ebc?auto=format&fit=crop&w=800&q=80',
+    alt: 'Person performing a forearm plank for core strength',
     exercises: ['Crunches', 'Planks', 'Hanging Leg Raises', 'Russian Twists', 'Cable Crunches'],
     relatedPlans: ['Fat-Loss & Conditioning', 'Calisthenics Plan']
   },
@@ -89,7 +97,8 @@ const muscleGroupsData = [
     level: 'Intermediate / Advanced',
     popular: true,
     icon: Zap,
-    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80',
+    alt: 'Person performing a deep barbell back squat',
     exercises: ['Back Squats', 'Front Squats', 'Leg Press', 'Bulgarian Split Squats', 'Leg Extensions'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Strength / Powerlifting Plan']
   },
@@ -101,6 +110,7 @@ const muscleGroupsData = [
     popular: false,
     icon: Activity,
     image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
+    alt: 'Person performing lying leg curls for hamstrings',
     exercises: ['Romanian Deadlifts', 'Lying Leg Curls', 'Seated Leg Curls', 'Good Mornings', 'Glute-Ham Raises'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Strength / Powerlifting Plan']
   },
@@ -112,6 +122,7 @@ const muscleGroupsData = [
     popular: true,
     icon: Target,
     image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
+    alt: 'Athlete performing kettlebell swings for glute power',
     exercises: ['Hip Thrusts', 'Glute Bridges', 'Walking Lunges', 'Cable Kickbacks', 'Kettlebell Swings'],
     relatedPlans: ['Fat-Loss & Conditioning', 'Postpartum Core Rebuilding']
   },
@@ -122,7 +133,8 @@ const muscleGroupsData = [
     level: 'Beginner',
     popular: false,
     icon: Shield,
-    image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80',
+    alt: 'Close up of a person performing standing calf raises',
     exercises: ['Standing Calf Raises', 'Seated Calf Raises', 'Donkey Calf Raises', 'Jump Rope', 'Toe Presses on Leg Press'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -134,6 +146,7 @@ const muscleGroupsData = [
     popular: false,
     icon: Activity,
     image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
+    alt: 'Person performing rear delt flyes for upper back development',
     exercises: ['Face Pulls', 'Rear Delt Flyes', 'Chest-Supported Rows', 'Band Pull-Aparts', 'Y-T-W Raises'],
     relatedPlans: ['Desk-Worker Posture Correction', 'Pre-hab & Joint Armor']
   },
@@ -144,7 +157,8 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Shield,
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=800&q=80',
+    alt: 'Person performing a conventional barbell deadlift',
     exercises: ['Back Extensions', 'Deadlifts', 'Good Mornings', 'Bird Dogs', 'Superman Holds'],
     relatedPlans: ['Strength / Powerlifting Plan', 'Desk-Worker Posture Correction']
   },
@@ -155,7 +169,8 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Target,
-    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1526506114861-f3c500078f4b?auto=format&fit=crop&w=800&q=80',
+    alt: 'Person performing wide-grip lat pulldowns',
     exercises: ['Wide-Grip Pull-ups', 'Straight-Arm Pulldowns', 'Lat Pulldowns', 'Dumbbell Pullovers', 'Single-Arm Cable Rows'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
   },
@@ -167,6 +182,7 @@ const muscleGroupsData = [
     popular: false,
     icon: Dumbbell,
     image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
+    alt: 'Athlete performing heavy barbell shrugs',
     exercises: ['Barbell Shrugs', 'Dumbbell Shrugs', 'Farmer\'s Walks', 'Upright Rows', 'Rack Pulls'],
     relatedPlans: ['Strongman & Odd-Object Training', 'Bodybuilder Bro Split']
   },
@@ -178,6 +194,7 @@ const muscleGroupsData = [
     popular: true,
     icon: Zap,
     image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80',
+    alt: 'Athlete performing a full-body functional movement',
     exercises: ['Burpees', 'Clean and Press', 'Thrusters', 'Kettlebell Swings', 'Man Makers'],
     relatedPlans: ['Beginner Full-Body Plan', 'Functional Grid & Metcon']
   }
@@ -197,14 +214,32 @@ export default function MuscleGroups() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
-        title="Muscle Groups" 
-        description="Find targeted exercises and routines for every major muscle group. Build your perfect physique with precision." 
+        title="Muscle Group Exercises & Targeted Workouts" 
+        description="Find targeted muscle group exercises and routines for every major muscle group. Build your perfect physique with precision." 
         urlPath="/muscle-groups" 
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": muscleGroupsData.map((group, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+              "@type": "CreativeWork",
+              "name": group.title,
+              "description": group.description,
+              "image": group.image,
+              "author": {
+                "@type": "Organization",
+                "name": "Iron Core"
+              }
+            }
+          }))
+        }}
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">
-            By Muscle <span className="text-red-600">Group</span>
+            Muscle Group <span className="text-red-600">Exercises</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
             Find targeted exercises and routines for every major muscle group. Build your perfect physique with precision.
@@ -343,6 +378,24 @@ export default function MuscleGroups() {
               <p className="text-gray-500">Try adjusting your search terms.</p>
             </div>
           )}
+
+          {/* SEO Content Block */}
+          <div className="mt-32 max-w-4xl mx-auto prose prose-invert max-w-none text-gray-400">
+            <h2 className="text-2xl font-bold text-white mb-4">Mastering Muscle Group Exercises</h2>
+            <p className="mb-4">
+              Understanding how to target specific areas of your body is the foundation of any effective training program. By focusing on distinct <strong>muscle group exercises</strong>, you can correct imbalances, enhance muscle definition, and ensure comprehensive development. Whether your goal is to build a broader back, sculpt your legs, or increase your chest strength, isolating these groups allows for precise <strong>targeted workouts</strong>.
+            </p>
+            <h3 className="text-xl font-bold text-white mb-3">The Importance of Targeted Workouts</h3>
+            <ul className="list-disc pl-6 mb-6 space-y-2">
+              <li><strong>Hypertrophy Focus:</strong> Isolating a muscle group ensures it receives the maximum stimulus required for growth, which is essential for bodybuilders and physique athletes.</li>
+              <li><strong>Injury Prevention:</strong> Strengthening weak links in your kinetic chain by targeting specific, often neglected muscles (like the rear deltoids or hamstrings) can significantly reduce the risk of injury.</li>
+              <li><strong>Mind-Muscle Connection:</strong> Concentrating on a single muscle group helps improve neuromuscular efficiency, allowing you to recruit more muscle fibers during each repetition.</li>
+              <li><strong>Customized Programming:</strong> Knowing which exercises target which muscles allows you to build a customized split (e.g., Push/Pull/Legs or Upper/Lower) that fits your recovery capacity and goals.</li>
+            </ul>
+            <p>
+              Explore our comprehensive library of exercises to find the best movements for your goals. Pair these exercises with our structured <Link to="/workouts" className="text-red-500 hover:underline">workout plans</Link> for optimal results.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -417,23 +470,45 @@ export default function MuscleGroups() {
                   </div>
                 </div>
 
-                <div className="p-6 md:p-10 md:col-span-3 flex flex-col">
+                  <div className="p-6 md:p-10 md:col-span-3 flex flex-col">
                   <h3 className="text-xl font-black uppercase italic flex items-center gap-3 mb-6 md:mb-8">
                     <Dumbbell className="w-6 h-6 text-red-600 shrink-0" />
                     Key Exercises
                   </h3>
                   
                   <div className="space-y-4 md:max-h-[60vh] md:overflow-y-auto md:pr-2 custom-scrollbar">
-                    {selectedGroup.exercises.map((exercise, idx) => (
-                      <div key={idx} className="bg-black/40 rounded-2xl border border-white/5 p-4 flex items-center justify-between hover:bg-white/5 transition-colors">
-                        <div className="flex items-center gap-4">
+                    {selectedGroup.exercises.map((exercise, idx) => {
+                      const details = getExerciseDetails(exercise);
+                      return (
+                        <div key={idx} className="bg-black/40 rounded-2xl border border-white/5 p-4 flex items-center gap-4 hover:bg-white/5 transition-colors group/item">
+                          <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-white/10">
+                            <img 
+                              src={details.image} 
+                              alt={details.alt}
+                              className="w-full h-full object-cover group-hover/item:scale-110 transition-transform duration-500"
+                              referrerPolicy="no-referrer"
+                              loading="lazy"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-bold text-white text-sm md:text-base mb-1">{exercise}</p>
+                            <div className="flex flex-wrap gap-2 items-center">
+                              <p className="text-[10px] text-red-500 uppercase tracking-widest font-black italic">{details.primaryMuscle}</p>
+                              <span className="text-gray-700 text-[10px]">•</span>
+                              <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{details.equipment}</p>
+                            </div>
+                            {details.secondaryMuscles.length > 0 && (
+                              <p className="text-[9px] text-gray-600 uppercase tracking-widest font-bold mt-1">
+                                Secondary: {details.secondaryMuscles.join(', ')}
+                              </p>
+                            )}
+                          </div>
                           <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-gray-500 font-bold text-xs">
                             {idx + 1}
                           </div>
-                          <p className="font-bold text-white text-sm md:text-base">{exercise}</p>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               </div>

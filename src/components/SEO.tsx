@@ -5,9 +5,10 @@ interface SEOProps {
   title: string;
   description: string;
   urlPath: string;
+  schema?: object;
 }
 
-export const SEO: React.FC<SEOProps> = ({ title, description, urlPath }) => {
+export const SEO: React.FC<SEOProps> = ({ title, description, urlPath, schema }) => {
   const baseUrl = 'https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app';
   const fullUrl = `${baseUrl}${urlPath}`;
 
@@ -28,6 +29,13 @@ export const SEO: React.FC<SEOProps> = ({ title, description, urlPath }) => {
       <meta property="twitter:url" content={fullUrl} />
       <meta property="twitter:title" content={title === 'Iron Core' ? title : `${title} | Iron Core`} />
       <meta property="twitter:description" content={description} />
+
+      {/* Schema.org JSON-LD */}
+      {schema && (
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      )}
     </Helmet>
   );
 };

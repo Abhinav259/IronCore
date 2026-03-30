@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Pill, ShieldCheck, Zap, Info, CheckCircle2, AlertTriangle, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { supplements } from '../data';
 import { useState } from 'react';
 import { SEO } from '../components/SEO';
@@ -20,14 +21,32 @@ export default function Supplements() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
-        title="Supplements Guide" 
-        description="Optimize your results with the right supplementation. We break down the science, benefits, and usage for maximum gains." 
+        title="Fitness Supplements & Workout Nutrition Guide" 
+        description="Optimize your results with the right fitness supplements and workout nutrition. We break down the science, benefits, and usage for maximum gains." 
         urlPath="/supplements" 
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": supplements.map((supp, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+              "@type": "Product",
+              "name": supp.name,
+              "description": supp.benefits,
+              "category": supp.category,
+              "brand": {
+                "@type": "Organization",
+                "name": "Iron Core"
+              }
+            }
+          }))
+        }}
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">
-            Supplements <span className="text-red-600">Guide</span>
+            Fitness <span className="text-red-600">Supplements</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
             Optimize your results with the right supplementation. We break down the science, benefits, and usage for maximum gains.
@@ -115,7 +134,7 @@ export default function Supplements() {
         </div>
 
         {/* Safety Disclaimer */}
-        <div className="bg-red-600/10 border border-red-600/20 rounded-3xl p-10 flex flex-col md:flex-row items-start gap-8">
+        <div className="bg-red-600/10 border border-red-600/20 rounded-3xl p-10 flex flex-col md:flex-row items-start gap-8 mb-16">
           <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center shrink-0 shadow-xl shadow-red-600/20">
             <AlertTriangle className="w-8 h-8 text-white" />
           </div>
@@ -139,6 +158,24 @@ export default function Supplements() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* SEO Content Block */}
+        <div className="max-w-4xl mx-auto prose prose-invert max-w-none text-gray-400">
+          <h2 className="text-2xl font-bold text-white mb-4">Maximizing Results with Fitness Supplements</h2>
+          <p className="mb-4">
+            While a solid training program and a balanced diet are the pillars of fitness, the right <strong>fitness supplements</strong> can provide the extra edge needed to break through plateaus. Whether you are looking to accelerate recovery, increase strength, or boost your daily protein intake, understanding <strong>workout nutrition</strong> is vital.
+          </p>
+          <h3 className="text-xl font-bold text-white mb-3">Core Supplements for Every Athlete</h3>
+          <ul className="list-disc pl-6 mb-6 space-y-2">
+            <li><strong>Whey Protein:</strong> Essential for muscle repair and growth. Consuming protein post-workout ensures your muscles have the necessary amino acids to recover quickly.</li>
+            <li><strong>Creatine Monohydrate:</strong> One of the most researched supplements available. It helps increase ATP production, leading to improved strength and power output during high-intensity training.</li>
+            <li><strong>Pre-Workout:</strong> Designed to enhance focus, energy, and blood flow, allowing you to train harder and longer.</li>
+            <li><strong>BCAAs & EAAs:</strong> Branched-Chain Amino Acids help reduce muscle breakdown during prolonged workouts and support recovery.</li>
+          </ul>
+          <p>
+            Remember, supplements are just one piece of the puzzle. To achieve your ultimate physique, ensure your <Link to="/diet" className="text-red-500 hover:underline">diet plan</Link> is dialed in and you are consistently following a structured <Link to="/workouts" className="text-red-500 hover:underline">workout routine</Link>.
+          </p>
         </div>
       </div>
     </div>

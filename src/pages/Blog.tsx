@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, User as UserIcon, ArrowRight, Search, Zap, Clock, Flame, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { blogPosts } from '../data';
 import { useState } from 'react';
 import { SEO } from '../components/SEO';
@@ -8,22 +9,42 @@ export default function Blog() {
   const [search, setSearch] = useState('');
   const [selectedPost, setSelectedPost] = useState<typeof blogPosts[0] | null>(null);
 
-  const filteredPosts = blogPosts.filter(post => 
-    post.title.toLowerCase().includes(search.toLowerCase()) || 
-    post.content.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredPosts = blogPosts
+    .filter(post => 
+      post.title.toLowerCase().includes(search.toLowerCase()) || 
+      post.content.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
-        title="Fitness Insights Blog" 
-        description="Stay informed with the latest tips on training, nutrition, and recovery from our team of experts." 
+        title="Fitness Tips & Workout Advice Blog" 
+        description="Stay informed with the latest fitness tips, workout advice, and nutrition guides from our team of experts." 
         urlPath="/blog" 
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "Fitness Insights Blog",
+          "description": "Stay informed with the latest tips on training, nutrition, and recovery from our team of experts.",
+          "url": "https://ais-pre-2sixzznu6fnoomp3d35zxd-756170678377.asia-southeast1.run.app/blog",
+          "blogPost": blogPosts.map(post => ({
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.content.substring(0, 160) + "...",
+            "image": post.image,
+            "datePublished": post.date,
+            "author": {
+              "@type": "Person",
+              "name": post.author
+            }
+          }))
+        }}
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-20 text-center">
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">
-            Fitness <span className="text-red-600">Insights</span>
+            Fitness <span className="text-red-600">Tips</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
             Stay informed with the latest tips on training, nutrition, and recovery from our team of experts.
@@ -144,6 +165,26 @@ export default function Blog() {
           </form>
           <p className="mt-6 text-[10px] text-gray-500 uppercase tracking-widest font-bold">
             No spam. Just gains. Unsubscribe anytime.
+          </p>
+        </div>
+      </section>
+
+      {/* SEO Content Block */}
+      <section className="py-16 bg-black">
+        <div className="max-w-4xl mx-auto px-6 prose prose-invert max-w-none text-gray-400">
+          <h2 className="text-2xl font-bold text-white mb-4">Your Source for Fitness Tips and Workout Advice</h2>
+          <p className="mb-4">
+            Navigating the world of fitness can be overwhelming with the constant influx of new information. Our blog is dedicated to providing you with evidence-based <strong>fitness tips</strong>, practical <strong>workout advice</strong>, and actionable <strong>nutrition guides</strong> to help you cut through the noise and achieve your goals.
+          </p>
+          <h3 className="text-xl font-bold text-white mb-3">What You Will Find Here</h3>
+          <ul className="list-disc pl-6 mb-6 space-y-2">
+            <li><strong>Training Strategies:</strong> Learn how to optimize your time in the gym with advanced techniques like drop sets, supersets, and proper periodization.</li>
+            <li><strong>Nutritional Insights:</strong> Discover how to fuel your body for performance and recovery, including deep dives into macronutrients and supplement timing.</li>
+            <li><strong>Recovery Protocols:</strong> Understand the importance of sleep, hydration, and active recovery in maximizing your gains and preventing injury.</li>
+            <li><strong>Mindset & Motivation:</strong> Build the mental resilience needed to stay consistent and push past your limits.</li>
+          </ul>
+          <p>
+            Stay updated with the latest trends and scientific findings in the fitness industry. For structured guidance, be sure to check out our comprehensive <Link to="/workouts" className="text-red-500 hover:underline">workout plans</Link> and <Link to="/diet" className="text-red-500 hover:underline">diet plans</Link>.
           </p>
         </div>
       </section>

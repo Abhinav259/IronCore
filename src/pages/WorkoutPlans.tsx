@@ -1,72 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Filter, Search, ChevronRight, Dumbbell, Zap, Trophy, Users, Clock, Flame, X, Download, ChevronDown, ChevronUp, Play, Youtube, Pause, RotateCcw, Timer } from 'lucide-react';
+import { Filter, Search, ChevronRight, Dumbbell, Zap, Trophy, Users, Clock, Flame, X, Download, ChevronDown, ChevronUp, Play, Youtube, Pause, RotateCcw, Timer, Apple } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { workoutPlans } from '../data';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { SEO } from '../components/SEO';
-
-const getExerciseDetails = (name: string) => {
-  const n = name.toLowerCase();
-  
-  // Specific overrides first to prevent incorrect matching
-  if (n.includes('leg curl')) return { muscle: 'Hamstrings', equipment: 'Machine', tips: 'Squeeze your hamstrings at the top of the movement.', image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('leg extension')) return { muscle: 'Quadriceps', equipment: 'Machine', tips: 'Squeeze your quads at the top of the movement.', image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('calf raise')) return { muscle: 'Calves', equipment: 'Bodyweight / Machine', tips: 'Push through the balls of your feet and hold the contraction.', image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('back extension')) return { muscle: 'Lower Back, Hamstrings, Glutes', equipment: 'Machine / Bodyweight', tips: 'Hinge at the hips and avoid hyperextending your lower back.', image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('chest press') || n.includes('machine press') || n.includes('floor press') || n.includes('incline press')) return { muscle: 'Chest, Triceps, Anterior Deltoids', equipment: 'Machine / Barbell / Dumbbells', tips: 'Keep your chest up and shoulders back.', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('incline bench') || n.includes('close-grip bench') || n.includes('bench press') || n.includes('bench (light speed)')) return { muscle: 'Chest, Triceps, Anterior Deltoids', equipment: 'Barbell/Dumbbells, Bench', tips: 'Keep feet flat, maintain a slight arch in your lower back, and control the descent.', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('sled push')) return { muscle: 'Full Body, Legs, Conditioning', equipment: 'Sled', tips: 'Keep your body low and drive through your legs.', image: 'https://images.unsplash.com/photo-1434596922112-19c563067271?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('ladder drills') || n.includes('bounds') || n.includes('high knees')) return { muscle: 'Legs, Agility, Conditioning', equipment: 'Agility Ladder / Bodyweight', tips: 'Stay light on your feet and focus on quick ground contact.', image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('push press')) return { muscle: 'Shoulders, Triceps, Legs', equipment: 'Barbell/Dumbbells', tips: 'Use a slight dip in the legs to drive the weight overhead.', image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('rear delt fly')) return { muscle: 'Rear Deltoids, Rhomboids', equipment: 'Dumbbells / Machine', tips: 'Focus on pulling with your rear delts, not your back.', image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('clean') || n.includes('snatch') || n.includes('jerk')) return { muscle: 'Full Body, Explosive Power', equipment: 'Barbell / Dumbbells / Kettlebell', tips: 'Focus on explosive hip extension and a fast pull under the bar.', image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=200&auto=format&fit=crop' };
-  
-  // Chest & Push
-  if (n.includes('bench') || n.includes('chest') || n.includes('push-up') || n.includes('push up') || n.includes('dip') || n.includes('fly')) return { muscle: 'Chest, Triceps, Anterior Deltoids', equipment: 'Barbell/Dumbbells, Bench, Bodyweight', tips: 'Keep feet flat, maintain a slight arch in your lower back, and control the descent.', image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=200&auto=format&fit=crop' };
-  
-  // Legs & Squats
-  if (n.includes('squat') || n.includes('leg press') || n.includes('lunge') || n.includes('step-up') || n.includes('step up')) return { muscle: 'Quadriceps, Glutes, Hamstrings', equipment: 'Barbell, Squat Rack / Machine / Dumbbells', tips: 'Keep your chest up, brace your core, and push your knees out as you descend.', image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=200&auto=format&fit=crop' };
-  
-  // Posterior Chain & Deadlifts
-  if (n.includes('deadlift') || n.includes('rdl') || n.includes('hip thrust') || n.includes('glute bridge') || n.includes('hip hinge')) return { muscle: 'Hamstrings, Glutes, Lower Back', equipment: 'Barbell, Plates, Bodyweight', tips: 'Keep the bar close to your body, maintain a neutral spine, and hinge at the hips.', image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=200&auto=format&fit=crop' };
-  
-  // Back & Pull
-  if (n.includes('row') || n.includes('pull') || n.includes('lat') || n.includes('shrug') || n.includes('face pull')) return { muscle: 'Latissimus Dorsi, Rhomboids, Biceps, Traps', equipment: 'Barbell/Dumbbells/Cable', tips: 'Pull with your elbows, squeeze your shoulder blades together at the top.', image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=200&auto=format&fit=crop' };
-  
-  // Shoulders & Press
-  if (n.includes('press') || n.includes('shoulder') || n.includes('ohp') || n.includes('lateral raise') || n.includes('arnold')) return { muscle: 'Deltoids, Triceps', equipment: 'Barbell/Dumbbells', tips: 'Brace your core to avoid over-arching your lower back. Press straight up.', image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=200&auto=format&fit=crop' };
-  
-  // Arms (Biceps & Triceps)
-  if (n.includes('curl')) return { muscle: 'Biceps', equipment: 'Dumbbells/Barbell/Cable', tips: 'Keep your elbows pinned to your sides and avoid using momentum.', image: 'https://images.unsplash.com/photo-1581009137042-c552e485697a?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('extension') || n.includes('pressdown') || n.includes('skull crusher')) return { muscle: 'Triceps', equipment: 'Machine/Cable/Dumbbells', tips: 'Focus on the stretch and squeeze at the end of the movement.', image: 'https://images.unsplash.com/photo-1530822847156-5df684ec5ee1?q=80&w=200&auto=format&fit=crop' };
-  
-  // Core, Abs & Recovery
-  if (n.includes('plank') || n.includes('crunch') || n.includes('twist') || n.includes('raise') || n.includes('dead bug') || n.includes('wood chop') || n.includes('hollow') || n.includes('sit') || n.includes('bend') || n.includes('breathing') || n.includes('kegel') || n.includes('pelvic') || n.includes('mcgill') || n.includes('bird dog')) return { muscle: 'Core, Abs, Obliques, Pelvic Floor', equipment: 'Bodyweight / Mat / Cable', tips: 'Focus on contracting the core muscles rather than just going through the motion. Breathe steadily.', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=200&auto=format&fit=crop' };
-  
-  // Cardio, Conditioning & Mobility
-  if (n.includes('burpee') || n.includes('climber') || n.includes('swing') || n.includes('jump') || n.includes('sled') || n.includes('sprint') || n.includes('run') || n.includes('emom') || n.includes('tabata') || n.includes('amrap') || n.includes('wod') || n.includes('chipper') || n.includes('thruster')) return { muscle: 'Full Body, Core, Cardiovascular', equipment: 'Bodyweight / Kettlebell / Sled', tips: 'Maintain a brisk pace but don\'t sacrifice form. Keep your core tight.', image: 'https://images.unsplash.com/photo-1434596922112-19c563067271?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('walk') || n.includes('cycle') || n.includes('cardio') || n.includes('bike') || n.includes('rower') || n.includes('intervals') || n.includes('tempo') || n.includes('session') || n.includes('march') || n.includes('jog')) return { muscle: 'Cardiovascular System', equipment: 'Treadmill / Bike / Rower / Bodyweight', tips: 'Maintain a steady breathing rhythm and stay within your target heart rate zone.', image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('mobility') || n.includes('stretch') || n.includes('angel') || n.includes('y-t-w') || n.includes('halo') || n.includes('get-up')) return { muscle: 'Full Body Mobility, Posture', equipment: 'Bodyweight / Mat / Band', tips: 'Move through a full range of motion without forcing any painful positions.', image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=200&auto=format&fit=crop' };
-  if (n.includes('carry') || n.includes('yoke') || n.includes('sandbag') || n.includes('stone') || n.includes('log') || n.includes('axle')) return { muscle: 'Core, Forearms, Traps, Full Body (Strongman)', equipment: 'Odd Objects / Heavy Weights', tips: 'Keep your chest up, brace your core heavily, and move with controlled steps.', image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=200&auto=format&fit=crop' };
-  
-  // Combat & Power
-  if (n.includes('bag') || n.includes('sprawl') || n.includes('shadowboxing') || n.includes('slam') || n.includes('throw') || n.includes('rope')) return { muscle: 'Full Body, Explosive Power, Conditioning', equipment: 'Heavy Bag / Med Ball / Battle Ropes', tips: 'Focus on explosive power generation from the hips and core.', image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=200&auto=format&fit=crop' };
-
-  // Aquatic
-  if (n.includes('water') || n.includes('aqua') || n.includes('pool') || n.includes('swim') || n.includes('tread')) return { muscle: 'Full Body (Low Impact)', equipment: 'Pool / Aqua Dumbbells', tips: 'Use the water\'s resistance to control the movement. Keep movements smooth.', image: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=200&auto=format&fit=crop' };
-
-  // Gymnastics & Rings
-  if (n.includes('ring') || n.includes('muscle-up') || n.includes('skin the cat') || n.includes('lever') || n.includes('hang')) return { muscle: 'Upper Body, Core, Stabilizers', equipment: 'Gymnastics Rings / Pull-up Bar', tips: 'Maintain strict body tension (hollow body) and control the eccentric phase.', image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=200&auto=format&fit=crop' };
-  
-  return {
-    muscle: 'Targeted Muscle Groups',
-    equipment: 'Standard Gym Equipment',
-    tips: 'Maintain proper form, control the eccentric portion of the movement, and breathe properly.',
-    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=200&auto=format&fit=crop'
-  };
-};
+import { getExerciseDetails, exerciseVideoIds } from '../utils/exerciseUtils';
 
 const WorkoutTimer = () => {
   const [stopwatchTime, setStopwatchTime] = useState(0);
@@ -190,7 +130,7 @@ export default function WorkoutPlans() {
   const [filter, setFilter] = useState({ goal: 'all', level: 'all', preference: 'all' });
   const [search, setSearch] = useState('');
   const [selectedPlan, setSelectedPlan] = useState<any | null>(null);
-  const [expandedExercise, setExpandedExercise] = useState<string | null>(null);
+  const [selectedExerciseForModal, setSelectedExerciseForModal] = useState<any | null>(null);
   const [customVideos, setCustomVideos] = useState<Record<string, string>>({});
   const [selectedMuscleFilter, setSelectedMuscleFilter] = useState('all');
 
@@ -363,25 +303,50 @@ export default function WorkoutPlans() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
-        title="Workout Plans" 
-        description="Browse our extensive library of scientifically designed workout plans for muscle gain, fat loss, and strength. Find the perfect routine for your fitness level." 
+        title="Best Workout Plans for Beginners & Weight Loss" 
+        description="Find the best workout plans for beginners, weight loss workout plans, and gym workout plans for muscle gain. Filter by goal and level." 
         urlPath="/workouts" 
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": workoutPlans.map((plan, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+              "@type": "CreativeWork",
+              "name": plan.title,
+              "description": plan.description,
+              "image": plan.image,
+              "author": {
+                "@type": "Organization",
+                "name": "Iron Core"
+              }
+            }
+          }))
+        }}
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
           <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">
-            Workout <span className="text-red-600">Library</span>
+            Best Workout <span className="text-red-600">Plans</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed mb-8">
             Scientifically designed training programs for every goal. Filter by your objective and level to find your perfect match.
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <Link 
               to="/muscle-groups" 
               className="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-white px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-widest transition-colors"
             >
               <Dumbbell className="w-4 h-4 text-red-600" />
               Browse by Muscle Group
+            </Link>
+            <Link 
+              to="/diet" 
+              className="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-white px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-widest transition-colors"
+            >
+              <Apple className="w-4 h-4 text-red-600" />
+              View Diet Plans
             </Link>
           </div>
         </header>
@@ -485,6 +450,43 @@ export default function WorkoutPlans() {
             <p className="text-gray-500">Try adjusting your filters or search terms.</p>
           </div>
         )}
+
+        {/* FAQ Section */}
+        <div className="mt-32 max-w-4xl mx-auto">
+          <h2 className="text-4xl font-black uppercase italic tracking-tighter mb-12 text-center">
+            Frequently Asked <span className="text-red-600">Questions</span>
+          </h2>
+          <div className="space-y-6 mb-16">
+            {[
+              { q: "What is the best workout plan for beginners?", a: "The best workout plan for beginners focuses on full-body routines 3 days a week, emphasizing compound movements like squats and push-ups to build a solid foundation." },
+              { q: "How do I choose a weight loss workout plan?", a: "A good weight loss workout plan combines strength training to preserve muscle and high-intensity interval training (HIIT) or cardio to maximize calorie burn." },
+              { q: "Can I build muscle with a home workout plan?", a: "Yes! You can build muscle at home using bodyweight exercises, resistance bands, or dumbbells by progressively increasing the difficulty (progressive overload)." },
+              { q: "How often should I change my workout routine?", a: "It's recommended to stick to a workout plan for 8-12 weeks to see progress. Change it when you hit a plateau or your goals change." }
+            ].map((faq, i) => (
+              <div key={i} className="bg-zinc-900/50 border border-white/10 p-6 rounded-2xl">
+                <h3 className="text-xl font-bold mb-3">{faq.q}</h3>
+                <p className="text-gray-400 leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="prose prose-invert max-w-none text-gray-400">
+            <h2 className="text-2xl font-bold text-white mb-4">Why Follow a Structured Workout Plan?</h2>
+            <p className="mb-4">
+              Whether you are looking for a <strong>weight loss workout plan</strong> or a <strong>gym workout plan for muscle gain</strong>, following a structured routine is the key to long-term success. Randomly selecting exercises each time you visit the gym often leads to plateaus and muscular imbalances. A well-designed <strong>workout plan for beginners</strong> or advanced lifters ensures progressive overload, which is the gradual increase of stress placed upon the body during exercise training.
+            </p>
+            <h3 className="text-xl font-bold text-white mb-3">Benefits of Our Fitness Plans</h3>
+            <ul className="list-disc pl-6 mb-6 space-y-2">
+              <li><strong>Targeted Muscle Gain:</strong> Our hypertrophy and strength plans are optimized to build lean muscle mass effectively.</li>
+              <li><strong>Efficient Fat Loss:</strong> Combine resistance training with conditioning in our <strong>weight loss workout plans</strong> to burn calories while preserving muscle.</li>
+              <li><strong>Flexibility:</strong> Choose between gym-based routines or a convenient <strong>home workout plan</strong> that requires minimal equipment.</li>
+              <li><strong>Expert Guidance:</strong> Each plan includes detailed exercise instructions, sets, reps, and rest periods to remove the guesswork from your training.</li>
+            </ul>
+            <p>
+              To maximize your results, we highly recommend pairing your chosen routine with one of our expert-curated <Link to="/diet" className="text-red-500 hover:underline">diet plans</Link>. Nutrition plays a crucial role in recovery and performance, whether your goal is to build muscle or lose fat.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Detail Modal */}
@@ -546,25 +548,6 @@ export default function WorkoutPlans() {
                       <Zap className="w-6 h-6 text-red-600 shrink-0" />
                       Workout Routine
                     </h3>
-                    {selectedPlan && (
-                      <select
-                        value={selectedMuscleFilter}
-                        onChange={(e) => setSelectedMuscleFilter(e.target.value)}
-                        className="bg-black border border-white/10 rounded-xl px-4 py-3 md:py-2 text-xs font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none w-full sm:w-auto"
-                      >
-                        <option value="all">All Muscles</option>
-                        {Array.from(
-                          JSON.parse(selectedPlan.exercises).reduce((acc: Set<string>, ex: any) => {
-                            if (ex.name.toLowerCase() !== 'rest') {
-                              getExerciseDetails(ex.name).muscle.split(', ').forEach(m => acc.add(m));
-                            }
-                            return acc;
-                          }, new Set<string>())
-                        ).sort().map(m => (
-                          <option key={m as string} value={m as string}>{m as string}</option>
-                        ))}
-                      </select>
-                    )}
                   </div>
                   <div className="space-y-6 md:space-y-8 md:max-h-[50vh] md:overflow-y-auto md:pr-2 custom-scrollbar">
                     {(() => {
@@ -603,16 +586,16 @@ export default function WorkoutPlans() {
                               <div key={uniqueKey} className="bg-black/40 rounded-2xl border border-white/5 overflow-hidden transition-colors">
                                 <div 
                                   className={`flex items-center justify-between p-4 ${isRest ? '' : 'cursor-pointer hover:bg-white/5'}`}
-                                  onClick={() => !isRest && setExpandedExercise(expandedExercise === uniqueKey ? null : uniqueKey)}
+                                  onClick={() => !isRest && setSelectedExerciseForModal({ ...ex, details })}
                                 >
                                   <div className="flex-1 pr-4 flex items-center gap-3">
                                     {!isRest && (
-                                      <img src={details.image} alt={ex.name} className="w-10 h-10 object-cover rounded-lg border border-white/10 shrink-0" referrerPolicy="no-referrer" />
+                                      <img src={details.image} alt={`${ex.name} - ${details.muscle} exercise form and posture`} className="w-10 h-10 object-cover rounded-lg border border-white/10 shrink-0" referrerPolicy="no-referrer" />
                                     )}
                                     <div>
                                       <p className="font-bold text-white flex flex-wrap items-center gap-2 text-sm md:text-base">
                                         {ex.name}
-                                        {!isRest && (expandedExercise === uniqueKey ? <ChevronUp className="w-4 h-4 text-gray-500 shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-500 shrink-0" />)}
+                                        {!isRest && <ChevronRight className="w-4 h-4 text-gray-500 shrink-0" />}
                                       </p>
                                       {!isRest && <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">{ex.sets} Sets</p>}
                                     </div>
@@ -624,99 +607,6 @@ export default function WorkoutPlans() {
                                     </div>
                                   )}
                                 </div>
-                                
-                                {!isRest && (
-                                  <AnimatePresence>
-                                    {expandedExercise === uniqueKey && (
-                                      <motion.div 
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: 'auto', opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        className="px-4 pb-4"
-                                      >
-                                        <div className="pt-4 border-t border-white/10 grid grid-cols-1 gap-4 text-sm">
-                                          <div>
-                                            <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-1">Target Muscle</span>
-                                            <p className="text-gray-300">{details.muscle}</p>
-                                          </div>
-                                          <div>
-                                            <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-1">Equipment</span>
-                                            <p className="text-gray-300">{details.equipment}</p>
-                                          </div>
-                                          <div>
-                                            <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-1">Form Tips</span>
-                                            <p className="text-gray-300">{details.tips}</p>
-                                          </div>
-                                          <div className="pt-2 border-t border-white/5">
-                                            <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-2 flex items-center gap-1">
-                                              <Youtube className="w-3 h-3 text-red-600" />
-                                              Video Tutorial
-                                            </span>
-                                            <div className="flex items-center gap-2 mb-3">
-                                              <input
-                                                type="text"
-                                                placeholder="Paste custom YouTube URL here..."
-                                                value={customVideos[uniqueKey] || ''}
-                                                onChange={(e) => setCustomVideos(prev => ({ ...prev, [uniqueKey]: e.target.value }))}
-                                                className="flex-1 bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-red-600 transition-colors"
-                                              />
-                                              {(() => {
-                                                const videoUrl = customVideos[uniqueKey] || 
-                                                               (exerciseVideoIds[ex.name.toLowerCase()] ? `https://www.youtube.com/watch?v=${exerciseVideoIds[ex.name.toLowerCase()]}` : 
-                                                               `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name + ' exercise tutorial')}`);
-                                                return (
-                                                  <a
-                                                    href={videoUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center hover:bg-red-600 transition-colors group shrink-0"
-                                                    title={customVideos[uniqueKey] || exerciseVideoIds[ex.name.toLowerCase()] ? "Watch Tutorial" : "Search on YouTube"}
-                                                  >
-                                                    {customVideos[uniqueKey] || exerciseVideoIds[ex.name.toLowerCase()] ? (
-                                                      <Play className="w-4 h-4 text-red-600 group-hover:text-white ml-0.5" />
-                                                    ) : (
-                                                      <Search className="w-4 h-4 text-red-600 group-hover:text-white" />
-                                                    )}
-                                                  </a>
-                                                );
-                                              })()}
-                                            </div>
-                                            {(() => {
-                                              const videoUrl = customVideos[uniqueKey] || (exerciseVideoIds[ex.name.toLowerCase()] ? `https://www.youtube.com/watch?v=${exerciseVideoIds[ex.name.toLowerCase()]}` : null);
-                                              const thumbnailUrl = videoUrl ? getYoutubeThumbnail(videoUrl) : null;
-                                              
-                                              if (thumbnailUrl) {
-                                                return (
-                                                  <div className="rounded-lg overflow-hidden border border-white/10 relative group bg-black aspect-video">
-                                                    <img 
-                                                      src={thumbnailUrl} 
-                                                      srcSet={`${thumbnailUrl.replace('hqdefault', 'mqdefault')} 320w, ${thumbnailUrl} 480w`}
-                                                      sizes="(max-width: 768px) 100vw, 480px"
-                                                      alt={`${ex.name} Tutorial`} 
-                                                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                                                      loading="lazy"
-                                                    />
-                                                    <a
-                                                      href={videoUrl!}
-                                                      target="_blank"
-                                                      rel="noopener noreferrer"
-                                                      className="absolute inset-0 flex items-center justify-center"
-                                                    >
-                                                      <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
-                                                        <Play className="w-5 h-5 text-white ml-1" />
-                                                      </div>
-                                                    </a>
-                                                  </div>
-                                                );
-                                              }
-                                              return null;
-                                            })()}
-                                          </div>
-                                        </div>
-                                      </motion.div>
-                                    )}
-                                  </AnimatePresence>
-                                )}
                               </div>
                             );
                           })}
@@ -736,6 +626,123 @@ export default function WorkoutPlans() {
                       PDF
                     </button>
                   </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Exercise Detail Modal */}
+      <AnimatePresence>
+        {selectedExerciseForModal && (
+          <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 md:p-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedExerciseForModal(null)}
+              className="absolute inset-0 bg-black/95 backdrop-blur-md"
+            ></motion.div>
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-zinc-900 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-10 border border-white/10 shadow-2xl p-6 md:p-10 custom-scrollbar"
+            >
+              <button 
+                onClick={() => setSelectedExerciseForModal(null)}
+                className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="space-y-8">
+                <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-video bg-zinc-800">
+                  <img 
+                    src={selectedExerciseForModal.details.image} 
+                    alt={selectedExerciseForModal.details.alt} 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-6 left-6">
+                    <h3 className="text-3xl font-black uppercase italic text-white tracking-tighter">
+                      {selectedExerciseForModal.name}
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
+                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-2">Primary Muscle</span>
+                    <p className="text-xl font-black uppercase italic text-red-600">{selectedExerciseForModal.details.primaryMuscle}</p>
+                  </div>
+                  <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
+                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-2">Equipment</span>
+                    <p className="text-xl font-black uppercase italic text-white">{selectedExerciseForModal.details.equipment}</p>
+                  </div>
+                  {selectedExerciseForModal.details.secondaryMuscles.length > 0 && (
+                    <div className="bg-white/5 p-6 rounded-2xl border border-white/5 md:col-span-2 lg:col-span-1">
+                      <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-2">Secondary Muscles</span>
+                      <p className="text-lg font-black uppercase italic text-gray-300">
+                        {selectedExerciseForModal.details.secondaryMuscles.join(', ')}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
+                  <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-3">Form Tips</span>
+                  <p className="text-gray-300 leading-relaxed italic">
+                    "{selectedExerciseForModal.details.tips}"
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-white/10">
+                  <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-4 flex items-center gap-2">
+                    <Youtube className="w-4 h-4 text-red-600" />
+                    Video Tutorial
+                  </span>
+                  {(() => {
+                    const videoUrl = exerciseVideoIds[selectedExerciseForModal.name.toLowerCase()] ? 
+                                   `https://www.youtube.com/watch?v=${exerciseVideoIds[selectedExerciseForModal.name.toLowerCase()]}` : 
+                                   `https://www.youtube.com/results?search_query=${encodeURIComponent(selectedExerciseForModal.name + ' exercise tutorial')}`;
+                    const thumbnailUrl = getYoutubeThumbnail(videoUrl);
+
+                    return (
+                      <div className="space-y-4">
+                        {thumbnailUrl && (
+                          <div className="rounded-2xl overflow-hidden border border-white/10 relative group bg-black aspect-video">
+                            <img 
+                              src={thumbnailUrl} 
+                              alt={`${selectedExerciseForModal.details.alt} Tutorial`} 
+                              className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+                            />
+                            <a
+                              href={videoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="absolute inset-0 flex items-center justify-center"
+                            >
+                              <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-2xl transform scale-90 group-hover:scale-100 transition-transform">
+                                <Play className="w-6 h-6 text-white ml-1" />
+                              </div>
+                            </a>
+                          </div>
+                        )}
+                        <a
+                          href={videoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-3 w-full bg-red-600 hover:bg-red-700 text-white font-black uppercase tracking-widest py-4 rounded-xl transition-all active:scale-95"
+                        >
+                          <Youtube className="w-5 h-5" />
+                          Watch on YouTube
+                        </a>
+                      </div>
+                    );
+                  })()}
                 </div>
               </div>
             </motion.div>

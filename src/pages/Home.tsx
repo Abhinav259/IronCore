@@ -93,7 +93,7 @@ export default function Home() {
               <span className="text-xs font-black uppercase tracking-widest text-red-500">New: 12-Week Shred Program</span>
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-black uppercase italic tracking-tighter leading-[0.9] mb-8">
+            <h1 className="text-6xl md:text-8xl font-display font-black uppercase italic tracking-tighter leading-[0.9] mb-8">
               Best Workout <br />
               <span className="text-red-600">&amp; Diet Plans</span>
             </h1>
@@ -254,7 +254,7 @@ export default function Home() {
       {/* FAQ Section */}
       <section className="py-32 bg-zinc-950">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-5xl font-black uppercase italic tracking-tighter mb-16 text-center">
+          <h2 className="text-5xl font-display font-black uppercase italic tracking-tighter mb-16 text-center">
             Frequently Asked <span className="text-red-600">Questions</span>
           </h2>
           <div className="space-y-4">
@@ -325,7 +325,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950"></div>
         </div>
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="text-6xl md:text-8xl font-black uppercase italic tracking-tighter mb-8">
+          <h2 className="text-6xl md:text-8xl font-display font-black uppercase italic tracking-tighter mb-8">
             Ready to <span className="text-red-600">Commit?</span>
           </h2>
           <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">

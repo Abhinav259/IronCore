@@ -117,7 +117,7 @@ export default function DietPlans() {
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
-          <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">
+          <h1 className="text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
             Muscle Gain & <span className="text-red-600">Diet Plans</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed mb-8">
@@ -225,7 +225,7 @@ export default function DietPlans() {
         </div>
         {/* FAQ Section */}
         <div className="mt-32 max-w-4xl mx-auto">
-          <h2 className="text-4xl font-black uppercase italic tracking-tighter mb-12 text-center">
+          <h2 className="text-4xl font-display font-black uppercase italic tracking-tighter mb-12 text-center">
             Frequently Asked <span className="text-red-600">Questions</span>
           </h2>
           <div className="space-y-6 mb-16">

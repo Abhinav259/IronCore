@@ -43,7 +43,7 @@ export default function Blog() {
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-20 text-center">
-          <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">
+          <h1 className="text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
             Fitness <span className="text-red-600">Tips</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">

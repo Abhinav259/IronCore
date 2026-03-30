@@ -327,7 +327,7 @@ export default function WorkoutPlans() {
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
-          <h1 className="text-6xl font-black uppercase italic tracking-tighter mb-6">
+          <h1 className="text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
             Best Workout <span className="text-red-600">Plans</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed mb-8">
@@ -350,23 +350,6 @@ export default function WorkoutPlans() {
             </Link>
           </div>
         </header>
-
-        {/* Why Choose Our Plans? */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { title: "Science-Backed", desc: "Every routine is built on proven hypertrophy and strength principles.", icon: Zap },
-            { title: "Expert Form", desc: "Detailed cues and video guides for every single movement.", icon: Trophy },
-            { title: "Progressive", desc: "Structured for long-term growth with clear progression paths.", icon: Users }
-          ].map((item, i) => (
-            <div key={i} className="bg-zinc-900/30 border border-white/5 p-8 rounded-3xl hover:bg-zinc-900/50 transition-colors">
-              <div className="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center mb-6">
-                <item.icon className="w-6 h-6 text-red-600" />
-              </div>
-              <h3 className="text-xl font-black uppercase italic mb-3">{item.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </section>
 
         {/* Filters & Search */}
         <div className="bg-zinc-900/50 border border-white/10 p-6 md:p-8 rounded-3xl mb-12 md:mb-16 space-y-6 md:space-y-8">
@@ -470,7 +453,7 @@ export default function WorkoutPlans() {
 
         {/* FAQ Section */}
         <div className="mt-32 max-w-4xl mx-auto">
-          <h2 className="text-4xl font-black uppercase italic tracking-tighter mb-12 text-center">
+          <h2 className="text-4xl font-display font-black uppercase italic tracking-tighter mb-12 text-center">
             Frequently Asked <span className="text-red-600">Questions</span>
           </h2>
           <div className="space-y-6 mb-16">
@@ -540,7 +523,7 @@ export default function WorkoutPlans() {
                     <div className="inline-block bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 md:mb-6 mt-8 md:mt-0">
                       {selectedPlan.goal.replace('-', ' ')}
                     </div>
-                    <h2 className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter mb-4 md:mb-6 pr-8 md:pr-0">{selectedPlan.title}</h2>
+                    <h2 className="text-3xl md:text-4xl font-display font-black uppercase italic tracking-tighter mb-4 md:mb-6 pr-8 md:pr-0">{selectedPlan.title}</h2>
                     <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8 md:mb-10">
                       {selectedPlan.description}
                     </p>

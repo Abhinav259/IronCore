@@ -162,7 +162,7 @@ export function ExerciseModal({ isOpen, onClose, exerciseName }: ExerciseModalPr
                 <div className="space-y-4">
                   <div className="aspect-video bg-zinc-800 rounded-xl overflow-hidden relative flex items-center justify-center border border-white/5">
                     {imageUrl ? (
-                      <img src={imageUrl} alt={exerciseName} className="w-full h-full object-cover" />
+                      <img src={imageUrl} alt={exerciseName} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                     ) : (
                       <div className="text-center p-6">
                         <ImageIcon className="w-12 h-12 text-zinc-600 mx-auto mb-3" />

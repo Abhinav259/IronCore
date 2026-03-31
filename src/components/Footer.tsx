@@ -22,13 +22,13 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-bold uppercase tracking-widest mb-6">Quick Links</h4>
           <ul className="space-y-4">
-            {['Workouts', 'Diets', 'Supplements', 'Blog'].map((item) => (
+            {['Workouts', 'Muscle-Groups', 'Diets', 'Supplements', 'Blog'].map((item) => (
               <li key={item}>
                 <Link 
                   to={`/${item.toLowerCase()}`} 
                   className="text-gray-400 hover:text-red-600 transition-colors text-sm font-medium"
                 >
-                  {item}
+                  {item.replace('-', ' ')}
                 </Link>
               </li>
             ))}

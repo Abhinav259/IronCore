@@ -22,8 +22,6 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       <SEO 
-        title="Best Workout Plans & Diet Plans App" 
-        description="Discover the best workout plans for beginners, muscle gain diet plans, and weight loss workout plans. Your ultimate fitness app for home and gym." 
         urlPath="/" 
         schema={{
           "@context": "https://schema.org",
@@ -76,6 +74,7 @@ export default function Home() {
             className="w-full h-full object-cover opacity-40 grayscale"
             referrerPolicy="no-referrer"
             fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
@@ -135,7 +134,7 @@ export default function Home() {
             {[
               { title: 'Muscle Gain', desc: 'Hypertrophy focused splits for maximum size.', icon: Trophy, img: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800&auto=format&fit=crop', link: '/workouts' },
               { title: 'Fat Loss', desc: 'High intensity programs to shred body fat.', icon: Zap, img: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop', link: '/workouts' },
-              { title: 'Diet Plans', desc: 'Expert nutrition guides for every goal.', icon: Users, img: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=800&auto=format&fit=crop', link: '/diet' }
+              { title: 'Diet Plans', desc: 'Expert nutrition guides for every goal.', icon: Users, img: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=800&auto=format&fit=crop', link: '/diets' }
             ].map((program, i) => (
               <motion.div 
                 key={i}
@@ -150,6 +149,7 @@ export default function Home() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   referrerPolicy="no-referrer"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-10">
@@ -205,6 +205,7 @@ export default function Home() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                       referrerPolicy="no-referrer"
                       loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                   </div>
@@ -286,7 +287,7 @@ export default function Home() {
             Understanding biomechanics is key to preventing injury and maximizing hypertrophy. Dive into our detailed breakdown of <strong>muscle group exercises</strong> to learn how to effectively target your chest, back, legs, shoulders, and arms. Each exercise comes with clear instructions, proper form cues, and visual demonstrations to ensure you are getting the most out of every rep.
           </p>
           <p>
-            Start your journey today by exploring our <Link to="/workouts" className="text-red-500 hover:underline">workout library</Link> or dialing in your nutrition with our <Link to="/diet" className="text-red-500 hover:underline">diet guides</Link>.
+            Start your journey today by exploring our <Link to="/workouts" className="text-red-500 hover:underline">workout library</Link> or dialing in your nutrition with our <Link to="/diets" className="text-red-500 hover:underline">diet guides</Link>.
           </p>
         </div>
       </section>
@@ -302,6 +303,7 @@ export default function Home() {
             className="w-full h-full object-cover opacity-20"
             referrerPolicy="no-referrer"
             loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950"></div>
         </div>

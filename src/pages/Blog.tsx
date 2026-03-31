@@ -19,8 +19,6 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
-        title="Fitness Tips & Workout Advice Blog" 
-        description="Stay informed with the latest fitness tips, workout advice, and nutrition guides from our team of experts." 
         urlPath="/blog" 
         schema={{
           "@context": "https://schema.org",
@@ -95,6 +93,7 @@ export default function Blog() {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   referrerPolicy="no-referrer"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                 <div className="absolute top-4 left-4 z-20">
@@ -180,7 +179,7 @@ export default function Blog() {
             <li><strong>Mindset & Motivation:</strong> Build the mental resilience needed to stay consistent and push past your limits.</li>
           </ul>
           <p>
-            Stay updated with the latest trends and scientific findings in the fitness industry. For structured guidance, be sure to check out our comprehensive <Link to="/workouts" className="text-red-500 hover:underline">workout plans</Link> and <Link to="/diet" className="text-red-500 hover:underline">diet plans</Link>.
+            Stay updated with the latest trends and scientific findings in the fitness industry. For structured guidance, be sure to check out our comprehensive <Link to="/workouts" className="text-red-500 hover:underline">workout plans</Link> and <Link to="/diets" className="text-red-500 hover:underline">diet plans</Link>.
           </p>
         </div>
       </section>
@@ -211,6 +210,7 @@ export default function Blog() {
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
                 <button 

@@ -71,8 +71,6 @@ export default function Profile({ user }: { user: User | null }) {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
-        title="Your Profile" 
-        description="View and manage your personalized fitness profile, stats, and goals." 
         urlPath="/profile" 
       />
       <div className="max-w-5xl mx-auto px-6">
@@ -86,6 +84,7 @@ export default function Profile({ user }: { user: User | null }) {
               className="w-32 h-32 rounded-3xl object-cover border-4 border-red-600 shadow-2xl shadow-red-600/20"
               referrerPolicy="no-referrer"
               loading="lazy"
+              decoding="async"
             />
             <div>
               <h1 className="text-5xl font-black uppercase italic tracking-tighter mb-2">{user.displayName}</h1>

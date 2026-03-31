@@ -21,8 +21,6 @@ export default function Supplements() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
-        title="Fitness Supplements & Workout Nutrition Guide" 
-        description="Optimize your results with the right fitness supplements and workout nutrition. We break down the science, benefits, and usage for maximum gains." 
         urlPath="/supplements" 
         schema={{
           "@context": "https://schema.org",
@@ -174,7 +172,7 @@ export default function Supplements() {
             <li><strong>BCAAs & EAAs:</strong> Branched-Chain Amino Acids help reduce muscle breakdown during prolonged workouts and support recovery.</li>
           </ul>
           <p>
-            Remember, supplements are just one piece of the puzzle. To achieve your ultimate physique, ensure your <Link to="/diet" className="text-red-500 hover:underline">diet plan</Link> is dialed in and you are consistently following a structured <Link to="/workouts" className="text-red-500 hover:underline">workout routine</Link>.
+            Remember, supplements are just one piece of the puzzle. To achieve your ultimate physique, ensure your <Link to="/diets" className="text-red-500 hover:underline">diet plan</Link> is dialed in and you are consistently following a structured <Link to="/workouts" className="text-red-500 hover:underline">workout routine</Link>.
           </p>
         </div>
       </div>

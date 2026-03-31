@@ -305,8 +305,6 @@ export default function WorkoutPlans() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
-        title="Best Workout Plans for Beginners & Weight Loss" 
-        description="Find the best workout plans for beginners, weight loss workout plans, and gym workout plans for muscle gain. Filter by goal and level." 
         urlPath="/workouts" 
         schema={{
           "@context": "https://schema.org",
@@ -344,7 +342,7 @@ export default function WorkoutPlans() {
               Browse by Muscle Group
             </Link>
             <Link 
-              to="/diet" 
+              to="/diets" 
               className="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-white px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-widest transition-colors"
             >
               <Apple className="w-4 h-4 text-red-600" />
@@ -415,7 +413,7 @@ export default function WorkoutPlans() {
                   </span>
                 </div>
                 {plan.image ? (
-                  <img src={plan.image} alt={plan.title} referrerPolicy="no-referrer" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                  <img src={plan.image} alt={plan.title} referrerPolicy="no-referrer" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:scale-110 transition-transform duration-500">
                     <Dumbbell className="w-32 h-32 text-white" />
@@ -485,7 +483,7 @@ export default function WorkoutPlans() {
               <li><strong>Expert Guidance:</strong> Each plan includes detailed exercise instructions, sets, reps, and rest periods to remove the guesswork from your training.</li>
             </ul>
             <p>
-              To maximize your results, we highly recommend pairing your chosen routine with one of our expert-curated <Link to="/diet" className="text-red-500 hover:underline">diet plans</Link>. Nutrition plays a crucial role in recovery and performance, whether your goal is to build muscle or lose fat.
+              To maximize your results, we highly recommend pairing your chosen routine with one of our expert-curated <Link to="/diets" className="text-red-500 hover:underline">diet plans</Link>. Nutrition plays a crucial role in recovery and performance, whether your goal is to build muscle or lose fat.
             </p>
           </div>
         </div>
@@ -517,7 +515,7 @@ export default function WorkoutPlans() {
                 <div className="p-6 md:p-12 bg-zinc-800/50 relative overflow-hidden">
                   {selectedPlan.image && (
                     <div className="absolute inset-0 z-0 opacity-20">
-                      <img src={selectedPlan.image} alt={selectedPlan.title} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                      <img src={selectedPlan.image} alt={selectedPlan.title} referrerPolicy="no-referrer" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/80 to-transparent"></div>
                     </div>
                   )}
@@ -592,7 +590,7 @@ export default function WorkoutPlans() {
                                 >
                                   <div className="flex-1 pr-4 flex items-center gap-3">
                                     {!isRest && (
-                                      <img src={details.image} alt={`${ex.name} - ${details.muscle} exercise form and posture`} className="w-10 h-10 object-cover rounded-lg border border-white/10 shrink-0" referrerPolicy="no-referrer" />
+                                      <img src={details.image} alt={`${ex.name} - ${details.muscle} exercise form and posture`} className="w-10 h-10 object-cover rounded-lg border border-white/10 shrink-0" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                                     )}
                                     <div>
                                       <p className="font-bold text-white flex flex-wrap items-center gap-2 text-sm md:text-base">

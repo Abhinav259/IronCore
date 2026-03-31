@@ -95,8 +95,6 @@ export default function DietPlans() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
-        title="Muscle Gain & Vegetarian Diet Plans" 
-        description="Explore muscle gain diet plans, 7-day vegetarian diet plans for muscle gain, and weight loss nutrition guides." 
         urlPath="/diets" 
         schema={{
           "@context": "https://schema.org",
@@ -198,6 +196,7 @@ export default function DietPlans() {
                     alt={getFeaturedImage(plan.type, plan.goal).alt}
                     className="w-full h-full object-cover opacity-60"
                     loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                   />
                 </div>
@@ -290,6 +289,7 @@ export default function DietPlans() {
                   alt={getFeaturedImage(selectedPlan.type, selectedPlan.goal).alt}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent"></div>
@@ -351,6 +351,7 @@ export default function DietPlans() {
                             alt={mealImage.alt}
                             className="w-full h-full object-cover"
                             loading="lazy"
+                            decoding="async"
                             referrerPolicy="no-referrer"
                           />
                           <div className="absolute inset-0 bg-black/20 flex items-center justify-center">

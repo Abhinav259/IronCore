@@ -6,7 +6,7 @@ import { auth, db } from './firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Home = lazy(() => import('./pages/Home'));
 const WorkoutPlans = lazy(() => import('./pages/WorkoutPlans'));

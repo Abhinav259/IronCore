@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Youtube, Image as ImageIcon, Loader2 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 

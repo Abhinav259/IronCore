@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Filter, Search, ChevronRight, Dumbbell, Zap, Trophy, Users, Clock, Flame, X, Download, ChevronDown, ChevronUp, Play, Youtube, Pause, RotateCcw, Timer, Apple } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { workoutPlans } from '../data';
@@ -7,7 +7,7 @@ import { WorkoutPlan } from '../types';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { SEO } from '../components/SEO';
-import { getExerciseDetails, exerciseVideoIds } from '../utils/exerciseUtils';
+import { getExerciseDetails } from '../utils/exerciseUtils';
 import { ExerciseModal } from '../components/ExerciseModal';
 
 const WorkoutTimer = () => {
@@ -136,96 +136,7 @@ export default function WorkoutPlans() {
   const [customVideos, setCustomVideos] = useState<Record<string, string>>({});
   const [selectedMuscleFilter, setSelectedMuscleFilter] = useState('all');
 
-  // Predefined 100% correct YouTube video IDs for common exercises
-  const exerciseVideoIds: Record<string, string> = {
-    'bench press': 'rT7DgCr-3pg',
-    'barbell bench press': 'rT7DgCr-3pg',
-    'squat': 'bEv6CCg2BC8',
-    'barbell squat': 'bEv6CCg2BC8',
-    'deadlift': 'op9kVnSso6Q',
-    'barbell deadlift': 'op9kVnSso6Q',
-    'pull-up': 'eGo4IYlbE5g',
-    'pull up': 'eGo4IYlbE5g',
-    'pull-ups': 'eGo4IYlbE5g',
-    'push-up': 'IODxDxX7oi4',
-    'push up': 'IODxDxX7oi4',
-    'push-ups': 'IODxDxX7oi4',
-    'overhead press': 'QAQ64hK4Xxs',
-    'barbell overhead press': 'QAQ64hK4Xxs',
-    'barbell row': 'G8l_8chR5BE',
-    'bent over row': 'G8l_8chR5BE',
-    'dumbbell curl': 'ykJmrZ5v0Oo',
-    'bicep curl': 'ykJmrZ5v0Oo',
-    'tricep extension': 'nRiJVZDpdL0',
-    'tricep pushdown': '2-LAMcpzODU',
-    'lunge': 'QOVaHwm-Q6U',
-    'lunges': 'QOVaHwm-Q6U',
-    'leg press': 'IZxyjW7MPJQ',
-    'calf raise': '-M4-G8p8fmc',
-    'plank': 'pSHjTRCQxIw',
-    'crunch': 'Xyd_fa5zoEU',
-    'crunches': 'Xyd_fa5zoEU',
-    'lat pulldown': 'CAwf7n6Luuc',
-    'leg extension': 'YyvSfVjQeL0',
-    'leg curl': 'ELOCsoDSmrg',
-    'seated row': 'GZbfZ033f74',
-    'romanian deadlift': 'JCXUYuzwNrM',
-    'split squat': '2C-uNgKwPLE',
-    'db overhead press': 'QAQ64hK4Xxs',
-    'glute bridge': '8bbE64NuDTU',
-    'incline db press': 'SrqOu55lrYU',
-    'cable row': 'GZbfZ033f74',
-    'walking lunge': 'L8fvypPrzzs',
-    'side plank': 'NXr4Fw8q60o',
-    'triceps pressdowns': '2-LAMcpzODU',
-    'seated ohp': 'qEwKCR5JCog',
-    'lateral raise': '3VcKaXpzqRo',
-    'rope pressdown': 'vB5OHsJ3EME',
-    'pull-up or lat pulldown': 'eGo4IYlbE5g',
-    'back squat': 'bEv6CCg2BC8',
-    'rdl': 'JCXUYuzwNrM',
-    'incline db bench': 'SrqOu55lrYU',
-    'machine chest press': 'xUm0BiZCWlQ',
-    'arnold press': '6Z15_WdXmVw',
-    'cable fly': 'Iwe6AmxVf7o',
-    'overhead triceps extension': 'nRiJVZDpdL0',
-    'shrugs': 'cJRVVxmytaM',
-    'hammer curl': 'zC3nLlEvin4',
-    'seated calf raise': 'JbyjNymZOt0',
-    'bulgarian split squat': '2C-uNgKwPLE',
-    'front raise': '-t7fuZ0KhDA',
-    'skull crusher': 'd_KZxkY_0cM',
-    'dips': '2z8JmcrW-As',
-    'chest fly': 'eozdVDA78K0',
-    'cable crossover': 'taI4XduLpTk',
-    'incline bench press': 'SrqOu55lrYU',
-    'decline bench press': 'LfyQBUKR8SE',
-    'close grip bench press': 'nEF0bv2FW94',
-    'upright row': 'amCU-ziHITM',
-    'machine shoulder press': 'WvLMauqrnK8',
-    'hack squat': '0tn5K9NlCfo',
-    'russian twist': 'wkD8rjkodUI',
-    'leg raise': 'l4kQd9eWclE',
-    'hanging leg raise': 'Pr1ieGZ5atk',
-    'mountain climber': 'nmwgirgXLYM',
-    'burpee': 'TU8QYVW0gDU',
-    'kettlebell swing': 'YSxHifyI6s8',
-    'box jump': '52r_Ul5k03g',
-    'battle ropes': 'xZ-vLd1R8gU',
-    'farmer walk': 'FkxrbbqOQvQ',
-    'sled push': '4-1C2zZ2c2A',
-    'tire flip': '2z8JmcrW-As',
-  };
 
-  const getYoutubeThumbnail = (url: string) => {
-    if (!url) return null;
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-    if (match && match[2].length === 11) {
-      return `https://img.youtube.com/vi/${match[2]}/hqdefault.jpg`;
-    }
-    return null;
-  };
 
   const filteredPlans = workoutPlans.filter(plan => {
     const matchesGoal = filter.goal === 'all' || plan.goal === filter.goal;
@@ -279,7 +190,7 @@ export default function WorkoutPlans() {
     doc.text(`Type: ${plan.preference.toUpperCase()}`, 140, metaY);
 
     // Add Table
-    const exercises = JSON.parse(plan.exercises);
+    const exercises = typeof plan.exercises === 'string' ? JSON.parse(plan.exercises) : plan.exercises;
     const hasDays = exercises.some((ex: any) => ex.day);
     
     let head, tableData;

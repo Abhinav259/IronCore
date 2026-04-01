@@ -3,7 +3,7 @@ import { User } from 'firebase/auth';
 import { Dumbbell, User as UserIcon, LogOut, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { logout } from '../firebase';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 

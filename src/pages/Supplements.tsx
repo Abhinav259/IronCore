@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Pill, ShieldCheck, Zap, Info, CheckCircle2, AlertTriangle, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supplements } from '../data';

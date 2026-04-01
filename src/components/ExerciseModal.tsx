@@ -145,7 +145,7 @@ export function ExerciseModal({ isOpen, onClose, exerciseName }: ExerciseModalPr
           {/* Header */}
           <div className="p-6 border-b border-white/10 flex justify-between items-center bg-zinc-900/50">
             <h2 className="text-2xl font-bold text-white">{exerciseName}</h2>
-            <button onClick={onClose} className="text-zinc-400 hover:text-white transition-colors">
+            <button onClick={onClose} className="text-zinc-400 hover:text-white transition-colors" aria-label="Close modal">
               <X className="w-6 h-6" />
             </button>
           </div>

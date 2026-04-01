@@ -223,6 +223,8 @@ export default function MuscleGroups() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
+        title="Muscle Group Exercises"
+        description="Target specific muscle groups with our comprehensive exercise guide. Learn how to effectively train your chest, back, legs, and more."
         urlPath="/muscle-groups" 
         schema={{
           "@context": "https://schema.org",
@@ -426,6 +428,7 @@ export default function MuscleGroups() {
               <button 
                 onClick={() => handleSelectGroup(null)}
                 className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
+                aria-label="Close muscle group details"
               >
                 <X className="w-6 h-6" />
               </button>

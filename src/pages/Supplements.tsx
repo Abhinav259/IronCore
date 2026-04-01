@@ -21,6 +21,8 @@ export default function Supplements() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
+        title="Fitness Supplements Guide"
+        description="Optimize your results with the right supplementation. We break down the science, benefits, and usage for maximum gains."
         urlPath="/supplements" 
         schema={{
           "@context": "https://schema.org",
@@ -97,7 +99,7 @@ export default function Supplements() {
                   {supp.category}
                 </span>
               </div>
-              <h3 className="text-2xl font-black uppercase italic mb-4">{supp.name}</h3>
+              <h2 className="text-2xl font-black uppercase italic mb-4">{supp.name}</h2>
               <div className="space-y-6">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
@@ -137,7 +139,7 @@ export default function Supplements() {
             <AlertTriangle className="w-8 h-8 text-white" />
           </div>
           <div>
-            <h4 className="text-2xl font-black uppercase italic mb-4">Safety Disclaimer</h4>
+            <h2 className="text-2xl font-black uppercase italic mb-4">Safety Disclaimer</h2>
             <p className="text-gray-400 leading-relaxed">
               Supplements are intended to complement a healthy diet and exercise routine, not replace them. Always consult with a healthcare professional or qualified nutritionist before starting any new supplement regimen, especially if you have underlying health conditions or are taking medication. Results may vary based on individual metabolism and consistency.
             </p>

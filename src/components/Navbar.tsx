@@ -83,6 +83,7 @@ export default function Navbar({ user }: { user: User | null }) {
         <button 
           className="md:hidden p-2 text-white"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           {isOpen ? <X /> : <Menu />}
         </button>

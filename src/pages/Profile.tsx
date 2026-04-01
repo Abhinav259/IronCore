@@ -54,7 +54,7 @@ export default function Profile({ user }: { user: User | null }) {
         <div className="w-24 h-24 bg-red-600/10 rounded-3xl flex items-center justify-center mb-8">
           <UserIcon className="w-12 h-12 text-red-600" />
         </div>
-        <h2 className="text-4xl font-black uppercase italic tracking-tighter mb-4">Access Denied</h2>
+        <h1 className="text-4xl font-black uppercase italic tracking-tighter mb-4">Access Denied</h1>
         <p className="text-gray-400 mb-10 max-w-sm">You must be signed in to view and manage your personalized fitness profile.</p>
       </div>
     );
@@ -71,6 +71,8 @@ export default function Profile({ user }: { user: User | null }) {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
+        title="Your Fitness Profile"
+        description="Manage your personalized fitness profile, track your progress, and update your goals."
         urlPath="/profile" 
       />
       <div className="max-w-5xl mx-auto px-6">
@@ -103,10 +105,10 @@ export default function Profile({ user }: { user: User | null }) {
           {/* Stats Summary */}
           <div className="lg:col-span-1 space-y-6">
             <div className="bg-zinc-900 border border-white/10 p-8 rounded-3xl">
-              <h3 className="text-xl font-black uppercase italic mb-8 flex items-center gap-3">
+              <h2 className="text-xl font-black uppercase italic mb-8 flex items-center gap-3">
                 <Trophy className="w-6 h-6 text-red-600" />
                 Your Stats
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <div className="flex items-center justify-between p-4 bg-black/40 rounded-2xl border border-white/5">
                   <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Goal</span>
@@ -127,10 +129,10 @@ export default function Profile({ user }: { user: User | null }) {
           {/* Settings Form */}
           <div className="lg:col-span-2">
             <div className="bg-zinc-900 border border-white/10 p-10 rounded-3xl">
-              <h3 className="text-2xl font-black uppercase italic mb-10 flex items-center gap-3">
+              <h2 className="text-2xl font-black uppercase italic mb-10 flex items-center gap-3">
                 <Settings className="w-8 h-8 text-red-600" />
                 Personalize Your Plan
-              </h3>
+              </h2>
               
               <form onSubmit={handleUpdate} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -62,8 +62,8 @@ export default function Footer() {
           © {new Date().getFullYear()} IronCore Fitness. All rights reserved.
         </p>
         <div className="flex items-center gap-8">
-          <a href="#" className="text-gray-500 hover:text-white text-xs transition-colors">Privacy Policy</a>
-          <a href="#" className="text-gray-500 hover:text-white text-xs transition-colors">Terms of Service</a>
+          <a href="/" className="text-gray-500 hover:text-white text-xs transition-colors">Privacy Policy</a>
+          <a href="/" className="text-gray-500 hover:text-white text-xs transition-colors">Terms of Service</a>
         </div>
       </div>
     </footer>

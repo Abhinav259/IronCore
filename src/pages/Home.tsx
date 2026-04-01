@@ -193,12 +193,13 @@ export default function Home() {
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -5, scale: 1.02 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className="group"
               >
                 <Link to="/blog" className="block">
-                  <div className="relative h-64 rounded-3xl overflow-hidden mb-6">
+                  <div className="relative h-72 rounded-3xl overflow-hidden mb-6">
                     <img 
                       src={post.image} 
                       alt={post.title} 
@@ -207,21 +208,21 @@ export default function Home() {
                       loading="lazy"
                       decoding="async"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                      <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-white/70 mb-2">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3 text-red-600" />
+                          {post.date}
+                        </div>
+                      </div>
+                      <h3 className="text-2xl font-black uppercase italic tracking-tight leading-tight text-white group-hover:text-red-500 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        {post.title}
+                      </h3>
+                    </div>
                   </div>
                   
                   <div className="space-y-3">
-                    <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-gray-500">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3 text-red-600" />
-                        {post.date}
-                      </div>
-                    </div>
-                    
-                    <h3 className="text-xl font-black uppercase italic tracking-tight leading-tight group-hover:text-red-600 transition-colors">
-                      {post.title}
-                    </h3>
-                    
                     <p className="text-gray-400 text-xs leading-relaxed line-clamp-2">
                       {post.content}
                     </p>
@@ -245,6 +246,7 @@ export default function Home() {
                 <button 
                   onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                   className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
+                  aria-expanded={activeFaq === i}
                 >
                   <span className="font-bold text-lg">{faq.q}</span>
                   <ChevronDown className={cn("w-5 h-5 text-red-600 transition-transform", activeFaq === i && "rotate-180")} />

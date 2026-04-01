@@ -216,6 +216,8 @@ export default function WorkoutPlans() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
+        title="Muscle Gain Workout Plans"
+        description="Achieve muscle growth with our tailored workout plans. Explore scientifically designed training programs for every goal."
         urlPath="/workouts" 
         schema={{
           "@context": "https://schema.org",
@@ -324,7 +326,16 @@ export default function WorkoutPlans() {
                   </span>
                 </div>
                 {plan.image ? (
-                  <img src={plan.image} alt={plan.title} referrerPolicy="no-referrer" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                  <img 
+                    src={plan.image} 
+                    srcSet={`${plan.image.replace('w=800', 'w=400')} 400w, ${plan.image} 800w`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    alt={plan.title} 
+                    referrerPolicy="no-referrer" 
+                    loading="lazy" 
+                    decoding="async" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" 
+                  />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:scale-110 transition-transform duration-500">
                     <Dumbbell className="w-32 h-32 text-white" />
@@ -418,6 +429,7 @@ export default function WorkoutPlans() {
               <button 
                 onClick={() => setSelectedPlan(null)}
                 className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
+                aria-label="Close plan details"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -426,7 +438,16 @@ export default function WorkoutPlans() {
                 <div className="p-6 md:p-12 bg-zinc-800/50 relative overflow-hidden">
                   {selectedPlan.image && (
                     <div className="absolute inset-0 z-0 opacity-20">
-                      <img src={selectedPlan.image} alt={selectedPlan.title} referrerPolicy="no-referrer" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+                      <img 
+                        src={selectedPlan.image} 
+                        srcSet={`${selectedPlan.image.replace('w=800', 'w=400')} 400w, ${selectedPlan.image} 800w`}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        alt={selectedPlan.title} 
+                        referrerPolicy="no-referrer" 
+                        loading="lazy" 
+                        decoding="async" 
+                        className="w-full h-full object-cover" 
+                      />
                       <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/80 to-transparent"></div>
                     </div>
                   )}

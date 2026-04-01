@@ -95,6 +95,8 @@ export default function DietPlans() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
+        title="Weight Loss Diet Plans"
+        description="Healthy meal plans for effective weight loss. Explore our expert nutrition guides for every goal."
         urlPath="/diets" 
         schema={{
           "@context": "https://schema.org",
@@ -193,6 +195,8 @@ export default function DietPlans() {
                 <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                   <img 
                     src={getFeaturedImage(plan.type, plan.goal).url} 
+                    srcSet={`${getFeaturedImage(plan.type, plan.goal).url.replace('w=800', 'w=400')} 400w, ${getFeaturedImage(plan.type, plan.goal).url} 800w`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt={getFeaturedImage(plan.type, plan.goal).alt}
                     className="w-full h-full object-cover opacity-60"
                     loading="lazy"
@@ -279,6 +283,7 @@ export default function DietPlans() {
               <button 
                 onClick={handleClosePlan}
                 className="absolute top-6 right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
+                aria-label="Close plan"
               >
                 <X className="w-6 h-6" />
               </button>

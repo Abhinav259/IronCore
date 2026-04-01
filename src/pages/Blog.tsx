@@ -19,6 +19,8 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       <SEO 
+        title="Fitness Insights Blog"
+        description="Stay informed with the latest tips on training, nutrition, and recovery from our team of experts."
         urlPath="/blog" 
         schema={{
           "@context": "https://schema.org",
@@ -80,11 +82,12 @@ export default function Blog() {
               key={post.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -5, scale: 1.02 }}
               transition={{ delay: i * 0.1 }}
               className="group cursor-pointer"
               onClick={() => setSelectedPost(post)}
             >
-              <div className="relative h-64 rounded-3xl overflow-hidden mb-8">
+              <div className="relative h-80 rounded-3xl overflow-hidden mb-6">
                 <img 
                   src={post.image} 
                   srcSet={`${post.image.replace('w=800', 'w=400')} 400w, ${post.image} 800w`}
@@ -95,31 +98,31 @@ export default function Blog() {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                 <div className="absolute top-4 left-4 z-20">
                   <span className="bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
                     Expert Tip
                   </span>
                 </div>
+                <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
+                  <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-white/70 mb-3">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-3 h-3 text-red-600" />
+                      {post.date}
+                    </div>
+                  </div>
+                  <h3 className="text-3xl font-black uppercase italic tracking-tight leading-tight text-white group-hover:text-red-500 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    {post.title}
+                  </h3>
+                </div>
               </div>
               
               <div className="space-y-4">
-                <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-gray-500">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-3 h-3 text-red-600" />
-                    {post.date}
-                  </div>
-                </div>
-                
-                <h3 className="text-2xl font-black uppercase italic tracking-tight leading-tight group-hover:text-red-600 transition-colors">
-                  {post.title}
-                </h3>
-                
-                <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
                   {post.content}
                 </p>
                 
-                <div className="pt-4 flex items-center gap-2 text-red-600 font-black uppercase tracking-widest text-xs group-hover:translate-x-2 transition-transform">
+                <div className="pt-2 flex items-center gap-2 text-red-600 font-black uppercase tracking-widest text-xs group-hover:translate-x-2 transition-transform">
                   Read Article <ArrowRight className="w-4 h-4" />
                 </div>
               </div>
@@ -216,6 +219,7 @@ export default function Blog() {
                 <button 
                   onClick={() => setSelectedPost(null)}
                   className="absolute top-6 right-6 bg-black/50 hover:bg-red-600 text-white p-2 rounded-full backdrop-blur-md transition-colors"
+                  aria-label="Close post"
                 >
                   <X className="w-6 h-6" />
                 </button>

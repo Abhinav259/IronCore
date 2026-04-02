@@ -373,9 +373,22 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950"></div>
         </div>
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl md:text-8xl font-display font-black uppercase italic tracking-tighter mb-8">
+          <h2 className="text-4xl md:text-8xl font-display font-black uppercase italic tracking-tighter mb-12">
             Ready to <span className="text-red-600">Commit?</span>
           </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <Link 
+              to="/workouts" 
+              className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/40"
+            >
+              Start Training <ArrowRight className="w-6 h-6" />
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>

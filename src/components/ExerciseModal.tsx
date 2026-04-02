@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Youtube, Loader2, Target, Shield, Info, ExternalLink, Copy, Check } from 'lucide-react';
-import { GoogleGenAI, Type, ThinkingLevel } from '@google/genai';
+import { X, Youtube, Target, Shield, Info, ExternalLink, Copy, Check } from 'lucide-react';
+import { getExerciseDetails } from '../utils/exerciseUtils';
 
 interface ExerciseModalProps {
   isOpen: boolean;
@@ -19,73 +19,23 @@ interface ExerciseDetails {
 
 export function ExerciseModal({ isOpen, onClose, exerciseName }: ExerciseModalProps) {
   const [details, setDetails] = useState<ExerciseDetails | null>(null);
-  const [loadingDetails, setLoadingDetails] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (isOpen && exerciseName) {
-      fetchDetails();
+      const localData = getExerciseDetails(exerciseName);
+      setDetails({
+        targetMuscleGroup: localData.primaryMuscle || 'Target Muscle',
+        recommendedEquipment: localData.equipment || 'Gym Equipment',
+        formTips: localData.tips ? localData.tips.split('. ').filter(t => t.length > 0).map(t => t.trim().endsWith('.') ? t.trim() : t.trim() + '.') : ['Maintain proper form', 'Control the movement', 'Breathe properly'],
+        youtubeQuery: `${exerciseName} exercise form tutorial`,
+        difficulty: 'Intermediate' // Default for local data
+      });
     } else if (!isOpen) {
-      // Reset state when closing
       setDetails(null);
       setCopied(false);
     }
   }, [isOpen, exerciseName]);
-
-  const fetchDetails = async () => {
-    setLoadingDetails(true);
-    try {
-      // @ts-ignore
-      const apiKey = process.env.GEMINI_API_KEY;
-      if (!apiKey) {
-        throw new Error("GEMINI_API_KEY is not set");
-      }
-      const ai = new GoogleGenAI({ apiKey });
-      
-      const prompt = `Provide details for the exercise: "${exerciseName}".
-      Return ONLY a JSON object with the following structure:
-      {
-        "targetMuscleGroup": "Primary muscle group targeted",
-        "recommendedEquipment": "Equipment needed (e.g., Dumbbells, Barbell, Bodyweight)",
-        "formTips": ["Tip 1", "Tip 2", "Tip 3"],
-        "youtubeQuery": "A good youtube search query to find a tutorial for this exercise",
-        "difficulty": "Beginner, Intermediate, or Advanced"
-      }`;
-
-      const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
-        contents: prompt,
-        config: {
-          responseMimeType: 'application/json',
-          responseSchema: {
-            type: Type.OBJECT,
-            properties: {
-              targetMuscleGroup: { type: Type.STRING },
-              recommendedEquipment: { type: Type.STRING },
-              formTips: { 
-                type: Type.ARRAY,
-                items: { type: Type.STRING }
-              },
-              youtubeQuery: { type: Type.STRING },
-              difficulty: { type: Type.STRING }
-            },
-            required: ["targetMuscleGroup", "recommendedEquipment", "formTips", "youtubeQuery", "difficulty"]
-          },
-          thinkingConfig: { thinkingLevel: ThinkingLevel.LOW }
-        }
-      });
-
-      if (response.text) {
-        const sanitizedText = response.text.replace(/```json\n?|\n?```/g, '').trim();
-        const data = JSON.parse(sanitizedText);
-        setDetails(data);
-      }
-    } catch (error) {
-      console.error("Failed to fetch exercise details:", error);
-    } finally {
-      setLoadingDetails(false);
-    }
-  };
 
   const handleCopyQuery = () => {
     if (details?.youtubeQuery) {
@@ -130,16 +80,7 @@ export function ExerciseModal({ isOpen, onClose, exerciseName }: ExerciseModalPr
             </div>
 
             <div className="p-8 overflow-y-auto custom-scrollbar flex-1">
-              {loadingDetails ? (
-                <div className="flex flex-col items-center justify-center py-20 text-zinc-500">
-                  <div className="relative w-20 h-20 mb-8">
-                    <div className="absolute inset-0 border-4 border-red-600/20 rounded-full"></div>
-                    <div className="absolute inset-0 border-4 border-red-600 rounded-full border-t-transparent animate-spin"></div>
-                    <Loader2 className="absolute inset-0 m-auto w-8 h-8 text-red-600 animate-pulse" />
-                  </div>
-                  <p className="font-black uppercase tracking-widest text-sm italic">Analyzing Form & Technique...</p>
-                </div>
-              ) : details ? (
+              {details && (
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -215,20 +156,6 @@ export function ExerciseModal({ isOpen, onClose, exerciseName }: ExerciseModalPr
                     </button>
                   </div>
                 </motion.div>
-              ) : (
-                <div className="text-center py-20">
-                  <div className="w-20 h-20 bg-red-600/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <X className="w-10 h-10 text-red-600" />
-                  </div>
-                  <h3 className="text-xl font-black uppercase italic mb-2">Analysis Failed</h3>
-                  <p className="text-zinc-500 mb-8">We couldn't retrieve details for this exercise at the moment.</p>
-                  <button 
-                    onClick={fetchDetails}
-                    className="bg-white/5 hover:bg-white/10 text-white px-8 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-colors"
-                  >
-                    Try Again
-                  </button>
-                </div>
               )}
             </div>
           </motion.div>

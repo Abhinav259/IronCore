@@ -4,10 +4,11 @@ import { Search, ChevronRight, Apple, Flame, Zap, X, Coffee, Utensils, Moon, Coo
 import { Link } from 'react-router-dom';
 import { dietPlans, mealAlternatives } from '../data';
 import { DietPlan } from '../types';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import { SEO } from '../components/SEO';
 import { getMealImage, getFeaturedImage } from '../utils/dietUtils';
+import { MacroCalculator } from '../components/MacroCalculator';
 
 export default function DietPlans() {
   const [filter, setFilter] = useState({ goal: 'all', type: 'all' });
@@ -51,7 +52,7 @@ export default function DietPlans() {
       desc
     ]);
 
-    (doc as any).autoTable({
+    autoTable(doc, {
       startY: 54,
       head: [['MEAL', 'DESCRIPTION']],
       body: tableData,
@@ -144,6 +145,8 @@ export default function DietPlans() {
             </Link>
           </div>
         </header>
+
+        <MacroCalculator />
 
         {/* Filters & Search */}
         <div className="bg-zinc-900/40 backdrop-blur-xl border border-white/5 p-4 md:p-6 rounded-[2rem] mb-12 md:mb-16 shadow-2xl">

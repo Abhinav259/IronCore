@@ -92,24 +92,95 @@ export default function Home() {
               <span className="text-xs font-black uppercase tracking-widest text-red-500">New: 12-Week Shred Program</span>
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-display font-black uppercase italic tracking-tighter leading-[0.9] mb-8">
-              Best Workout <br />
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-6xl md:text-8xl font-display font-black uppercase italic tracking-tighter leading-[0.9] mb-8"
+            >
+              Elite Workout <br />
               <span className="text-red-600">&amp; Diet Plans</span>
-            </h1>
+            </motion.h1>
             
-            <p className="text-xl text-gray-400 mb-10 leading-relaxed max-w-lg">
-              The ultimate fitness platform for those who demand more. Personalized workouts, expert nutrition, and a community of warriors.
-            </p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl text-gray-400 mb-10 leading-relaxed max-w-lg"
+            >
+              The ultimate fitness platform for <strong>hypertrophy training</strong>, <strong>fat loss</strong>, and <strong>strength and conditioning</strong>. Master <strong>progressive overload</strong> with expert-led <strong>gym workout plans</strong> and <strong>macronutrient-focused nutrition guides</strong>.
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-col sm:flex-row items-center gap-4"
+            >
               <Link 
                 to="/workouts" 
                 className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-red-600/20"
               >
                 Start Training <ArrowRight className="w-5 h-5" />
               </Link>
-            </div>
+            </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Why Choose Iron Core Section */}
+      <section className="py-32 bg-black border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <h2 className="text-4xl md:text-6xl font-display font-black uppercase italic tracking-tighter mb-8">
+                Master Your <span className="text-red-600">Physique</span>
+              </h2>
+              <p className="text-gray-400 text-lg mb-12 leading-relaxed">
+                Iron Core isn't just another workout app. We provide the scientific foundation for real results, focusing on the core principles of <strong>strength and conditioning</strong>.
+              </p>
+              <div className="space-y-6">
+                {[
+                  { title: "Hypertrophy & Muscle Gain", desc: "Scientifically-backed hypertrophy routines designed to maximize muscle fiber recruitment and growth." },
+                  { title: "Fat Loss & Caloric Deficit", desc: "Expert diet plans that guide you through a sustainable caloric deficit while preserving lean muscle mass." },
+                  { title: "Progressive Overload Tracking", desc: "Learn how to consistently challenge your body with our progressive overload principles for long-term strength gains." },
+                  { title: "HIIT & Conditioning", desc: "High-Intensity Interval Training protocols to boost your cardiovascular health and accelerate fat oxidation." }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="w-6 h-6 rounded-full bg-red-600/20 flex items-center justify-center shrink-0 mt-1">
+                      <CheckCircle2 className="w-4 h-4 text-red-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-white font-bold mb-1">{item.title}</h3>
+                      <p className="text-gray-500 text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative">
+              <div className="aspect-square rounded-[3rem] overflow-hidden border border-white/10">
+                <img 
+                  src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop" 
+                  alt="Strength Training" 
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                />
+              </div>
+              <div className="absolute -bottom-10 -left-10 bg-zinc-900 border border-white/10 p-8 rounded-3xl hidden md:block">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center">
+                    <Trophy className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-black italic">500+</p>
+                    <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Expert Routines</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -118,10 +189,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-20">
             <div className="max-w-2xl">
-              <h2 className="text-5xl font-black uppercase italic tracking-tighter mb-6">
+              <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-6">
                 Goal-Based <span className="text-red-600">Training</span>
               </h2>
-              <p className="text-gray-400 text-lg">
+              <p className="text-gray-400 text-base md:text-lg">
                 Whether you want to build massive muscle or torch body fat, we have a scientifically-backed program tailored for your specific objective.
               </p>
             </div>
@@ -130,7 +201,21 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2
+                }
+              }
+            }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
             {[
               { title: 'Muscle Gain', desc: 'Hypertrophy focused splits for maximum size.', icon: Trophy, img: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800&auto=format&fit=crop', link: '/workouts' },
               { title: 'Fat Loss', desc: 'High intensity programs to shred body fat.', icon: Zap, img: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop', link: '/workouts' },
@@ -138,8 +223,12 @@ export default function Home() {
             ].map((program, i) => (
               <motion.div 
                 key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  show: { opacity: 1, y: 0 }
+                }}
                 whileHover={{ y: -10 }}
-                className="group relative h-[500px] overflow-hidden rounded-3xl"
+                className="group relative h-[500px] overflow-hidden rounded-3xl border border-white/5"
               >
                 <img 
                   src={program.img} 
@@ -166,7 +255,7 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -175,10 +264,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-20">
             <div className="max-w-2xl">
-              <h2 className="text-5xl font-black uppercase italic tracking-tighter mb-6">
+              <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-6">
                 Expert <span className="text-red-600">Insights</span>
               </h2>
-              <p className="text-gray-400 text-lg">
+              <p className="text-gray-400 text-base md:text-lg">
                 Stay ahead of the game with the latest evidence-based fitness tips, nutrition hacks, and recovery strategies.
               </p>
             </div>
@@ -237,7 +326,7 @@ export default function Home() {
       {/* FAQ Section */}
       <section className="py-32 bg-zinc-950">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-5xl font-display font-black uppercase italic tracking-tighter mb-16 text-center">
+          <h2 className="text-3xl md:text-5xl font-display font-black uppercase italic tracking-tighter mb-16 text-center">
             Frequently Asked <span className="text-red-600">Questions</span>
           </h2>
           <div className="space-y-4">
@@ -310,7 +399,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950"></div>
         </div>
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="text-6xl md:text-8xl font-display font-black uppercase italic tracking-tighter mb-8">
+          <h2 className="text-4xl md:text-8xl font-display font-black uppercase italic tracking-tighter mb-8">
             Ready to <span className="text-red-600">Commit?</span>
           </h2>
         </div>

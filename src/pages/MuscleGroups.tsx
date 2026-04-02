@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ChevronRight, Dumbbell, Activity, Target, Zap, Shield, Flame, X, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -206,12 +206,21 @@ export default function MuscleGroups() {
   const [exerciseSearch, setExerciseSearch] = useState('');
   const [selectedGroup, setSelectedGroup] = useState<typeof muscleGroupsData[0] | null>(null);
   const [selectedExerciseForModal, setSelectedExerciseForModal] = useState<string | null>(null);
+  const [isSearching, setIsSearching] = useState(false);
 
   // Reset exercise search when modal opens/closes
   const handleSelectGroup = (group: typeof muscleGroupsData[0] | null) => {
     setSelectedGroup(group);
     setExerciseSearch('');
   };
+
+  useEffect(() => {
+    if (search) {
+      setIsSearching(true);
+      const timer = setTimeout(() => setIsSearching(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [search]);
 
   const filteredGroups = muscleGroupsData.filter(group => 
     group.title.toLowerCase().includes(search.toLowerCase()) || 
@@ -247,61 +256,64 @@ export default function MuscleGroups() {
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
-          <h1 className="text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
+          <h1 className="text-4xl md:text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
             Muscle Group <span className="text-red-600">Exercises</span>
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-            Find targeted exercises and routines for every major muscle group. Build your perfect physique with precision.
+          <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+            Find targeted <strong>hypertrophy exercises</strong> and <strong>strength training routines</strong> for every major muscle group. Build your perfect physique with precision and <strong>progressive overload</strong>.
           </p>
         </header>
 
         {/* Search Bar */}
-        <div className="bg-zinc-900/50 border border-white/10 p-6 md:p-8 rounded-3xl mb-12 md:mb-16">
-          <div className="relative max-w-2xl mx-auto">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+        <div className="bg-zinc-900/40 backdrop-blur-xl border border-white/5 p-4 md:p-6 rounded-[2rem] mb-12 md:mb-16 shadow-2xl">
+          <div className="relative max-w-2xl mx-auto group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500 group-focus-within:text-red-500 transition-colors" />
             <input 
               type="text" 
               placeholder="Search muscle groups (e.g., Chest, Back, Quads)..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-black border border-white/10 rounded-xl pl-12 pr-4 py-4 text-sm focus:outline-none focus:border-red-600 transition-colors"
+              className="w-full bg-black/50 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-sm focus:outline-none focus:border-red-600/50 focus:ring-1 focus:ring-red-600/20 transition-all placeholder:text-zinc-600"
             />
           </div>
         </div>
 
         {/* Popular Muscle Groups (Only show if no search filter is applied) */}
         {!search && (
-          <div className="mb-16">
-            <h2 className="text-2xl font-black uppercase italic mb-8 flex items-center gap-3">
+          <div className="mb-20">
+            <h2 className="text-2xl font-black uppercase italic mb-10 flex items-center gap-3">
               <Flame className="w-6 h-6 text-red-600" />
               Popular Muscle Groups
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {popularGroups.slice(0, 4).map((group) => {
+              {popularGroups.slice(0, 4).map((group, index) => {
                 const Icon = group.icon;
                 return (
                   <motion.div
                     key={`popular-${group.id}`}
-                    whileHover={{ scale: 1.02 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    whileHover={{ y: -5 }}
                     onClick={() => handleSelectGroup(group)}
-                    className="bg-zinc-900 border border-white/5 rounded-2xl p-6 cursor-pointer hover:border-red-600/50 transition-all group relative overflow-hidden"
+                    className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl p-8 cursor-pointer hover:border-red-600/30 transition-all group relative overflow-hidden shadow-xl"
                   >
                     <img 
                       src={group.image} 
                       srcSet={`${group.image.replace('w=800', 'w=400')} 400w, ${group.image} 800w`}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       alt={group.title} 
-                      className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-500"
+                      className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-700"
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
                     />
                     <div className="relative z-10">
-                      <div className="w-12 h-12 rounded-full bg-red-600/10 flex items-center justify-center mb-4 group-hover:bg-red-600 transition-colors">
-                        <Icon className="w-6 h-6 text-red-600 group-hover:text-white transition-colors" />
+                      <div className="w-14 h-14 rounded-2xl bg-red-600/10 flex items-center justify-center mb-6 group-hover:bg-red-600 group-hover:rotate-12 transition-all duration-500">
+                        <Icon className="w-7 h-7 text-red-600 group-hover:text-white transition-colors" />
                       </div>
-                      <h3 className="text-xl font-black uppercase italic mb-2">{group.title}</h3>
-                      <p className="text-gray-400 text-sm line-clamp-2">{group.description}</p>
+                      <h3 className="text-xl font-black uppercase italic mb-3 tracking-tight">{group.title}</h3>
+                      <p className="text-zinc-500 text-sm line-clamp-2 font-medium leading-relaxed">{group.description}</p>
                     </div>
                   </motion.div>
                 );
@@ -311,73 +323,112 @@ export default function MuscleGroups() {
         )}
 
         {/* All Muscle Groups Grid */}
-        <div>
-          <h2 className="text-2xl font-black uppercase italic mb-8">
+        <div className="min-h-[400px]">
+          <h2 className="text-2xl font-black uppercase italic mb-10">
             {search ? 'Search Results' : 'All Muscle Groups'}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredGroups.map((group) => {
-              const Icon = group.icon;
-              return (
+            <AnimatePresence mode="popLayout">
+              {isSearching ? (
+                Array.from({ length: 6 }).map((_, i) => (
+                  <div key={`skeleton-${i}`} className="bg-zinc-900/50 border border-white/5 rounded-3xl overflow-hidden animate-pulse">
+                    <div className="h-48 bg-zinc-800/50"></div>
+                    <div className="p-8 space-y-4">
+                      <div className="h-8 bg-zinc-800/50 rounded-lg w-3/4"></div>
+                      <div className="h-4 bg-zinc-800/50 rounded-lg w-full"></div>
+                      <div className="h-4 bg-zinc-800/50 rounded-lg w-2/3"></div>
+                      <div className="pt-6 border-t border-white/5 flex justify-between">
+                        <div className="h-6 bg-zinc-800/50 rounded-lg w-20"></div>
+                        <div className="h-10 w-10 bg-zinc-800/50 rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : filteredGroups.length > 0 ? (
+                filteredGroups.map((group, index) => {
+                  const Icon = group.icon;
+                  return (
+                    <motion.div 
+                      key={group.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      onClick={() => handleSelectGroup(group)}
+                      className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/30 hover:bg-zinc-900 transition-all duration-500 flex flex-col shadow-xl"
+                    >
+                      <div className="h-48 bg-zinc-800 relative overflow-hidden">
+                        <img 
+                          src={group.image} 
+                          srcSet={`${group.image.replace('w=800', 'w=400')} 400w, ${group.image} 800w`}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          alt={group.title} 
+                          className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700 ease-out"
+                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent z-10"></div>
+                        <div className="absolute top-4 right-4 z-20">
+                          <span className="bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-lg shadow-lg border border-white/10">
+                            {group.level}
+                          </span>
+                        </div>
+                        <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity duration-500 z-10">
+                          <Icon className="w-24 h-24 text-white drop-shadow-2xl" />
+                        </div>
+                      </div>
+                      <div className="p-8 flex-1 flex flex-col relative">
+                        <h3 className="text-2xl font-black uppercase italic mb-4 group-hover:text-red-500 transition-colors duration-300">{group.title}</h3>
+                        <p className="text-zinc-500 text-sm mb-6 line-clamp-2 leading-relaxed font-medium">
+                          {group.description}
+                        </p>
+                        <div className="mb-8 flex-1">
+                          <p className="text-[10px] uppercase tracking-widest text-zinc-600 font-black mb-3">Top Exercises</p>
+                          <div className="flex flex-wrap gap-2">
+                            {group.exercises.slice(0, 3).map((ex, i) => (
+                              <span key={i} className="text-[10px] font-bold uppercase tracking-wider bg-white/5 px-3 py-1.5 rounded-lg text-zinc-400 border border-white/5">
+                                {ex}
+                              </span>
+                            ))}
+                            {group.exercises.length > 3 && (
+                              <span className="text-[10px] font-bold uppercase tracking-wider bg-white/5 px-3 py-1.5 rounded-lg text-zinc-600 border border-white/5">
+                                +{group.exercises.length - 3} more
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
+                          <span className="text-xs font-black uppercase tracking-widest text-red-600 group-hover:text-red-500 transition-colors">Explore Guide</span>
+                          <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-red-600 group-hover:rotate-45 transition-all duration-500">
+                            <ChevronRight className="w-5 h-5 text-zinc-500 group-hover:text-white group-hover:-rotate-45 transition-all duration-500" />
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })
+              ) : (
                 <motion.div 
-                  key={group.id}
-                  layoutId={group.id}
-                  onClick={() => handleSelectGroup(group)}
-                  className="bg-zinc-900 border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/50 transition-all duration-300 flex flex-col"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="col-span-full text-center py-32"
                 >
-                  <div className="h-40 bg-zinc-800 relative overflow-hidden">
-                    <img 
-                      src={group.image} 
-                      srcSet={`${group.image.replace('w=800', 'w=400')} 400w, ${group.image} 800w`}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      alt={group.title} 
-                      className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent z-10"></div>
-                    <div className="absolute top-4 right-4 z-20">
-                      <span className="bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
-                        {group.level}
-                      </span>
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:scale-110 transition-transform duration-500 z-10">
-                      <Icon className="w-20 h-20 text-white drop-shadow-lg" />
-                    </div>
+                  <div className="w-24 h-24 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto mb-8 border border-white/5">
+                    <Search className="w-10 h-10 text-zinc-700" />
                   </div>
-                  <div className="p-8 flex-1 flex flex-col">
-                    <h3 className="text-2xl font-black uppercase italic mb-3 group-hover:text-red-600 transition-colors">{group.title}</h3>
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">
-                      {group.description}
-                    </p>
-                    <div className="mb-6 flex-1">
-                      <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2">Exercises</p>
-                      <div className="flex flex-wrap gap-2">
-                        {group.exercises.slice(0, 3).map((ex, i) => (
-                          <span key={i} className="text-xs bg-white/5 px-2 py-1 rounded-md text-gray-300">
-                            {ex}
-                          </span>
-                        ))}
-                        {group.exercises.length > 3 && (
-                          <span className="text-xs bg-white/5 px-2 py-1 rounded-md text-gray-500">
-                            +{group.exercises.length - 3} more
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold uppercase tracking-widest text-red-600">View Details</span>
-                      </div>
-                      <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-red-600 transition-colors">
-                        <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-white" />
-                      </div>
-                    </div>
-                  </div>
+                  <h3 className="text-3xl font-black uppercase italic mb-4 tracking-tight">No Muscle Groups Found</h3>
+                  <p className="text-zinc-500 max-w-md mx-auto font-medium">Try searching for common muscle groups like "Chest", "Back", or "Legs".</p>
+                  <button 
+                    onClick={() => setSearch('')}
+                    className="mt-8 text-red-500 font-bold uppercase tracking-widest text-sm hover:text-red-400 transition-colors"
+                  >
+                    Clear Search
+                  </button>
                 </motion.div>
-              );
-            })}
+              )}
+            </AnimatePresence>
           </div>
 
           {filteredGroups.length === 0 && (
@@ -513,16 +564,6 @@ export default function MuscleGroups() {
                           className="bg-black/40 rounded-2xl border border-white/5 p-4 flex items-center gap-4 hover:bg-white/5 transition-colors group/item cursor-pointer"
                           onClick={() => setSelectedExerciseForModal(exercise)}
                         >
-                          <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-white/10">
-                            <img 
-                              src={details.image} 
-                              alt={details.alt}
-                              className="w-full h-full object-cover group-hover/item:scale-110 transition-transform duration-500"
-                              referrerPolicy="no-referrer"
-                              loading="lazy"
-                              decoding="async"
-                            />
-                          </div>
                           <div className="flex-1">
                             <p className="font-bold text-white text-sm md:text-base mb-1">{exercise}</p>
                             <div className="flex flex-wrap gap-2 items-center">

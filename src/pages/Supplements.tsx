@@ -45,10 +45,10 @@ export default function Supplements() {
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
-          <h1 className="text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
+          <h1 className="text-4xl md:text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
             Fitness <span className="text-red-600">Supplements</span>
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             Optimize your results with the right supplementation. We break down the science, benefits, and usage for maximum gains.
           </p>
         </header>
@@ -134,7 +134,7 @@ export default function Supplements() {
         </div>
 
         {/* Safety Disclaimer */}
-        <div className="bg-red-600/10 border border-red-600/20 rounded-3xl p-10 flex flex-col md:flex-row items-start gap-8 mb-16">
+        <div className="bg-red-600/10 border border-red-600/20 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row items-start gap-8 mb-16">
           <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center shrink-0 shadow-xl shadow-red-600/20">
             <AlertTriangle className="w-8 h-8 text-white" />
           </div>

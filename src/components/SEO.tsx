@@ -9,8 +9,8 @@ interface SEOProps {
 }
 
 export const SEO: React.FC<SEOProps> = ({ 
-  title = "Iron Core: Workout & Diet Plans for Muscle Gain & Fat Loss", 
-  description = "Discover expert workout plans and diet guides for muscle gain, fat loss, and strength. Perfect for beginners to advanced—train smarter at home or gym.", 
+  title = "Iron Core: Elite Gym Workout & Macronutrient Diet Plans", 
+  description = "Master hypertrophy training and progressive overload with expert gym workout plans and macronutrient-focused diet guides. Achieve your body transformation with Iron Core.", 
   urlPath, 
   schema 
 }) => {

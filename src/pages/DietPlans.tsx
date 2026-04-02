@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ChevronRight, Apple, Flame, Zap, X, Coffee, Utensils, Moon, Cookie, RefreshCw } from 'lucide-react';
+import { Search, ChevronRight, Apple, Flame, Zap, X, Coffee, Utensils, Moon, Cookie, RefreshCw, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { dietPlans, mealAlternatives } from '../data';
 import { DietPlan } from '../types';
@@ -14,6 +14,8 @@ export default function DietPlans() {
   const [search, setSearch] = useState('');
   const [selectedPlan, setSelectedPlan] = useState<DietPlan | null>(null);
   const [customMeals, setCustomMeals] = useState<Record<string, string>>({});
+
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleSelectPlan = (plan: DietPlan) => {
     setSelectedPlan(plan);
@@ -64,6 +66,14 @@ export default function DietPlans() {
 
     doc.save(`${selectedPlan.title.toLowerCase().replace(/\s+/g, '-')}-diet-plan.pdf`);
   };
+
+  useEffect(() => {
+    if (search || filter.goal !== 'all' || filter.type !== 'all') {
+      setIsSearching(true);
+      const timer = setTimeout(() => setIsSearching(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [search, filter]);
 
   const filteredPlans = dietPlans.filter(plan => {
     const matchesGoal = filter.goal === 'all' || plan.goal === filter.goal;
@@ -118,11 +128,11 @@ export default function DietPlans() {
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-16 text-center">
-          <h1 className="text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
-            Muscle Gain & <span className="text-red-600">Diet Plans</span>
+          <h1 className="text-4xl md:text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
+            Muscle Gain & <span className="text-red-600">Fat Loss Diets</span>
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed mb-8">
-            Fuel your performance with expert-curated meal plans. Whether you're plant-based or an omnivore, we have the right fuel for your fire.
+          <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-8">
+            Fuel your <strong>body transformation</strong> with expert-curated <strong>macronutrient-focused meal plans</strong>. Whether you're in a <strong>caloric deficit</strong> for fat loss or a surplus for <strong>muscle gain</strong>, we have the right fuel for your fire.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link 
@@ -136,96 +146,151 @@ export default function DietPlans() {
         </header>
 
         {/* Filters & Search */}
-        <div className="bg-zinc-900/50 border border-white/10 p-8 rounded-3xl mb-16 space-y-8">
-          <div className="flex flex-col lg:flex-row items-center gap-6">
-            <div className="relative flex-1 w-full">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+        <div className="bg-zinc-900/40 backdrop-blur-xl border border-white/5 p-4 md:p-6 rounded-[2rem] mb-12 md:mb-16 shadow-2xl">
+          <div className="flex flex-col lg:flex-row items-stretch gap-4">
+            <div className="relative flex-1 group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500 group-focus-within:text-red-500 transition-colors" />
               <input 
                 type="text" 
-                placeholder="Search diet plans..."
+                placeholder="Search diet plans by title..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full bg-black border border-white/10 rounded-xl pl-12 pr-4 py-4 text-sm focus:outline-none focus:border-red-600 transition-colors"
+                className="w-full bg-black/50 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-sm focus:outline-none focus:border-red-600/50 focus:ring-1 focus:ring-red-600/20 transition-all placeholder:text-zinc-600"
               />
             </div>
-            <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto">
-              <select 
-                value={filter.goal}
-                onChange={(e) => setFilter({ ...filter, goal: e.target.value })}
-                className="bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none min-w-[160px]"
-              >
-                {goals.map(g => <option key={g.id} value={g.id}>{g.label}</option>)}
-              </select>
-              <select 
-                value={filter.type}
-                onChange={(e) => setFilter({ ...filter, type: e.target.value })}
-                className="bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors appearance-none min-w-[160px]"
-              >
-                {types.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
-              </select>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="relative group">
+                <Zap className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" />
+                <select 
+                  value={filter.goal}
+                  onChange={(e) => setFilter({ ...filter, goal: e.target.value })}
+                  className="w-full bg-black/50 border border-white/10 rounded-2xl pl-10 pr-4 py-4 text-xs font-black uppercase tracking-widest focus:outline-none focus:border-red-600/50 transition-all appearance-none cursor-pointer hover:bg-black"
+                >
+                  {goals.map(g => <option key={g.id} value={g.id}>{g.label}</option>)}
+                </select>
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600 pointer-events-none" />
+              </div>
+              <div className="relative group">
+                <Utensils className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" />
+                <select 
+                  value={filter.type}
+                  onChange={(e) => setFilter({ ...filter, type: e.target.value })}
+                  className="w-full bg-black/50 border border-white/10 rounded-2xl pl-10 pr-4 py-4 text-xs font-black uppercase tracking-widest focus:outline-none focus:border-red-600/50 transition-all appearance-none cursor-pointer hover:bg-black"
+                >
+                  {types.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
+                </select>
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600 pointer-events-none" />
+              </div>
             </div>
           </div>
         </div>
 
         {/* Diet Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPlans.map((plan) => (
-            <motion.div 
-              key={plan.id}
-              layoutId={plan.id}
-              onClick={() => handleSelectPlan(plan)}
-              className="bg-zinc-900 border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/50 transition-all duration-300"
-            >
-              <div className="h-48 bg-zinc-800 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent z-10"></div>
-                <div className="absolute top-4 right-4 z-20 flex gap-2">
-                  <span className={cn(
-                    "text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-lg",
-                    plan.type === 'vegetarian' ? "bg-green-600" : 
-                    plan.type === 'vegan' ? "bg-emerald-600" :
-                    plan.type === 'keto' ? "bg-purple-600" :
-                    plan.type === 'paleo' ? "bg-orange-600" :
-                    plan.type === 'mediterranean' ? "bg-blue-600" :
-                    plan.type === 'intermittent-fasting' ? "bg-zinc-600" :
-                    "bg-red-600"
-                  )}>
-                    {plan.type}
-                  </span>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                  <img 
-                    src={getFeaturedImage(plan.type, plan.goal).url} 
-                    srcSet={`${getFeaturedImage(plan.type, plan.goal).url.replace('w=800', 'w=400')} 400w, ${getFeaturedImage(plan.type, plan.goal).url} 800w`}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    alt={getFeaturedImage(plan.type, plan.goal).alt}
-                    className="w-full h-full object-cover opacity-60"
-                    loading="lazy"
-                    decoding="async"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-black uppercase italic mb-3 group-hover:text-red-600 transition-colors">{plan.title}</h3>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Goal</span>
-                    <span className="text-xs font-black uppercase text-white">{plan.goal.replace('-', ' ')}</span>
-                  </div>
-                  <div className="flex flex-col border-l border-white/10 pl-4">
-                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Calories</span>
-                    <span className="text-xs font-black uppercase text-white">{plan.calorieGuidance}</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative min-h-[400px]">
+          <AnimatePresence mode="popLayout">
+            {isSearching ? (
+              Array.from({ length: 6 }).map((_, i) => (
+                <div key={`skeleton-${i}`} className="bg-zinc-900/50 border border-white/5 rounded-3xl overflow-hidden animate-pulse">
+                  <div className="h-48 bg-zinc-800/50"></div>
+                  <div className="p-8 space-y-4">
+                    <div className="h-8 bg-zinc-800/50 rounded-lg w-3/4"></div>
+                    <div className="h-4 bg-zinc-800/50 rounded-lg w-full"></div>
+                    <div className="h-4 bg-zinc-800/50 rounded-lg w-2/3"></div>
+                    <div className="pt-6 border-t border-white/5 flex justify-between">
+                      <div className="h-6 bg-zinc-800/50 rounded-lg w-20"></div>
+                      <div className="h-10 w-10 bg-zinc-800/50 rounded-full"></div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center justify-between pt-6 border-t border-white/5">
-                  <span className="text-xs font-bold uppercase tracking-widest text-gray-400">View Meal Plan</span>
-                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-red-600 transition-colors">
-                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-white" />
+              ))
+            ) : filteredPlans.length > 0 ? (
+              filteredPlans.map((plan, index) => (
+                <motion.div 
+                  key={plan.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  onClick={() => handleSelectPlan(plan)}
+                  className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/30 hover:bg-zinc-900 transition-all duration-500 shadow-xl hover:shadow-red-600/5"
+                >
+                  <div className="h-56 bg-zinc-800 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent z-10"></div>
+                    <div className="absolute top-4 right-4 z-20 flex gap-2">
+                      <span className={cn(
+                        "text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-lg border border-white/10",
+                        plan.type === 'vegetarian' ? "bg-green-600" : 
+                        plan.type === 'vegan' ? "bg-emerald-600" :
+                        plan.type === 'keto' ? "bg-purple-600" :
+                        plan.type === 'paleo' ? "bg-orange-600" :
+                        plan.type === 'mediterranean' ? "bg-blue-600" :
+                        plan.type === 'intermittent-fasting' ? "bg-zinc-600" :
+                        "bg-red-600"
+                      )}>
+                        {plan.type}
+                      </span>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-700 ease-out">
+                      <img 
+                        src={getFeaturedImage(plan.type, plan.goal).url} 
+                        srcSet={`${getFeaturedImage(plan.type, plan.goal).url.replace('w=800', 'w=400')} 400w, ${getFeaturedImage(plan.type, plan.goal).url} 800w`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        alt={getFeaturedImage(plan.type, plan.goal).alt}
+                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+                        loading="lazy"
+                        decoding="async"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
                   </div>
+                  <div className="p-8 relative">
+                    <div className="absolute -top-6 left-8 w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center shadow-xl shadow-red-600/30 group-hover:scale-110 transition-transform duration-500 z-20">
+                      <Flame className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-black uppercase italic mb-4 group-hover:text-red-500 transition-colors duration-300 pt-2">{plan.title}</h3>
+                    <div className="flex items-center gap-6 mb-6">
+                      <div className="flex flex-col">
+                        <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-1">Goal</span>
+                        <span className="text-xs font-black uppercase text-white tracking-wider">{plan.goal.replace('-', ' ')}</span>
+                      </div>
+                      <div className="flex flex-col border-l border-white/10 pl-6">
+                        <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-1">Calories</span>
+                        <span className="text-xs font-black uppercase text-white tracking-wider">{plan.calorieGuidance}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between pt-6 border-t border-white/5">
+                      <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white transition-colors">View Meal Plan</span>
+                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-red-600 group-hover:rotate-45 transition-all duration-500">
+                        <ChevronRight className="w-5 h-5 text-zinc-400 group-hover:text-white group-hover:-rotate-45 transition-all duration-500" />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="col-span-full text-center py-32"
+              >
+                <div className="w-24 h-24 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto mb-8 border border-white/5">
+                  <Search className="w-10 h-10 text-zinc-700" />
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                <h3 className="text-3xl font-black uppercase italic mb-4 tracking-tight">No Diet Plans Found</h3>
+                <p className="text-zinc-500 max-w-md mx-auto font-medium">Try adjusting your filters or search terms to find the perfect meal plan.</p>
+                <button 
+                  onClick={() => {
+                    setFilter({ goal: 'all', type: 'all' });
+                    setSearch('');
+                  }}
+                  className="mt-8 text-red-500 font-bold uppercase tracking-widest text-sm hover:text-red-400 transition-colors"
+                >
+                  Reset All Filters
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         {/* FAQ Section */}
         <div className="mt-32 max-w-4xl mx-auto">
@@ -288,7 +353,7 @@ export default function DietPlans() {
                 <X className="w-6 h-6" />
               </button>
 
-              <div className="h-64 w-full relative">
+              <div className="h-48 md:h-64 w-full relative">
                 <img 
                   src={getFeaturedImage(selectedPlan.type, selectedPlan.goal).url} 
                   alt={getFeaturedImage(selectedPlan.type, selectedPlan.goal).alt}
@@ -301,7 +366,7 @@ export default function DietPlans() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="p-12 bg-zinc-800/50">
+                <div className="p-6 md:p-12 bg-zinc-800/50">
                   <div className={cn(
                     "text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-6 inline-block",
                     selectedPlan.type === 'vegetarian' ? "bg-green-600" : 
@@ -340,7 +405,7 @@ export default function DietPlans() {
                   </p>
                 </div>
 
-                <div className="p-12">
+                <div className="p-6 md:p-12">
                   <h3 className="text-xl font-black uppercase italic mb-8 flex items-center gap-3">
                     <Utensils className="w-6 h-6 text-red-600" />
                     Daily Meal Plan

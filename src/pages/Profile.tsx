@@ -8,7 +8,12 @@ import { logout } from '../firebase';
 import { SEO } from '../components/SEO';
 
 export default function Profile({ user }: { user: User | null }) {
-  const [profile, setProfile] = useState<any>(null);
+  const [profile, setProfile] = useState<any>({
+    goal: '',
+    fitnessLevel: '',
+    dietPreference: '',
+    age: ''
+  });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
@@ -20,7 +25,13 @@ export default function Profile({ user }: { user: User | null }) {
           const docRef = doc(db, 'users', user.uid);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
-            setProfile(docSnap.data());
+            const data = docSnap.data();
+            setProfile({
+              goal: data.goal || '',
+              fitnessLevel: data.fitnessLevel || '',
+              dietPreference: data.dietPreference || '',
+              age: data.age || ''
+            });
           }
         } catch (error) {
           console.error("Error fetching profile", error);
@@ -33,12 +44,15 @@ export default function Profile({ user }: { user: User | null }) {
 
   const handleUpdate = async (e: FormEvent) => {
     e.preventDefault();
-    if (!user || !profile) return;
+    if (!user) return;
     setSaving(true);
     setMessage('');
     try {
       const docRef = doc(db, 'users', user.uid);
-      await updateDoc(docRef, profile);
+      await updateDoc(docRef, {
+        ...profile,
+        updatedAt: new Date().toISOString()
+      });
       setMessage('Profile updated successfully!');
       setTimeout(() => setMessage(''), 3000);
     } catch (error) {
@@ -188,12 +202,12 @@ export default function Profile({ user }: { user: User | null }) {
 
                   <div className="space-y-3">
                     <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold flex items-center gap-2">
-                      <UserIcon className="w-4 h-4 text-red-600" /> Age Group
+                      <UserIcon className="w-4 h-4 text-red-600" /> Age
                     </label>
                     <input 
                       type="number"
                       value={profile?.age || ''}
-                      onChange={(e) => setProfile({ ...profile, age: parseInt(e.target.value) })}
+                      onChange={(e) => setProfile({ ...profile, age: e.target.value ? parseInt(e.target.value) : '' })}
                       placeholder="Enter your age"
                       className="w-full bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-bold uppercase tracking-widest focus:outline-none focus:border-red-600 transition-colors"
                     />

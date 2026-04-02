@@ -15,7 +15,7 @@ export default function Footer() {
             </span>
           </Link>
           <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-            Empowering your fitness journey with expert-led workout plans, personalized nutrition, and a supportive community.
+            Empowering your <strong>body transformation</strong> with expert-led <strong>gym workout plans</strong>, <strong>hypertrophy routines</strong>, and <strong>macronutrient-focused nutrition</strong>.
           </p>
         </div>
 

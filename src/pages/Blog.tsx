@@ -43,10 +43,10 @@ export default function Blog() {
       />
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-20 text-center">
-          <h1 className="text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
+          <h1 className="text-4xl md:text-6xl font-display font-black uppercase italic tracking-tighter mb-6">
             Fitness <span className="text-red-600">Tips</span>
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             Stay informed with the latest tips on training, nutrition, and recovery from our team of experts.
           </p>
         </header>
@@ -139,12 +139,12 @@ export default function Blog() {
       </div>
 
       {/* Newsletter Section */}
-      <section className="mt-32 bg-zinc-950 rounded-[4rem] p-12 md:p-24 relative overflow-hidden">
+      <section className="mt-32 bg-zinc-950 rounded-[2rem] md:rounded-[4rem] p-8 md:p-24 relative overflow-hidden">
         <div className="absolute top-0 right-0 p-24 opacity-5">
           <Flame className="w-64 h-64 text-red-600" />
         </div>
         <div className="max-w-2xl relative z-10">
-          <h2 className="text-5xl font-black uppercase italic tracking-tighter mb-8 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-8 leading-tight">
             Get the <span className="text-red-600">Edge</span> <br />
             In Your Inbox
           </h2>
@@ -241,7 +241,7 @@ export default function Blog() {
                 </h2>
                 
                 <div className="prose prose-invert prose-red max-w-none">
-                  <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-line">
+                  <p className="text-gray-300 text-lg md:text-xl leading-relaxed md:leading-loose font-medium tracking-wide whitespace-pre-line px-2 md:px-4">
                     {selectedPost.content}
                   </p>
                 </div>

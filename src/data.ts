@@ -1277,6 +1277,66 @@ export const mealAlternatives: MealAlternatives = {
       'High-carb snacks during the eating window',
       'Greek yogurt or fruit during the eating window'
     ]
+  },
+  'indian-vegetarian': {
+    breakfast: [
+      'Paneer paratha with Greek yogurt',
+      'Moong dal chilla with mint chutney',
+      'Vegetable Poha with roasted peanuts',
+      'Besan Chilla with curd',
+      'Oats Upma with plenty of vegetables'
+    ],
+    lunch: [
+      'Dal Tadka with Brown Rice and Salad',
+      'Paneer Bhurji with 2 Chapatis',
+      'Mixed Vegetable Sabzi with 1 Chapati and Dal',
+      'Rajma Chawal (Kidney beans with rice) and Salad',
+      'Chole (Chickpeas) with 1 Chapati and Curd'
+    ],
+    dinner: [
+      'Soya Chunk Curry with Quinoa',
+      'Grilled Tofu with sautéed vegetables',
+      'Palak Paneer with 1 Chapati',
+      'Lauki (Bottle Gourd) Sabzi with Dal and 1 Chapati',
+      'Baingan Bharta with 1 Chapati and Curd'
+    ],
+    snacks: [
+      'Roasted Chana (Chickpeas)',
+      'Buttermilk (Chaas)',
+      'Sprouts Salad',
+      'Handful of Walnuts and Almonds',
+      'Makhana (Fox nuts) roasted in olive oil'
+    ]
+  },
+  'indian-non-vegetarian': {
+    breakfast: [
+      'Egg white omelette with spinach',
+      'Boiled eggs (3) with whole wheat toast',
+      'Chicken Keema with 1 Chapati',
+      'Egg Bhurji with 2 slices of brown bread',
+      'Masala Omelette with 2 slices of whole wheat bread'
+    ],
+    lunch: [
+      'Chicken Curry with Brown Rice and Salad',
+      'Grilled Fish with steamed vegetables and 1 Chapati',
+      'Chicken Breast (150g) with a large bowl of Salad',
+      'Mutton Curry (lean cuts) with 2 Chapatis',
+      'Egg Curry with Brown Rice and Salad'
+    ],
+    dinner: [
+      'Baked Fish with Broccoli and Cauliflower',
+      'Chicken Stir-fry with plenty of vegetables',
+      'Grilled Chicken Breast with sautéed beans',
+      'Fish Curry with a small portion of Brown Rice',
+      'Chicken Soup with plenty of vegetables'
+    ],
+    snacks: [
+      'Boiled Egg (1)',
+      'Chicken Salad with lemon dressing',
+      'Roasted Chana',
+      'Protein Shake with water',
+      'Handful of Almonds'
+    ]
   }
 };
 
@@ -1747,6 +1807,58 @@ export const dietPlans: DietPlan[] = [
       "lunch": "First Meal (12 PM): Large salad with grilled chicken and avocado",
       "dinner": "Last Meal (8 PM): Salmon, quinoa, and roasted vegetables",
       "snacks": "Greek yogurt or fruit during the eating window"
+    }
+  },
+  {
+    "id": "ind-veg-gain",
+    "title": "Indian Vegetarian Muscle Gain",
+    "goal": "muscle-gain",
+    "type": "indian-vegetarian",
+    "calorieGuidance": "2800-3200 kcal",
+    "meals": {
+      "breakfast": "Paneer paratha (2) with Greek yogurt and a handful of almonds",
+      "lunch": "Large bowl of Dal Tadka, Paneer Bhurji, 3 Chapatis, and Brown Rice",
+      "dinner": "Soya Chunk Curry with Quinoa or 2 Chapatis and a large bowl of Curd",
+      "snacks": "Roasted Chana, Protein Shake with milk, and a Banana"
+    }
+  },
+  {
+    "id": "ind-nonveg-gain",
+    "title": "Indian Non-Veg Muscle Gain",
+    "goal": "muscle-gain",
+    "type": "indian-non-vegetarian",
+    "calorieGuidance": "2800-3200 kcal",
+    "meals": {
+      "breakfast": "Omelette (3 eggs) with 2 slices of whole wheat bread and a glass of milk",
+      "lunch": "Chicken Curry (200g), 3 Chapatis, Brown Rice, and a side of Salad",
+      "dinner": "Grilled Fish or Mutton Curry with 2 Chapatis and steamed vegetables",
+      "snacks": "Boiled Eggs (2), Protein Shake, and Peanut Butter on Toast"
+    }
+  },
+  {
+    "id": "ind-veg-loss",
+    "title": "Indian Vegetarian Fat Loss",
+    "goal": "fat-loss",
+    "type": "indian-vegetarian",
+    "calorieGuidance": "1500-1800 kcal",
+    "meals": {
+      "breakfast": "Moong Dal Chilla (2) with mint chutney and a small bowl of Curd",
+      "lunch": "1 Chapati, a large bowl of mixed vegetable Sabzi, and a bowl of Dal",
+      "dinner": "Grilled Tofu with sautéed vegetables and a small portion of Brown Rice",
+      "snacks": "Buttermilk (Chaas), a handful of Walnuts, and Green Tea"
+    }
+  },
+  {
+    "id": "ind-nonveg-loss",
+    "title": "Indian Non-Veg Fat Loss",
+    "goal": "fat-loss",
+    "type": "indian-non-vegetarian",
+    "calorieGuidance": "1500-1800 kcal",
+    "meals": {
+      "breakfast": "Egg White Omelette (4 whites) with spinach and mushrooms",
+      "lunch": "Grilled Chicken Breast (150g) with a large bowl of Salad and 1 Chapati",
+      "dinner": "Baked Fish with steamed Broccoli and Cauliflower",
+      "snacks": "Boiled Egg (1), Sprouts Salad, and Black Coffee"
     }
   }
 ];

@@ -130,56 +130,30 @@ export default function Home() {
 
       {/* Why Choose Iron Core Section */}
       <section className="py-32 bg-black border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div>
-              <h2 className="text-4xl md:text-6xl font-display font-black uppercase italic tracking-tighter mb-8">
-                Master Your <span className="text-red-600">Physique</span>
-              </h2>
-              <p className="text-gray-400 text-lg mb-12 leading-relaxed">
-                Iron Core isn't just another workout app. We provide the scientific foundation for real results, focusing on the core principles of <strong>strength and conditioning</strong>.
-              </p>
-              <div className="space-y-6">
-                {[
-                  { title: "Hypertrophy & Muscle Gain", desc: "Scientifically-backed hypertrophy routines designed to maximize muscle fiber recruitment and growth." },
-                  { title: "Fat Loss & Caloric Deficit", desc: "Expert diet plans that guide you through a sustainable caloric deficit while preserving lean muscle mass." },
-                  { title: "Progressive Overload Tracking", desc: "Learn how to consistently challenge your body with our progressive overload principles for long-term strength gains." },
-                  { title: "HIIT & Conditioning", desc: "High-Intensity Interval Training protocols to boost your cardiovascular health and accelerate fat oxidation." }
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="w-6 h-6 rounded-full bg-red-600/20 flex items-center justify-center shrink-0 mt-1">
-                      <CheckCircle2 className="w-4 h-4 text-red-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-white font-bold mb-1">{item.title}</h3>
-                      <p className="text-gray-500 text-sm">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative">
-              <div className="aspect-square rounded-[3rem] overflow-hidden border border-white/10">
-                <img 
-                  src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop" 
-                  alt="Strength Training" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                />
-              </div>
-              <div className="absolute -bottom-10 -left-10 bg-zinc-900 border border-white/10 p-8 rounded-3xl hidden md:block">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center">
-                    <Trophy className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-black italic">500+</p>
-                    <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Expert Routines</p>
-                  </div>
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-6xl font-display font-black uppercase italic tracking-tighter mb-8">
+            Master Your <span className="text-red-600">Physique</span>
+          </h2>
+          <p className="text-gray-400 text-lg mb-12 leading-relaxed max-w-2xl mx-auto">
+            Iron Core isn't just another workout app. We provide the scientific foundation for real results, focusing on the core principles of <strong>strength and conditioning</strong>.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+            {[
+              { title: "Hypertrophy & Muscle Gain", desc: "Scientifically-backed hypertrophy routines designed to maximize muscle fiber recruitment and growth." },
+              { title: "Fat Loss & Caloric Deficit", desc: "Expert diet plans that guide you through a sustainable caloric deficit while preserving lean muscle mass." },
+              { title: "Progressive Overload Tracking", desc: "Learn how to consistently challenge your body with our progressive overload principles for long-term strength gains." },
+              { title: "HIIT & Conditioning", desc: "High-Intensity Interval Training protocols to boost your cardiovascular health and accelerate fat oxidation." }
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4 p-6 bg-zinc-900/50 rounded-2xl border border-white/5">
+                <div className="w-6 h-6 rounded-full bg-red-600/20 flex items-center justify-center shrink-0 mt-1">
+                  <CheckCircle2 className="w-4 h-4 text-red-600" />
+                </div>
+                <div>
+                  <h3 className="text-white font-bold mb-1 tracking-tight">{item.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

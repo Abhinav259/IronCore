@@ -96,6 +96,8 @@ export default function DietPlans() {
     { id: 'all', label: 'All Types' },
     { id: 'vegetarian', label: 'Vegetarian' },
     { id: 'non-vegetarian', label: 'Non-Vegetarian' },
+    { id: 'indian-vegetarian', label: 'Indian Vegetarian' },
+    { id: 'indian-non-vegetarian', label: 'Indian Non-Vegetarian' },
     { id: 'vegan', label: 'Vegan' },
     { id: 'keto', label: 'Keto' },
     { id: 'paleo', label: 'Paleo' },

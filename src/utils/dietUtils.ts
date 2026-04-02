@@ -82,16 +82,34 @@ export const getMealImage = (description: string, type: string): DietImage => {
       alt: 'Delicious whole grain pasta with fresh sauce'
     };
   }
-  if (d.includes('soup') || d.includes('stew') || d.includes('chili')) {
+  if (d.includes('soup') || d.includes('stew') || d.includes('chili') || d.includes('dal') || d.includes('curry')) {
+    if (d.includes('chicken')) {
+      return {
+        url: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=800&auto=format&fit=crop',
+        alt: 'Flavorful Indian chicken curry'
+      };
+    }
+    if (d.includes('dal') || d.includes('lentil')) {
+      return {
+        url: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&auto=format&fit=crop',
+        alt: 'Nutritious Indian dal tadka'
+      };
+    }
     return {
       url: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&auto=format&fit=crop',
-      alt: 'A warm and comforting bowl of vegetable soup'
+      alt: 'A warm and comforting bowl of vegetable soup or curry'
     };
   }
-  if (d.includes('burrito') || d.includes('taco') || d.includes('wrap') || d.includes('sandwich') || d.includes('burger')) {
+  if (d.includes('burrito') || d.includes('taco') || d.includes('wrap') || d.includes('sandwich') || d.includes('burger') || d.includes('chapati') || d.includes('paratha') || d.includes('roti')) {
+    if (d.includes('paratha') || d.includes('paneer')) {
+      return {
+        url: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&auto=format&fit=crop',
+        alt: 'Delicious stuffed paratha with yogurt'
+      };
+    }
     return {
       url: 'https://images.unsplash.com/photo-1547584385-8cd4275b68e0?w=800&auto=format&fit=crop',
-      alt: 'A healthy and filling wrap with fresh fillings'
+      alt: 'A healthy and filling wrap or flatbread'
     };
   }
 

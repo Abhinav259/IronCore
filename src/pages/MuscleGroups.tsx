@@ -299,7 +299,7 @@ export default function MuscleGroups() {
                     className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl p-8 cursor-pointer hover:border-red-600/30 transition-all group relative overflow-hidden shadow-xl"
                   >
                     <img 
-                      src={group.image} 
+                      src={`${group.image}&fm=webp`} 
                       srcSet={`${group.image.replace('w=800', 'w=400')} 400w, ${group.image} 800w`}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       alt={group.title} 
@@ -307,6 +307,8 @@ export default function MuscleGroups() {
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
+                      width="400"
+                      height="200"
                     />
                     <div className="relative z-10">
                       <div className="w-14 h-14 rounded-2xl bg-red-600/10 flex items-center justify-center mb-6 group-hover:bg-red-600 group-hover:rotate-12 transition-all duration-500">
@@ -360,7 +362,7 @@ export default function MuscleGroups() {
                     >
                       <div className="h-48 bg-zinc-800 relative overflow-hidden">
                         <img 
-                          src={group.image} 
+                          src={`${group.image}&fm=webp`} 
                           srcSet={`${group.image.replace('w=800', 'w=400')} 400w, ${group.image} 800w`}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           alt={group.title} 
@@ -368,6 +370,8 @@ export default function MuscleGroups() {
                           referrerPolicy="no-referrer"
                           loading="lazy"
                           decoding="async"
+                          width="400"
+                          height="192"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent z-10"></div>
                         <div className="absolute top-4 right-4 z-20">
@@ -487,7 +491,7 @@ export default function MuscleGroups() {
               <div className="grid grid-cols-1 md:grid-cols-5">
                 <div className="p-6 md:p-10 bg-zinc-800/50 md:col-span-2 flex flex-col relative overflow-hidden">
                   <img 
-                    src={selectedGroup.image} 
+                    src={`${selectedGroup.image}&fm=webp`} 
                     srcSet={`${selectedGroup.image.replace('w=800', 'w=400')} 400w, ${selectedGroup.image} 800w`}
                     sizes="(max-width: 768px) 100vw, 800px"
                     alt={selectedGroup.title} 
@@ -495,6 +499,8 @@ export default function MuscleGroups() {
                     referrerPolicy="no-referrer"
                     loading="lazy"
                     decoding="async"
+                    width="800"
+                    height="800"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-zinc-900"></div>
                   

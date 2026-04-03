@@ -101,6 +101,8 @@ export default function Profile({ user }: { user: User | null }) {
               referrerPolicy="no-referrer"
               loading="lazy"
               decoding="async"
+              width="128"
+              height="128"
             />
             <div>
               <h1 className="text-5xl font-black uppercase italic tracking-tighter mb-2">{user.displayName}</h1>

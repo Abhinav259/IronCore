@@ -252,7 +252,7 @@ export default function WorkoutPlans() {
                     </div>
                     {plan.image ? (
                       <img 
-                        src={plan.image} 
+                        src={`${plan.image}&fm=webp`} 
                         srcSet={`${plan.image.replace('w=800', 'w=400')} 400w, ${plan.image} 800w`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         alt={plan.title} 
@@ -260,6 +260,8 @@ export default function WorkoutPlans() {
                         loading="lazy" 
                         decoding="async" 
                         className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out" 
+                        width="400"
+                        height="224"
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:scale-110 transition-transform duration-700">
@@ -378,7 +380,7 @@ export default function WorkoutPlans() {
                   {selectedPlan.image && (
                     <div className="absolute inset-0 z-0 opacity-20">
                       <img 
-                        src={selectedPlan.image} 
+                        src={`${selectedPlan.image}&fm=webp`} 
                         srcSet={`${selectedPlan.image.replace('w=800', 'w=400')} 400w, ${selectedPlan.image} 800w`}
                         sizes="(max-width: 768px) 100vw, 50vw"
                         alt={selectedPlan.title} 
@@ -386,6 +388,8 @@ export default function WorkoutPlans() {
                         loading="lazy" 
                         decoding="async" 
                         className="w-full h-full object-cover" 
+                        width="800"
+                        height="800"
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/80 to-transparent"></div>
                     </div>

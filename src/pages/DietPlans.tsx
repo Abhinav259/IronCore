@@ -246,6 +246,8 @@ export default function DietPlans() {
                         loading="lazy"
                         decoding="async"
                         referrerPolicy="no-referrer"
+                        width="400"
+                        height="224"
                       />
                     </div>
                   </div>
@@ -366,6 +368,8 @@ export default function DietPlans() {
                   loading="lazy"
                   decoding="async"
                   referrerPolicy="no-referrer"
+                  width="800"
+                  height="256"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent"></div>
               </div>
@@ -428,6 +432,8 @@ export default function DietPlans() {
                             loading="lazy"
                             decoding="async"
                             referrerPolicy="no-referrer"
+                            width="64"
+                            height="64"
                           />
                           <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                             {meal === 'breakfast' && <Coffee className="w-5 h-5 text-white/80 drop-shadow-md" />}

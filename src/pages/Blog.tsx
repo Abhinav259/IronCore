@@ -88,8 +88,7 @@ export default function Blog() {
               onClick={() => setSelectedPost(post)}
             >
               <div className="relative h-80 rounded-3xl overflow-hidden mb-6">
-                <img 
-                  src={post.image} 
+                <img src={`${post.image}&fm=webp`} 
                   srcSet={`${post.image.replace('w=800', 'w=400')} 400w, ${post.image} 800w`}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   alt={post.title} 
@@ -97,6 +96,8 @@ export default function Blog() {
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
+                  width="800"
+                  height="320"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                 <div className="absolute top-4 left-4 z-20">
@@ -206,7 +207,7 @@ export default function Blog() {
             >
               <div className="relative h-64 md:h-96 w-full">
                 <img 
-                  src={selectedPost.image} 
+                  src={`${selectedPost.image}&fm=webp`} 
                   srcSet={`${selectedPost.image.replace('w=800', 'w=400')} 400w, ${selectedPost.image} 800w`}
                   sizes="(max-width: 768px) 100vw, 800px"
                   alt={selectedPost.title} 
@@ -214,6 +215,8 @@ export default function Blog() {
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
+                  width="800"
+                  height="384"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
                 <button 

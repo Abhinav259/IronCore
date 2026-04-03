@@ -44,37 +44,35 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
   return (
     <HelmetProvider>
       <Router>
-        <div className="min-h-screen bg-black text-white font-sans selection:bg-red-600 selection:text-white">
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-red-600 selection:text-white flex flex-col">
           <Navbar user={user} />
-          <main className="pt-20">
-            <AnimatePresence mode="wait">
-              <Suspense fallback={
-                <div className="min-h-screen bg-black flex items-center justify-center">
-                  <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
-                </div>
-              }>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/workouts" element={<WorkoutPlans />} />
-                  <Route path="/muscle-groups" element={<MuscleGroups />} />
-                  <Route path="/diets" element={<DietPlans />} />
-                  <Route path="/supplements" element={<Supplements />} />
-                  <Route path="/profile" element={<Profile user={user} />} />
-                  <Route path="/blog" element={<Blog />} />
-                </Routes>
-              </Suspense>
-            </AnimatePresence>
+          <main className="pt-20 flex-1 flex flex-col">
+            {loading ? (
+              <div className="flex-1 flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            ) : (
+              <AnimatePresence mode="wait">
+                <Suspense fallback={
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                }>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/workouts" element={<WorkoutPlans />} />
+                    <Route path="/muscle-groups" element={<MuscleGroups />} />
+                    <Route path="/diets" element={<DietPlans />} />
+                    <Route path="/supplements" element={<Supplements />} />
+                    <Route path="/profile" element={<Profile user={user} />} />
+                    <Route path="/blog" element={<Blog />} />
+                  </Routes>
+                </Suspense>
+              </AnimatePresence>
+            )}
           </main>
           <Footer />
         </div>

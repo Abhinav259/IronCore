@@ -74,7 +74,6 @@ export default function Home() {
             className="w-full h-full object-cover opacity-40 grayscale"
             referrerPolicy="no-referrer"
             fetchPriority="high"
-            decoding="async"
             width="1920"
             height="1080"
           />

@@ -2,7 +2,7 @@ import { useState, useEffect, FormEvent } from 'react';
 import { User } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db, handleFirestoreError, OperationType } from '../firebase';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { User as UserIcon, Settings, Trophy, Zap, Apple, Dumbbell, Save, LogOut } from 'lucide-react';
 import { logout } from '../firebase';
 import { SEO } from '../components/SEO';

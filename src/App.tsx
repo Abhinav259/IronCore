@@ -6,7 +6,6 @@ import { auth, db } from './firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const Home = lazy(() => import('./pages/Home'));
 const WorkoutPlans = lazy(() => import('./pages/WorkoutPlans'));
@@ -55,23 +54,21 @@ export default function App() {
                 <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
               </div>
             ) : (
-              <AnimatePresence mode="wait">
-                <Suspense fallback={
-                  <div className="flex-1 flex items-center justify-center">
-                    <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
-                  </div>
-                }>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/workouts" element={<WorkoutPlans />} />
-                    <Route path="/muscle-groups" element={<MuscleGroups />} />
-                    <Route path="/diets" element={<DietPlans />} />
-                    <Route path="/supplements" element={<Supplements />} />
-                    <Route path="/profile" element={<Profile user={user} />} />
-                    <Route path="/blog" element={<Blog />} />
-                  </Routes>
-                </Suspense>
-              </AnimatePresence>
+              <Suspense fallback={
+                <div className="flex-1 flex items-center justify-center">
+                  <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              }>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/workouts" element={<WorkoutPlans />} />
+                  <Route path="/muscle-groups" element={<MuscleGroups />} />
+                  <Route path="/diets" element={<DietPlans />} />
+                  <Route path="/supplements" element={<Supplements />} />
+                  <Route path="/profile" element={<Profile user={user} />} />
+                  <Route path="/blog" element={<Blog />} />
+                </Routes>
+              </Suspense>
             )}
           </main>
           <Footer />

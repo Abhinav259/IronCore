@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Search, ChevronRight, Dumbbell, Activity, Target, Zap, Shield, Flame, X, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
@@ -14,7 +14,7 @@ const muscleGroupsData = [
     level: 'Beginner / Intermediate',
     popular: true,
     icon: Dumbbell,
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80&fm=webp&fm=webp',
     alt: 'Athlete performing a heavy barbell bench press',
     exercises: ['Bench Press', 'Incline Dumbbell Press', 'Decline Bench Press', 'Push-ups', 'Cable Crossovers', 'Dips', 'Dumbbell Flyes', 'Machine Chest Press', 'Pec Deck Flyes', 'Floor Press', 'Svend Press'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
@@ -26,7 +26,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: true,
     icon: Activity,
-    image: 'https://images.unsplash.com/photo-1526506114861-f3c500078f4b?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1526506114861-f3c500078f4b?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Person performing wide-grip pull-ups for back development',
     exercises: ['Pull-ups', 'Chin-ups', 'Barbell Rows', 'Dumbbell Rows', 'Lat Pulldowns', 'T-Bar Rows', 'Seated Cable Rows', 'Deadlifts', 'Straight-Arm Pulldowns', 'Inverted Rows', 'Meadows Row', 'Renegade Row'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
@@ -38,7 +38,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: true,
     icon: Target,
-    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Person performing overhead dumbbell shoulder presses',
     exercises: ['Overhead Press', 'Dumbbell Shoulder Press', 'Push Press', 'Lateral Raises', 'Cable Lateral Raises', 'Front Raises', 'Reverse Pec Deck', 'Face Pulls', 'Arnold Press', 'Upright Rows', 'Machine Shoulder Press'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Dumbbell-Only Plan']
@@ -50,7 +50,7 @@ const muscleGroupsData = [
     level: 'Beginner',
     popular: true,
     icon: Zap,
-    image: 'https://images.unsplash.com/photo-1581009137042-c552e485697a?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581009137042-c552e485697a?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Close up of bicep curls with dumbbells',
     exercises: ['Barbell Curls', 'EZ-Bar Curls', 'Dumbbell Curls', 'Hammer Curls', 'Preacher Curls', 'Incline Dumbbell Curls', 'Cable Curls', 'Concentration Curls', 'Reverse Curls', 'Zottman Curls', 'Spider Curls', 'Drag Curls'],
     relatedPlans: ['Bodybuilder Bro Split', 'Dumbbell-Only Plan']
@@ -62,7 +62,7 @@ const muscleGroupsData = [
     level: 'Beginner',
     popular: true,
     icon: Shield,
-    image: 'https://images.unsplash.com/photo-1530822847156-5df684ec5ee1?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1530822847156-5df684ec5ee1?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Person performing triceps rope pushdowns',
     exercises: ['Triceps Pushdowns', 'Rope Pushdowns', 'Skull Crushers', 'Overhead Extensions', 'Close-Grip Bench Press', 'Dips', 'Triceps Kickbacks', 'Diamond Push-ups', 'JM Press', 'Tate Press', 'Machine Triceps Extension'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
@@ -74,7 +74,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Dumbbell,
-    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Athlete with developed forearms holding a barbell',
     exercises: ['Wrist Curls', 'Reverse Wrist Curls', 'Reverse Curls', 'Zottman Curls', 'Farmers Walk', 'Dead Hangs', 'Plate Pinches', 'Towel Pull-ups', 'Fat Gripz Holds', 'Wrist Rollers'],
     relatedPlans: ['Strongman & Odd-Object Training', 'Bodybuilder Bro Split']
@@ -86,7 +86,7 @@ const muscleGroupsData = [
     level: 'Beginner / Advanced',
     popular: true,
     icon: Flame,
-    image: 'https://images.unsplash.com/photo-1566241142559-40e1bfc26ebc?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1566241142559-40e1bfc26ebc?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Person performing a forearm plank for core strength',
     exercises: ['Crunches', 'Bicycle Crunches', 'Planks', 'Hanging Leg Raises', 'Russian Twists', 'Cable Crunches', 'Ab Wheel Rollouts', 'Dead Bugs', 'Hollow Body Holds', 'Woodchoppers', 'V-Ups', 'Mountain Climbers', 'Flutter Kicks'],
     relatedPlans: ['Fat-Loss & Conditioning', 'Calisthenics Plan']
@@ -98,7 +98,7 @@ const muscleGroupsData = [
     level: 'Intermediate / Advanced',
     popular: true,
     icon: Zap,
-    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Person performing a deep barbell back squat',
     exercises: ['Back Squats', 'Front Squats', 'Goblet Squats', 'Hack Squats', 'Leg Press', 'Lunges', 'Bulgarian Split Squats', 'Step-Ups', 'Leg Extensions', 'Sissy Squats', 'Pistol Squats'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Strength / Powerlifting Plan']
@@ -110,7 +110,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Activity,
-    image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Person performing lying leg curls for hamstrings',
     exercises: ['Romanian Deadlifts', 'Stiff-Legged Deadlifts', 'Lying Leg Curls', 'Seated Leg Curls', 'Nordic Hamstring Curls', 'Good Mornings', 'Glute-Ham Raises', 'Kettlebell Swings', 'Swiss Ball Leg Curls', 'Sumo Deadlifts'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Strength / Powerlifting Plan']
@@ -122,7 +122,7 @@ const muscleGroupsData = [
     level: 'Beginner / Intermediate',
     popular: true,
     icon: Target,
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Athlete performing kettlebell swings for glute power',
     exercises: ['Hip Thrusts', 'Glute Bridges', 'Walking Lunges', 'Bulgarian Split Squats', 'Sumo Squats', 'Step-Ups', 'Cable Kickbacks', 'Kettlebell Swings', 'Frog Pumps', 'Curtsy Lunges', 'Reverse Hyperextensions'],
     relatedPlans: ['Fat-Loss & Conditioning', 'Postpartum Core Rebuilding']
@@ -134,7 +134,7 @@ const muscleGroupsData = [
     level: 'Beginner',
     popular: false,
     icon: Shield,
-    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Close up of a person performing standing calf raises',
     exercises: ['Standing Calf Raises', 'Seated Calf Raises', 'Single-Leg Calf Raises', 'Donkey Calf Raises', 'Jump Rope', 'Toe Presses on Leg Press', 'Farmer\'s Walk on Toes', 'Box Jumps', 'Tibialis Raises'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
@@ -146,7 +146,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Activity,
-    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Person performing rear delt flyes for upper back development',
     exercises: ['Face Pulls', 'Rear Delt Flyes', 'Chest-Supported Rows', 'Band Pull-Aparts', 'Y-T-W Raises', 'Shrugs', 'Upright Rows', 'Meadows Row', 'T-Bar Rows', 'Inverted Rows'],
     relatedPlans: ['Desk-Worker Posture Correction', 'Pre-hab & Joint Armor']
@@ -158,7 +158,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Shield,
-    image: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Person performing a conventional barbell deadlift',
     exercises: ['Back Extensions', 'Deadlifts', 'Good Mornings', 'Bird Dogs', 'Superman Holds', 'Reverse Hyperextensions', 'Romanian Deadlifts', 'Rack Pulls', 'Glute-Ham Raises'],
     relatedPlans: ['Strength / Powerlifting Plan', 'Desk-Worker Posture Correction']
@@ -170,7 +170,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Target,
-    image: 'https://images.unsplash.com/photo-1526506114861-f3c500078f4b?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1526506114861-f3c500078f4b?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Person performing wide-grip lat pulldowns',
     exercises: ['Wide-Grip Pull-ups', 'Chin-ups', 'Straight-Arm Pulldowns', 'Lat Pulldowns', 'V-Bar Pulldowns', 'Dumbbell Pullovers', 'Single-Arm Cable Rows', 'Underhand Yates Row', 'Meadows Row', 'Renegade Row'],
     relatedPlans: ['Push/Pull/Legs Hypertrophy', 'Bodybuilder Bro Split']
@@ -182,7 +182,7 @@ const muscleGroupsData = [
     level: 'Intermediate',
     popular: false,
     icon: Dumbbell,
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Athlete performing heavy barbell shrugs',
     exercises: ['Barbell Shrugs', 'Dumbbell Shrugs', 'Farmer\'s Walks', 'Upright Rows', 'Rack Pulls', 'Face Pulls', 'Snatch-Grip High Pulls', 'Overhead Shrugs', 'Trap Bar Deadlifts', 'Power Cleans'],
     relatedPlans: ['Strongman & Odd-Object Training', 'Bodybuilder Bro Split']
@@ -194,7 +194,7 @@ const muscleGroupsData = [
     level: 'Advanced',
     popular: true,
     icon: Zap,
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80&fm=webp',
     alt: 'Athlete performing a full-body functional movement',
     exercises: ['Burpees', 'Clean and Press', 'Thrusters', 'Kettlebell Swings', 'Man Makers', 'Turkish Get-Ups', 'Snatch', 'Medicine Ball Slams', 'Battle Ropes', 'Sled Push', 'Rowing Machine'],
     relatedPlans: ['Beginner Full-Body Plan', 'Functional Grid & Metcon']

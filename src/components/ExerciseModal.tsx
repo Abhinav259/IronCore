@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { X, Youtube, Target, Shield, Info, ExternalLink, Copy, Check } from 'lucide-react';
 import { getExerciseDetails } from '../utils/exerciseUtils';
 

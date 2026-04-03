@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Calculator, Info, RefreshCw, ChevronRight, Zap, Target, Activity } from 'lucide-react';
 
 interface MacroResults {

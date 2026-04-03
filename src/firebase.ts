@@ -71,7 +71,8 @@ async function testConnection() {
     }
   }
 }
-testConnection();
+// Defer the connection test to avoid blocking the main thread during initial render
+setTimeout(testConnection, 3000);
 
 export const signInWithGoogle = async () => {
   try {

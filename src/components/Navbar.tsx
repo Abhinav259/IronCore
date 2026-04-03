@@ -3,7 +3,6 @@ import { User } from 'firebase/auth';
 import { Dumbbell, User as UserIcon, LogOut, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { logout } from '../firebase';
-import { motion, AnimatePresence } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -20,7 +19,7 @@ export default function Navbar({ user }: { user: User | null }) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -90,47 +89,43 @@ export default function Navbar({ user }: { user: User | null }) {
       </div>
 
       {/* Mobile Nav */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-black border-b border-white/10 md:hidden p-6 flex flex-col gap-4"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "text-lg font-bold uppercase tracking-widest",
-                  location.pathname === link.path ? "text-red-600" : "text-gray-400"
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
-            {user && (
-              <>
-                <Link 
-                  to="/profile" 
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-bold uppercase tracking-widest text-gray-400"
-                >
-                  Profile
-                </Link>
-                <button 
-                  onClick={() => { logout(); setIsOpen(false); }}
-                  className="text-left text-lg font-bold uppercase tracking-widest text-red-600"
-                >
-                  Logout
-                </button>
-              </>
-            )}
-          </motion.div>
+      <div
+        className={cn(
+          "absolute top-full left-0 right-0 bg-black border-b border-white/10 md:hidden p-6 flex flex-col gap-4 transition-all duration-300 origin-top",
+          isOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"
         )}
-      </AnimatePresence>
+      >
+        {navLinks.map((link) => (
+          <Link
+            key={link.path}
+            to={link.path}
+            onClick={() => setIsOpen(false)}
+            className={cn(
+              "text-lg font-bold uppercase tracking-widest",
+              location.pathname === link.path ? "text-red-600" : "text-gray-400"
+            )}
+          >
+            {link.name}
+          </Link>
+        ))}
+        {user && (
+          <>
+            <Link 
+              to="/profile" 
+              onClick={() => setIsOpen(false)}
+              className="text-lg font-bold uppercase tracking-widest text-gray-400"
+            >
+              Profile
+            </Link>
+            <button 
+              onClick={() => { logout(); setIsOpen(false); }}
+              className="text-left text-lg font-bold uppercase tracking-widest text-red-600"
+            >
+              Logout
+            </button>
+          </>
+        )}
+      </div>
     </nav>
   );
 }

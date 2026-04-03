@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Filter, Search, ChevronRight, Dumbbell, Zap, Trophy, Users, Flame, X, Download, ChevronDown, ChevronUp, Youtube, Apple } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { workoutPlans } from '../data';

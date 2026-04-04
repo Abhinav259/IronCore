@@ -29,13 +29,15 @@
     <meta property="og:image" content="https://iron-core-neon.vercel.app/logo.svg" />
     <meta property="og:type" content="website" />
 
-    <!-- Google tag (gtag.js) - Moved down to prioritize LCP and fonts -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S2ZW5Y543C"></script>
+    <!-- Google tag (gtag.js) - Deferred to prioritize LCP -->
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-S2ZW5Y543C"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-S2ZW5Y543C');
+      window.addEventListener('load', function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-S2ZW5Y543C');
+      });
     </script>
 
     <script type="application/ld+json">

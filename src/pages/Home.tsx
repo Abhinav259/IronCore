@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Play, Users, Trophy, Zap, ChevronDown, Calendar, User as UserIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { testimonials, blogPosts } from '../data';
@@ -82,50 +82,30 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-2xl"
-          >
+          <div className="max-w-2xl animate-fade-in-left">
             <div className="inline-flex items-center gap-2 bg-red-600/20 border border-red-600/30 px-4 py-1.5 rounded-full mb-8">
               <Zap className="w-4 h-4 text-red-600" />
               <span className="text-xs font-black uppercase tracking-widest text-red-500">New: 12-Week Shred Program</span>
             </div>
             
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-6xl md:text-8xl font-display font-black uppercase italic tracking-tighter leading-[0.9] mb-8"
-            >
+            <h1 className="text-6xl md:text-8xl font-display font-black uppercase italic tracking-tighter leading-[0.9] mb-8 animate-fade-in-up delay-200">
               Elite Workout <br />
               <span className="text-red-600">&amp; Diet Plans</span>
-            </motion.h1>
+            </h1>
             
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl text-gray-400 mb-10 leading-relaxed max-w-lg"
-            >
+            <p className="text-xl text-gray-400 mb-10 leading-relaxed max-w-lg animate-fade-in-up delay-400">
               The ultimate fitness platform for <strong>hypertrophy training</strong>, <strong>fat loss</strong>, and <strong>strength and conditioning</strong>. Master <strong>progressive overload</strong> with expert-led <strong>gym workout plans</strong> and <strong>macronutrient-focused nutrition guides</strong>.
-            </motion.p>
+            </p>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row items-center gap-4"
-            >
+            <div className="flex flex-col sm:flex-row items-center gap-4 animate-fade-in-up delay-600">
               <Link 
                 to="/workouts" 
                 className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-red-600/20"
               >
                 Start Training <ArrowRight className="w-5 h-5" />
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -176,34 +156,15 @@ export default function Home() {
             </Link>
           </div>
 
-          <motion.div 
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              hidden: { opacity: 0 },
-              show: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.2
-                }
-              }
-            }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { title: 'Muscle Gain', desc: 'Hypertrophy focused splits for maximum size.', icon: Trophy, img: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800&auto=format&fit=crop&fm=webp', link: '/workouts' },
               { title: 'Fat Loss', desc: 'High intensity programs to shred body fat.', icon: Zap, img: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop&fm=webp', link: '/workouts' },
               { title: 'Diet Plans', desc: 'Expert nutrition guides for every goal.', icon: Users, img: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=800&auto=format&fit=crop&fm=webp', link: '/diets' }
             ].map((program, i) => (
-              <motion.div 
+              <div 
                 key={i}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  show: { opacity: 1, y: 0 }
-                }}
-                whileHover={{ y: -10 }}
-                className="group relative h-[500px] overflow-hidden rounded-3xl border border-white/5"
+                className="group relative h-[500px] overflow-hidden rounded-3xl border border-white/5 transition-transform duration-300 hover:-translate-y-2"
               >
                 <img 
                   src={program.img} 
@@ -230,9 +191,9 @@ export default function Home() {
                     Explore Plan <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -255,14 +216,9 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {recentPosts.map((post, i) => (
-              <motion.article 
+              <article 
                 key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group"
+                className="group transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]"
               >
                 <Link to="/blog" className="block">
                   <div className="relative h-72 rounded-3xl overflow-hidden mb-6">
@@ -296,7 +252,7 @@ export default function Home() {
                     </p>
                   </div>
                 </Link>
-              </motion.article>
+              </article>
             ))}
           </div>
         </div>
@@ -383,19 +339,14 @@ export default function Home() {
           <h2 className="text-4xl md:text-8xl font-display font-black uppercase italic tracking-tighter mb-12">
             Ready to <span className="text-red-600">Commit?</span>
           </h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
+          <div className="animate-fade-in-up delay-200">
             <Link 
               to="/workouts" 
               className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/40"
             >
               Start Training <ArrowRight className="w-6 h-6" />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

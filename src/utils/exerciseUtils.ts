@@ -17,7 +17,7 @@ export const getExerciseDetails = (name: string): ExerciseDetails => {
     secondaryMuscles: ['Cardiovascular System', 'Core', 'Shoulders', 'Quadriceps'],
     equipment: 'Bodyweight', 
     tips: 'Drop into a squat, kick your feet back into a plank, perform a push-up, jump your feet back in, and explode upwards.', 
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop&fm=webp&fm=webp',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=60&w=600&auto=format&fit=crop&fm=webp&fm=webp',
     alt: 'Person performing explosive burpees'
   };
   if (n.includes('crunch') || n.includes('sit-up') || n.includes('sit up')) return { 

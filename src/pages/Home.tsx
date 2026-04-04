@@ -67,15 +67,15 @@ export default function Home() {
       <section className="relative min-h-[90vh] flex items-center pt-20">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop&fm=webp" 
-            srcSet="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop&fm=webp 800w, https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop&fm=webp 1920w"
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=1400&auto=format&fit=crop&fm=webp" 
+            srcSet="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=800&auto=format&fit=crop&fm=webp 800w, https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=1400&auto=format&fit=crop&fm=webp 1400w"
             sizes="100vw"
             alt="Gym Hero" 
             className="w-full h-full object-cover opacity-40 grayscale"
             referrerPolicy="no-referrer"
             fetchPriority="high"
-            width="1920"
-            height="1080"
+            width="1400"
+            height="933"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
@@ -158,9 +158,9 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: 'Muscle Gain', desc: 'Hypertrophy focused splits for maximum size.', icon: Trophy, img: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800&auto=format&fit=crop&fm=webp', link: '/workouts' },
-              { title: 'Fat Loss', desc: 'High intensity programs to shred body fat.', icon: Zap, img: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop&fm=webp', link: '/workouts' },
-              { title: 'Diet Plans', desc: 'Expert nutrition guides for every goal.', icon: Users, img: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=800&auto=format&fit=crop&fm=webp', link: '/diets' }
+              { title: 'Muscle Gain', desc: 'Hypertrophy focused splits for maximum size.', icon: Trophy, img: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=60&w=600&auto=format&fit=crop&fm=webp', link: '/workouts' },
+              { title: 'Fat Loss', desc: 'High intensity programs to shred body fat.', icon: Zap, img: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=60&w=600&auto=format&fit=crop&fm=webp', link: '/workouts' },
+              { title: 'Diet Plans', desc: 'Expert nutrition guides for every goal.', icon: Users, img: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=60&w=600&auto=format&fit=crop&fm=webp', link: '/diets' }
             ].map((program, i) => (
               <div 
                 key={i}
@@ -168,15 +168,15 @@ export default function Home() {
               >
                 <img 
                   src={program.img} 
-                  srcSet={`${program.img.replace('w=800', 'w=400')} 400w, ${program.img} 800w`}
+                  srcSet={`${program.img.replace('w=600', 'w=400')} 400w, ${program.img} 600w`}
                   sizes="(max-width: 768px) 100vw, 33vw"
                   alt={program.title} 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
-                  width="800"
-                  height="500"
+                  width="600"
+                  height="375"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-10">
@@ -229,8 +229,8 @@ export default function Home() {
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
-                      width="800"
-                      height="600"
+                      width="600"
+                      height="450"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-6 z-20">

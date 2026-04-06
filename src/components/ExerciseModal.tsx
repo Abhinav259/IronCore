@@ -45,23 +45,16 @@ export function ExerciseModal({ isOpen, onClose, exerciseName }: ExerciseModalPr
   };
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
         <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 md:p-6">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div
             onClick={onClose}
-            className="absolute inset-0 bg-black/90 backdrop-blur-md"
-          ></motion.div>
+            className="absolute inset-0 bg-black/90 backdrop-blur-md animate-fade-in"
+          ></div>
           
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="bg-zinc-900 border border-white/10 rounded-[2.5rem] w-full max-w-2xl overflow-hidden shadow-[0_0_50px_-12px_rgba(220,38,38,0.3)] flex flex-col max-h-[90vh] relative z-10"
+          <div
+            className="bg-zinc-900 border border-white/10 rounded-[2.5rem] w-full max-w-2xl overflow-hidden shadow-[0_0_50px_-12px_rgba(220,38,38,0.3)] flex flex-col max-h-[90vh] relative z-10 animate-fade-in-up"
           >
             {/* Header */}
             <div className="p-8 border-b border-white/5 flex justify-between items-center bg-zinc-900/50 backdrop-blur-xl">
@@ -80,10 +73,8 @@ export function ExerciseModal({ isOpen, onClose, exerciseName }: ExerciseModalPr
 
             <div className="p-8 overflow-y-auto custom-scrollbar flex-1">
               {details && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="space-y-10"
+                <div 
+                  className="space-y-10 animate-fade-in-up"
                 >
                   {/* Stats Grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -118,18 +109,16 @@ export function ExerciseModal({ isOpen, onClose, exerciseName }: ExerciseModalPr
                     </h3>
                     <div className="grid gap-4">
                       {details.formTips.map((tip, idx) => (
-                        <motion.div 
+                        <div 
                           key={idx}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: idx * 0.1 }}
-                          className="flex items-start gap-4 p-5 bg-zinc-950/30 rounded-2xl border border-white/5 hover:bg-zinc-950/50 transition-colors"
+                          className="flex items-start gap-4 p-5 bg-zinc-950/30 rounded-2xl border border-white/5 hover:bg-zinc-950/50 transition-colors animate-fade-in-left"
+                          style={{ animationDelay: `${idx * 100}ms` }}
                         >
                           <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-red-600/10 text-red-500 flex items-center justify-center text-xs font-black italic border border-red-600/20">
                             {idx + 1}
                           </span>
                           <p className="text-zinc-400 text-sm leading-relaxed font-medium">{tip}</p>
-                        </motion.div>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -154,12 +143,12 @@ export function ExerciseModal({ isOpen, onClose, exerciseName }: ExerciseModalPr
                       {copied ? 'Copied!' : 'Copy Search'}
                     </button>
                   </div>
-                </motion.div>
+                </div>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

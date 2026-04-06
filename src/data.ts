@@ -9,7 +9,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "The best workout plan for weight loss combines high-intensity interval training (HIIT) with strength training to maximize calorie burn and preserve lean muscle mass.",
-    "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Goblet Squat","sets":4,"reps":"12-15","day":"Monday"},
       {"name":"Dumbbell Bench Press","sets":4,"reps":"10-12","day":"Monday"},
@@ -38,7 +38,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "A comprehensive gym workout plan for muscle gain focusing on progressive overload, compound movements, and targeted isolation exercises for maximum hypertrophy.",
-    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Barbell Back Squat","sets":4,"reps":"6-8","day":"Monday"},
       {"name":"Leg Press","sets":3,"reps":"10-12","day":"Monday"},
@@ -75,7 +75,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Best for brand-new lifters, people returning after a break, and anyone who wants a simple full-body rhythm.",
-    "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Goblet Squat","sets":3,"reps":"10","day":"Monday"},
       {"name":"Push-up or DB Bench","sets":3,"reps":"8-12","day":"Monday"},
@@ -109,7 +109,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Best for advanced beginners and intermediates who can recover from higher weekly volume.",
-    "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Barbell Bench Press","sets":4,"reps":"6-8","day":"Monday"},
       {"name":"Incline DB Press","sets":3,"reps":"8-10","day":"Monday"},
@@ -152,7 +152,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Prioritizes squat, bench press, deadlift, and overhead press with controlled accessory work.",
-    "image": "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Back Squat","sets":5,"reps":"3","day":"Monday"},
       {"name":"Pause Squat","sets":3,"reps":"3","day":"Monday"},
@@ -189,7 +189,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Keeps strength work in the program so muscle is preserved while calories are burned.",
-    "image": "https://images.unsplash.com/photo-1434596922112-19c563067271?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1434596922112-19c563067271?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Squat","sets":4,"reps":"6","day":"Monday"},
       {"name":"DB Bench","sets":3,"reps":"8","day":"Monday"},
@@ -225,7 +225,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "home",
     "description": "For runners, cyclists, rowers, and anyone who wants better aerobic capacity.",
-    "image": "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Zone 2 Base Cardio","sets":1,"reps":"40-60 min","day":"Monday"},
       {"name":"Tempo Work","sets":1,"reps":"20-30 min hard","day":"Tuesday"},
@@ -249,7 +249,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Designed for speed, jumping, acceleration, and full-body power.",
-    "image": "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Hang Power Clean","sets":5,"reps":"3","day":"Monday"},
       {"name":"Box Jump","sets":4,"reps":"3","day":"Monday"},
@@ -286,7 +286,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "home",
     "description": "Useful for travel, small spaces, or bodyweight-only training.",
-    "image": "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Air Squat","sets":4,"reps":"15","day":"Monday"},
       {"name":"Push-up","sets":4,"reps":"8-15","day":"Monday"},
@@ -324,7 +324,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "home",
     "description": "A compact gym or home dumbbell plan that still covers all major movement patterns.",
-    "image": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"DB Bench Press","sets":4,"reps":"8-10","day":"Monday"},
       {"name":"One-arm Row","sets":4,"reps":"10/side","day":"Monday"},
@@ -359,7 +359,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "home",
     "description": "Excellent for conditioning, grip strength, and posterior-chain development.",
-    "image": "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"KB Goblet Squat","sets":4,"reps":"10","day":"Monday"},
       {"name":"One-arm KB Press","sets":4,"reps":"8/side","day":"Monday"},
@@ -388,7 +388,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "home",
     "description": "Bodyweight training for strength, control, and skill development.",
-    "image": "https://images.unsplash.com/photo-1598971639058-fab3c3109a00?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1598971639058-fab3c3109a00?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Push-up","sets":4,"reps":"10-20","day":"Monday"},
       {"name":"Pike Push-up","sets":4,"reps":"6-10","day":"Monday"},
@@ -422,7 +422,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "High-volume, body-part-focused plan for people who like direct exercise variety.",
-    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Bench Press","sets":4,"reps":"6-8","day":"Monday"},
       {"name":"Incline DB Press","sets":4,"reps":"8-10","day":"Monday"},
@@ -465,7 +465,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "High-intensity functional training designed for military, police, and fire professionals focusing on load carriage and work capacity.",
-    "image": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Heavy Sandbag Carry","sets":4,"reps":"50 meters","day":"Monday"},
       {"name":"Weighted Step-Ups","sets":4,"reps":"10/leg","day":"Monday"},
@@ -490,7 +490,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "female",
     "preference": "home",
     "description": "Gentle, progressive core and pelvic floor recovery for new mothers cleared for exercise by their physician.",
-    "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Diaphragmatic Breathing","sets":3,"reps":"10 breaths","day":"Monday"},
       {"name":"Pelvic Floor Contractions (Kegels)","sets":3,"reps":"10 holds","day":"Monday"},
@@ -515,7 +515,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "home",
     "description": "Low-impact movements focused on balance, joint mobility, and bone density for older adults.",
-    "image": "https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1576678927484-cc907957088c?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Chair Squats (Sit-to-Stand)","sets":3,"reps":"10","day":"Monday"},
       {"name":"Wall Push-ups","sets":3,"reps":"10","day":"Monday"},
@@ -540,7 +540,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Explosive power, rotational core strength, and high-intensity conditioning for fighters and martial artists.",
-    "image": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Medicine Ball Slams","sets":5,"reps":"10","day":"Monday"},
       {"name":"Rotational Med Ball Throws","sets":4,"reps":"8/side","day":"Monday"},
@@ -565,7 +565,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Functional brute strength focusing on heavy carries, sandbags, and awkward object lifting.",
-    "image": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Log Press or Axle Press","sets":5,"reps":"3-5","day":"Monday"},
       {"name":"Heavy Farmer's Walk","sets":5,"reps":"15 meters","day":"Monday"},
@@ -590,7 +590,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "A delicate balance of heavy compound lifting and long-distance running for the ultimate hybrid athlete.",
-    "image": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Heavy Back Squat","sets":4,"reps":"5","day":"Monday"},
       {"name":"Romanian Deadlift","sets":3,"reps":"8","day":"Monday"},
@@ -615,7 +615,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "home",
     "description": "Counteract the effects of sitting all day with upper back strengthening, hip flexor mobility, and glute activation.",
-    "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Band Pull-aparts","sets":3,"reps":"15","day":"Monday"},
       {"name":"Couch Stretch","sets":2,"reps":"60 sec/leg","day":"Monday"},
@@ -640,7 +640,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "home",
     "description": "Daily ultra-short, high-intensity sessions for extremely busy individuals who only have 15 minutes to spare.",
-    "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Tabata Burpees (20s work / 10s rest)","sets":8,"reps":"20 sec","day":"Monday"},
       {"name":"Tabata Squat Jumps","sets":8,"reps":"20 sec","day":"Monday"},
@@ -661,7 +661,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "home",
     "description": "Travel-friendly hypertrophy routine requiring zero free weights—just a set of loop resistance bands.",
-    "image": "https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1576678927484-cc907957088c?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Banded Push-ups","sets":4,"reps":"10-15","day":"Monday"},
       {"name":"Banded Overhead Press","sets":3,"reps":"12","day":"Monday"},
@@ -688,7 +688,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Focuses on fast-twitch muscle fibers, rate of force development, and jumping mechanics for athletes.",
-    "image": "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Depth Jumps","sets":4,"reps":"5","day":"Monday"},
       {"name":"Pogo Hops","sets":3,"reps":"20","day":"Monday"},
@@ -713,7 +713,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Bulletproof your body with injury prevention techniques, tendon health focus, and unilateral stability.",
-    "image": "https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1576678927484-cc907957088c?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Nordic Hamstring Curls","sets":3,"reps":"5","day":"Monday"},
       {"name":"Tibialis Raises","sets":3,"reps":"20","day":"Monday"},
@@ -739,7 +739,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Master bodyweight control with strict muscle-up progressions, levers, and intense ring stability work.",
-    "image": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Ring Support Hold","sets":5,"reps":"20 sec","day":"Monday"},
       {"name":"Ring Push-ups","sets":4,"reps":"8-12","day":"Monday"},
@@ -765,7 +765,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "home",
     "description": "Seamless transitions between kettlebell movements to build unilateral strength, coordination, and grip.",
-    "image": "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Turkish Get-ups","sets":3,"reps":"3/side","day":"Monday"},
       {"name":"Kettlebell Halos","sets":3,"reps":"10/direction","day":"Monday"},
@@ -791,7 +791,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "CrossFit-style metabolic conditioning featuring AMRAPs, EMOMs, and high heart rate functional movements.",
-    "image": "https://images.unsplash.com/photo-1526506114861-f3c500078f4b?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1526506114861-f3c500078f4b?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"AMRAP 20: 10 Wall Balls, 30 Double Unders, 10 Box Jumps","sets":1,"reps":"20 min","day":"Monday"},
       {"name":"EMOM 15: Row, Burpees, Thrusters","sets":5,"reps":"15 min","day":"Tuesday"},
@@ -810,7 +810,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Low impact, highly effective water-resistance cardio and strength training perfect for recovery or joint issues.",
-    "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Water Jogging","sets":1,"reps":"20 min","day":"Monday"},
       {"name":"Pool Edge Dips","sets":3,"reps":"12","day":"Monday"},
@@ -835,7 +835,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Inspired by Hany Rambod's FST-7 system. Focuses on stretching the fascia from the inside out by pumping maximum blood into the muscle with 7 sets at the end of the workout.",
-    "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Incline DB Press","sets":4,"reps":"8-10","day":"Monday"},
       {"name":"Flat Barbell Bench","sets":3,"reps":"8-10","day":"Monday"},
@@ -878,7 +878,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Inspired by Hollywood superhero transformations (like Henry Cavill and Chris Hemsworth). Combines heavy powerlifting with high-volume bodybuilding.",
-    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Bench Press","sets":5,"reps":"5","day":"Monday"},
       {"name":"Weighted Pull-ups","sets":5,"reps":"5","day":"Monday"},
@@ -920,7 +920,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "A highly popular 4-day split that focuses on building raw strength on power days and muscle mass on hypertrophy days.",
-    "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Barbell Bench Press","sets":4,"reps":"3-5","day":"Monday"},
       {"name":"Incline DB Bench Press","sets":3,"reps":"6-10","day":"Monday"},
@@ -960,7 +960,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "A classic intermediate routine hitting every muscle group twice a week for optimal protein synthesis and muscle growth.",
-    "image": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Bench Press","sets":4,"reps":"6-8","day":"Monday"},
       {"name":"Barbell Row","sets":4,"reps":"6-8","day":"Monday"},
@@ -997,7 +997,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "A highly effective 6-day split targeting every muscle group twice a week. Ideal for advanced lifters looking to maximize hypertrophy and strength.",
-    "image": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Barbell Bench Press","sets":4,"reps":"5-8","day":"Monday"},
       {"name":"Overhead Press","sets":3,"reps":"8-10","day":"Monday"},
@@ -1044,7 +1044,7 @@ export const workoutPlans: WorkoutPlan[] = [
     "gender": "both",
     "preference": "gym",
     "description": "Also known as the 10x10 routine. An intense, high-volume program designed to pack on muscle mass quickly by targeting motor units with extensive repetition.",
-    "image": "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=800&auto=format&fit=crop&fm=webp",
+    "image": "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=60&w=600&auto=format&fit=crop&fm=webp",
     "exercises": [
       {"name":"Bench Press","sets":10,"reps":"10","day":"Monday"},
       {"name":"Lat Pulldown","sets":10,"reps":"10","day":"Monday"},
@@ -1896,14 +1896,14 @@ export const testimonials = [
     name: 'Alex Johnson',
     transformation: 'Lost 30 lbs in 6 months',
     quote: 'IronCore changed my life. The personalized plans were exactly what I needed.',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 2,
     name: 'Sarah Miller',
     transformation: 'Gained 10 lbs of muscle',
     quote: 'The diet plans are so easy to follow, even for a busy professional like me.',
-    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=60&w=600&auto=format&fit=crop&fm=webp'
   }
 ];
 
@@ -1914,7 +1914,7 @@ export const blogPosts = [
     content: 'Recovery is just as important as the workout itself. Here are 5 ways to improve it: 1. Prioritize sleep (7-9 hours), 2. Stay hydrated, 3. Use active recovery like walking or light stretching, 4. Focus on post-workout nutrition with protein and carbs, 5. Consider cold plunges or massage to reduce inflammation.',
     author: 'Fitness Expert',
     date: '2024-03-20',
-    image: 'https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1576678927484-cc907957088c?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 2,
@@ -1922,7 +1922,7 @@ export const blogPosts = [
     content: 'Is cardio killing your gains? Let’s dive into the science of aerobic exercise. While excessive cardio can interfere with muscle growth, moderate cardio actually improves recovery by increasing blood flow and enhances heart health, which allows you to train harder in the weight room.',
     author: 'Fitness Expert',
     date: '2024-03-18',
-    image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 3,
@@ -1930,7 +1930,7 @@ export const blogPosts = [
     content: 'Fitness is 80% mental. If your head isn\'t in the game, your body won\'t follow. Learn how to set realistic goals, stay disciplined on days you lack motivation, and build a sustainable lifestyle rather than a quick fix.',
     author: 'Fitness Expert',
     date: '2024-03-22',
-    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 4,
@@ -1938,7 +1938,7 @@ export const blogPosts = [
     content: 'Don\'t have time to meal prep for hours? Use these simple hacks: 1. Buy pre-washed greens, 2. Use a slow cooker for bulk protein, 3. Keep healthy snacks like nuts and Greek yogurt handy, 4. Order high-protein options when eating out.',
     author: 'Fitness Expert',
     date: '2024-03-24',
-    image: 'https://images.unsplash.com/photo-1434596922112-19c563067271?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1434596922112-19c563067271?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 5,
@@ -1946,7 +1946,7 @@ export const blogPosts = [
     content: 'One perfect workout won\'t change your life, but 100 "okay" workouts will. Consistency is the secret sauce to any transformation. Learn how to build habits that stick and why showing up is the most important part of the journey.',
     author: 'Fitness Expert',
     date: '2024-03-25',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 6,
@@ -1954,7 +1954,7 @@ export const blogPosts = [
     content: 'From smartwatches to biometric rings, wearable technology is revolutionizing how we track our health. These devices now monitor heart rate variability (HRV), sleep stages, and blood oxygen levels, giving athletes unprecedented insights into your recovery. The future of the fitness industry lies in data-driven personalization, allowing you to tailor your workouts based on your body\'s daily readiness score.',
     author: 'Fitness Expert',
     date: '2026-03-20',
-    image: 'https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 7,
@@ -1962,7 +1962,7 @@ export const blogPosts = [
     content: 'Gone are the days when fitness was solely about bodybuilding aesthetics. The industry is seeing a massive shift towards functional fitness—training that prepares your body for real-life movements. By incorporating kettlebells, sandbags, and multi-planar exercises, functional training improves joint stability, core strength, and overall longevity. It\'s not just about looking good; it\'s about moving well into your later years.',
     author: 'Fitness Expert',
     date: '2026-03-22',
-    image: 'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 8,
@@ -1970,7 +1970,7 @@ export const blogPosts = [
     content: 'The fitness industry is finally waking up to the gut microbiome. Your gut health dictates how well you absorb nutrients, synthesize vitamins, and manage inflammation. A poor microbiome can lead to sluggish recovery and decreased energy levels. Incorporating prebiotics, probiotics, and fermented foods into your diet isn\'t just a wellness trend—it\'s a legitimate performance enhancer that every serious athlete should prioritize.',
     author: 'Fitness Expert',
     date: '2026-03-24',
-    image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 9,
@@ -1978,7 +1978,7 @@ export const blogPosts = [
     content: 'Muscle hypertrophy occurs through three primary mechanisms: mechanical tension, metabolic stress, and muscle damage.\n\n1. Mechanical Tension: This is the most critical driver. It is achieved by lifting heavy weights through a full range of motion. When you lift a heavy load, the muscle fibers experience a stretching force that triggers chemical signals for growth.\n\n2. Metabolic Stress: Often felt as "the pump," this involves the accumulation of metabolites like lactate, hydrogen ions, and inorganic phosphate. This stress signals the body to adapt by increasing muscle size and glycogen storage.\n\n3. Muscle Damage: While not strictly necessary, localized damage to muscle fibers (micro-tears) triggers an inflammatory response and activates satellite cells, which help repair and thicken the fibers.\n\nTo maximize growth, focus on progressive overload—gradually increasing weight, reps, or sets over time. Aim for 10-20 sets per muscle group per week, distributed across 2-3 sessions for optimal recovery.',
     author: 'Fitness Expert',
     date: '2026-03-26',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 10,
@@ -1986,7 +1986,7 @@ export const blogPosts = [
     content: 'While macros (protein, carbs, fats) get all the attention, micronutrients (vitamins and minerals) are the unsung heroes of performance and longevity.\n\n- Magnesium: Essential for over 300 biochemical reactions, including muscle contraction, relaxation, and energy production. Low levels can lead to cramping and poor sleep.\n- Zinc: Supports testosterone production, protein synthesis, and immune function. It is vital for recovery after intense training sessions.\n- Iron: Crucial for oxygen transport. Iron-deficiency anemia can significantly impair aerobic capacity and lead to chronic fatigue.\n- Vitamin D: Acts more like a hormone, influencing muscle strength, bone density, and immune health. Most athletes are deficient, especially in winter months.\n\nDeficiencies in these can lead to fatigue, cramping, and poor recovery. Eat a "rainbow" of vegetables, fruits, seeds, and lean meats to ensure you\'re covering your micro needs. Consider a high-quality multivitamin if your diet is restricted.',
     author: 'Fitness Expert',
     date: '2026-03-27',
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 11,
@@ -1994,7 +1994,7 @@ export const blogPosts = [
     content: 'Periodization is the systematic planning of athletic training to prevent overtraining and ensure peak performance at specific times.\n\n- Macrocycle: The entire training year or season.\n- Mesocycle: A specific training block, usually 4-6 weeks, focusing on a particular goal (e.g., hypertrophy, strength, or power).\n- Microcycle: A single week of training.\n\nLinear Periodization: Gradually increases intensity (weight) while decreasing volume (reps/sets). This is great for beginners to build a solid foundation.\n\nBlock Periodization: Focuses on one specific quality at a time. For example, a 4-week block dedicated purely to building work capacity, followed by a 4-week block for maximum strength.\n\nBy varying your training stimulus, you avoid plateaus, manage fatigue, and keep your body adapting safely. Remember, you can\'t go 100% all year round; deload weeks are essential for long-term progress.',
     author: 'Fitness Expert',
     date: '2026-03-28',
-    image: 'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 12,
@@ -2002,7 +2002,7 @@ export const blogPosts = [
     content: 'Cortisol, the "stress hormone," can be a major roadblock to your fitness goals if left unchecked.\n\nWhen you are chronically stressed—whether from work, relationships, or lack of sleep—your body stays in a "fight or flight" state. Elevated cortisol levels can:\n- Promote visceral fat storage (the dangerous fat around your organs).\n- Trigger muscle protein breakdown (catabolism).\n- Suppress the immune system, leading to more frequent illness.\n- Disrupt sleep patterns, which are crucial for growth hormone release.\n\nFurthermore, high stress often leads to emotional eating and poor decision-making. Managing stress through daily meditation, deep breathing exercises, adequate rest, and balanced training is just as important as the workout itself. A healthy body starts with a healthy mind.',
     author: 'Fitness Expert',
     date: '2026-03-29',
-    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 13,
@@ -2010,7 +2010,7 @@ export const blogPosts = [
     content: 'The supplement industry is a multi-billion dollar machine, but only a handful of products are backed by robust scientific evidence.\n\n1. Creatine Monohydrate: The most researched supplement in history. It increases phosphocreatine stores, allowing for more ATP production during high-intensity exercise. It is safe, effective, and cheap.\n\n2. Caffeine: A powerful ergogenic aid that reduces perceived exertion and improves focus. It is effective for both strength and endurance athletes.\n\n3. Whey Protein: A convenient way to hit your daily protein targets. It has a high leucine content, which is the primary trigger for muscle protein synthesis.\n\n4. Beta-Alanine: Helps buffer lactic acid in the muscles, improving performance in the 1-4 minute intensity range.\n\nMost other supplements (like fat burners or testosterone boosters) have little to no evidence supporting their efficacy. Focus on your training and nutrition first; supplements are just the "cherry on top."',
     author: 'Fitness Expert',
     date: '2026-03-30',
-    image: 'https://images.unsplash.com/photo-1593094276947-2202ed28c3d5?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1593094276947-2202ed28c3d5?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 14,
@@ -2018,7 +2018,7 @@ export const blogPosts = [
     content: 'The squat is often called the "king of all exercises," but it is also one of the most commonly butchered movements.\n\nKey Technical Cues:\n- Foot Placement: Shoulder-width apart with toes slightly pointed out.\n- Bracing: Take a deep breath into your belly and tighten your core (the Valsalva maneuver) before descending.\n- Hips First: Initiate the movement by pushing your hips back, not just bending your knees.\n- Depth: Aim for "parallel"—where the crease of your hip is level with the top of your knee.\n\nCommon Mistakes:\n- Knees Caving In (Valgus): This puts immense stress on the ACL. Focus on "pushing the floor apart" with your feet.\n- Rounding the Back: Usually caused by a weak core or poor ankle mobility. Keep your chest up and eyes forward.\n- Heel Lift: If your heels come off the ground, you likely have tight ankles. Work on dorsiflexion mobility or use weightlifting shoes.',
     author: 'Fitness Expert',
     date: '2026-03-31',
-    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 15,
@@ -2026,7 +2026,7 @@ export const blogPosts = [
     content: 'Mobility is NOT the same as flexibility. Flexibility is the passive range of motion, while mobility is the ability to control your joints through their full range of motion.\n\nFor strength athletes, poor mobility leads to:\n- Compensatory Movements: Your body will find a way to move the weight, often by stressing joints that aren\'t meant to handle the load (e.g., lower back taking over for tight hips).\n- Reduced Power Output: You can\'t generate maximum force if your joints are restricted.\n- Increased Injury Risk: Tight tissues are more prone to strains and tears.\n\nIncorporate a 10-minute dynamic warm-up before every session focusing on your "problem areas"—usually the hips, ankles, and thoracic spine. Use foam rolling for recovery, but don\'t rely on it as a substitute for active mobility work.',
     author: 'Fitness Expert',
     date: '2026-04-01',
-    image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 16,
@@ -2034,6 +2034,6 @@ export const blogPosts = [
     content: 'The scale is a useful tool, but it is a terrible master. Body weight can fluctuate by several pounds daily due to water retention, glycogen levels, and inflammation.\n\nBetter ways to track your transformation:\n1. Progress Photos: Take them in the same lighting and time of day (ideally morning) every 2-4 weeks. The mirror often sees what the scale misses.\n2. Body Measurements: Track your waist, chest, arms, and thighs. If your waist is shrinking while your weight stays the same, you are losing fat and gaining muscle (recomposition).\n3. Performance Markers: Are you getting stronger? Is your resting heart rate dropping? Can you do more reps with the same weight? These are objective signs of physiological adaptation.\n4. Energy & Mood: How do you feel? Better sleep and higher daily energy levels are huge indicators of a successful program.\n\nDon\'t let a single number define your success. Look at the big picture.',
     author: 'Fitness Expert',
     date: '2026-04-02',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop&fm=webp'
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=60&w=600&auto=format&fit=crop&fm=webp'
   }
 ];

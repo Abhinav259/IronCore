@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { Search, ChevronRight, Dumbbell, Activity, Target, Zap, Shield, Flame, X, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
@@ -289,18 +288,15 @@ export default function MuscleGroups() {
               {popularGroups.slice(0, 4).map((group, index) => {
                 const Icon = group.icon;
                 return (
-                  <motion.div
+                  <div
                     key={`popular-${group.id}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    whileHover={{ y: -5 }}
                     onClick={() => handleSelectGroup(group)}
-                    className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl p-8 cursor-pointer hover:border-red-600/30 transition-all group relative overflow-hidden shadow-xl"
+                    className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl p-8 cursor-pointer hover:border-red-600/30 transition-all group relative overflow-hidden shadow-xl animate-fade-in hover:-translate-y-1"
+                    style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <img 
-                      src={`${group.image}&fm=webp`} 
-                      srcSet={`${group.image.replace('w=800', 'w=400')} 400w, ${group.image} 800w`}
+                      src={group.image} 
+                      srcSet={`${group.image.replace('w=600', 'w=400')} 400w, ${group.image} 600w`}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       alt={group.title} 
                       className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-700"
@@ -317,7 +313,7 @@ export default function MuscleGroups() {
                       <h3 className="text-xl font-black uppercase italic mb-3 tracking-tight">{group.title}</h3>
                       <p className="text-zinc-500 text-sm line-clamp-2 font-medium leading-relaxed">{group.description}</p>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -330,7 +326,6 @@ export default function MuscleGroups() {
             {search ? 'Search Results' : 'All Muscle Groups'}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatePresence mode="popLayout">
               {isSearching ? (
                 Array.from({ length: 6 }).map((_, i) => (
                   <div key={`skeleton-${i}`} className="bg-zinc-900/50 border border-white/5 rounded-3xl overflow-hidden animate-pulse">
@@ -350,20 +345,16 @@ export default function MuscleGroups() {
                 filteredGroups.map((group, index) => {
                   const Icon = group.icon;
                   return (
-                    <motion.div 
+                    <div 
                       key={group.id}
-                      layout
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.4, delay: index * 0.05 }}
                       onClick={() => handleSelectGroup(group)}
-                      className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/30 hover:bg-zinc-900 transition-all duration-500 flex flex-col shadow-xl"
+                      className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/30 hover:bg-zinc-900 transition-all duration-500 flex flex-col shadow-xl animate-fade-in"
+                      style={{ animationDelay: `${index * 0.05}s` }}
                     >
                       <div className="h-48 bg-zinc-800 relative overflow-hidden">
                         <img 
-                          src={`${group.image}&fm=webp`} 
-                          srcSet={`${group.image.replace('w=800', 'w=400')} 400w, ${group.image} 800w`}
+                          src={group.image} 
+                          srcSet={`${group.image.replace('w=600', 'w=400')} 400w, ${group.image} 600w`}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           alt={group.title} 
                           className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700 ease-out"
@@ -410,14 +401,12 @@ export default function MuscleGroups() {
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   );
                 })
               ) : (
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="col-span-full text-center py-32"
+                <div 
+                  className="col-span-full text-center py-32 animate-fade-in"
                 >
                   <div className="w-24 h-24 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto mb-8 border border-white/5">
                     <Search className="w-10 h-10 text-zinc-700" />
@@ -430,10 +419,9 @@ export default function MuscleGroups() {
                   >
                     Clear Search
                   </button>
-                </motion.div>
+                </div>
               )}
-            </AnimatePresence>
-          </div>
+            </div>
 
           {filteredGroups.length === 0 && (
             <div className="text-center py-32">
@@ -466,41 +454,36 @@ export default function MuscleGroups() {
       </div>
 
       {/* Detail Modal */}
-      <AnimatePresence>
-        {selectedGroup && (
-          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-6">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+      {selectedGroup && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-6">
+          <div 
+            onClick={() => handleSelectGroup(null)}
+            className="absolute inset-0 bg-black/90 backdrop-blur-sm animate-fade-in"
+          ></div>
+          <div 
+            className="bg-zinc-900 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-10 border border-white/10 shadow-2xl flex flex-col animate-slide-up"
+          >
+            <button 
               onClick={() => handleSelectGroup(null)}
-              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
-            ></motion.div>
-            <motion.div 
-              layoutId={selectedGroup.id}
-              className="bg-zinc-900 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-10 border border-white/10 shadow-2xl flex flex-col"
+              className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
+              aria-label="Close muscle group details"
             >
-              <button 
-                onClick={() => handleSelectGroup(null)}
-                className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
-                aria-label="Close muscle group details"
-              >
-                <X className="w-6 h-6" />
-              </button>
+              <X className="w-6 h-6" />
+            </button>
 
               <div className="grid grid-cols-1 md:grid-cols-5">
                 <div className="p-6 md:p-10 bg-zinc-800/50 md:col-span-2 flex flex-col relative overflow-hidden">
                   <img 
-                    src={`${selectedGroup.image}&fm=webp`} 
-                    srcSet={`${selectedGroup.image.replace('w=800', 'w=400')} 400w, ${selectedGroup.image} 800w`}
-                    sizes="(max-width: 768px) 100vw, 800px"
+                    src={selectedGroup.image} 
+                    srcSet={`${selectedGroup.image.replace('w=600', 'w=400')} 400w, ${selectedGroup.image} 600w`}
+                    sizes="(max-width: 768px) 100vw, 600px"
                     alt={selectedGroup.title} 
                     className="absolute inset-0 w-full h-full object-cover opacity-10"
                     referrerPolicy="no-referrer"
                     loading="lazy"
                     decoding="async"
-                    width="800"
-                    height="800"
+                    width="600"
+                    height="600"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-zinc-900"></div>
                   
@@ -592,10 +575,9 @@ export default function MuscleGroups() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         )}
-      </AnimatePresence>
 
       <ExerciseModal 
         isOpen={!!selectedExerciseForModal} 

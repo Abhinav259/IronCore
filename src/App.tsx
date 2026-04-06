@@ -1,19 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { auth, db } from './firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 import Home from './pages/Home';
-import WorkoutPlans from './pages/WorkoutPlans';
-import DietPlans from './pages/DietPlans';
-import Supplements from './pages/Supplements';
-import Profile from './pages/Profile';
-import Blog from './pages/Blog';
-import MuscleGroups from './pages/MuscleGroups';
+const WorkoutPlans = lazy(() => import('./pages/WorkoutPlans'));
+const DietPlans = lazy(() => import('./pages/DietPlans'));
+const Supplements = lazy(() => import('./pages/Supplements'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Blog = lazy(() => import('./pages/Blog'));
+const MuscleGroups = lazy(() => import('./pages/MuscleGroups'));
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -54,15 +54,21 @@ export default function App() {
                 <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
               </div>
             ) : (
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/workouts" element={<WorkoutPlans />} />
-                <Route path="/muscle-groups" element={<MuscleGroups />} />
-                <Route path="/diets" element={<DietPlans />} />
-                <Route path="/supplements" element={<Supplements />} />
-                <Route path="/profile" element={<Profile user={user} />} />
-                <Route path="/blog" element={<Blog />} />
-              </Routes>
+              <Suspense fallback={
+                <div className="flex-1 flex items-center justify-center">
+                  <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              }>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/workouts" element={<WorkoutPlans />} />
+                  <Route path="/muscle-groups" element={<MuscleGroups />} />
+                  <Route path="/diets" element={<DietPlans />} />
+                  <Route path="/supplements" element={<Supplements />} />
+                  <Route path="/profile" element={<Profile user={user} />} />
+                  <Route path="/blog" element={<Blog />} />
+                </Routes>
+              </Suspense>
             )}
           </main>
           <Footer />

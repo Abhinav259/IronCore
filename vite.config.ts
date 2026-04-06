@@ -23,13 +23,19 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       target: "esnext",
-      minify: "esbuild",
+      minify: "terser",
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
       cssMinify: true,
       rollupOptions: {
         output: {
           manualChunks: {
             vendor: ["react", "react-dom", "react-router-dom"],
-            ui: ["lucide-react", "motion/react"],
+            ui: ["lucide-react"],
             firebase: ["firebase/app", "firebase/auth", "firebase/firestore"],
           },
         },

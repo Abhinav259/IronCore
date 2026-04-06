@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { Pill, ShieldCheck, Zap, Info, CheckCircle2, AlertTriangle, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supplements } from '../data';
@@ -84,12 +83,10 @@ export default function Supplements() {
         {/* Supplement Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {filteredSupps.map((supp, i) => (
-            <motion.div 
+            <div 
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-zinc-900 border border-white/5 rounded-3xl p-8 hover:border-red-600/50 transition-all group"
+              className="bg-zinc-900 border border-white/5 rounded-3xl p-8 hover:border-red-600/50 transition-all group animate-fade-in hover:-translate-y-1"
+              style={{ animationDelay: `${i * 0.1}s` }}
             >
               <div className="flex items-center justify-between mb-8">
                 <div className="w-14 h-14 bg-red-600/10 rounded-2xl flex items-center justify-center group-hover:bg-red-600 transition-colors">
@@ -129,7 +126,7 @@ export default function Supplements() {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

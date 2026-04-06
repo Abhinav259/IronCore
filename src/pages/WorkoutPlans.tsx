@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { Filter, Search, ChevronRight, Dumbbell, Zap, Trophy, Users, Flame, X, Download, ChevronDown, ChevronUp, Youtube, Apple } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { workoutPlans } from '../data';
 import { WorkoutPlan } from '../types';
-import { jsPDF } from 'jspdf';
-import autoTable from 'jspdf-autotable';
 import { SEO } from '../components/SEO';
 import { getExerciseDetails } from '../utils/exerciseUtils';
 import { ExerciseModal } from '../components/ExerciseModal';
@@ -60,7 +57,10 @@ export default function WorkoutPlans() {
     { id: 'home', label: 'Home' }
   ];
 
-  const downloadPDF = (plan: any) => {
+  const downloadPDF = async (plan: any) => {
+    const { jsPDF } = await import('jspdf');
+    const autoTable = (await import('jspdf-autotable')).default;
+    
     const doc = new jsPDF();
     
     // Add Title
@@ -209,7 +209,6 @@ export default function WorkoutPlans() {
 
         {/* Workout Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative min-h-[400px]">
-          <AnimatePresence mode="popLayout">
             {isSearching ? (
               Array.from({ length: 6 }).map((_, i) => (
                 <div key={`skeleton-${i}`} className="bg-zinc-900/50 border border-white/5 rounded-3xl overflow-hidden animate-pulse">
@@ -227,18 +226,14 @@ export default function WorkoutPlans() {
               ))
             ) : filteredPlans.length > 0 ? (
               filteredPlans.map((plan, index) => (
-                <motion.div 
+                <div 
                   key={plan.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
                   onClick={() => {
                     setSelectedPlan(plan);
                     setSelectedMuscleFilter('all');
                   }}
-                  className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/30 hover:bg-zinc-900 transition-all duration-500 shadow-xl hover:shadow-red-600/5"
+                  className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/30 hover:bg-zinc-900 transition-all duration-500 shadow-xl hover:shadow-red-600/5 animate-fade-in"
+                  style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   <div className="h-56 bg-zinc-800 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent z-10"></div>
@@ -252,8 +247,8 @@ export default function WorkoutPlans() {
                     </div>
                     {plan.image ? (
                       <img 
-                        src={`${plan.image}&fm=webp`} 
-                        srcSet={`${plan.image.replace('w=800', 'w=400')} 400w, ${plan.image} 800w`}
+                        src={plan.image} 
+                        srcSet={`${plan.image.replace('w=600', 'w=400')} 400w, ${plan.image} 600w`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         alt={plan.title} 
                         referrerPolicy="no-referrer" 
@@ -287,13 +282,11 @@ export default function WorkoutPlans() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))
             ) : (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="col-span-full text-center py-32"
+              <div 
+                className="col-span-full text-center py-32 animate-fade-in"
               >
                 <div className="w-24 h-24 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto mb-8 border border-white/5">
                   <Search className="w-10 h-10 text-zinc-700" />
@@ -309,10 +302,9 @@ export default function WorkoutPlans() {
                 >
                   Reset All Filters
                 </button>
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
-        </div>
+          </div>
 
         {/* FAQ Section */}
         <div className="mt-32 max-w-4xl mx-auto">
@@ -353,43 +345,38 @@ export default function WorkoutPlans() {
       </div>
 
       {/* Detail Modal */}
-      <AnimatePresence>
-        {selectedPlan && (
-          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-6">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+      {selectedPlan && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-6">
+          <div 
+            onClick={() => setSelectedPlan(null)}
+            className="absolute inset-0 bg-black/90 backdrop-blur-sm animate-fade-in"
+          ></div>
+          <div 
+            className="bg-zinc-900 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-10 border border-white/10 shadow-2xl flex flex-col animate-slide-up"
+          >
+            <button 
               onClick={() => setSelectedPlan(null)}
-              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
-            ></motion.div>
-            <motion.div 
-              layoutId={selectedPlan.id}
-              className="bg-zinc-900 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-10 border border-white/10 shadow-2xl flex flex-col"
+              className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
+              aria-label="Close plan details"
             >
-              <button 
-                onClick={() => setSelectedPlan(null)}
-                className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
-                aria-label="Close plan details"
-              >
-                <X className="w-6 h-6" />
-              </button>
+              <X className="w-6 h-6" />
+            </button>
 
               <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="p-6 md:p-12 bg-zinc-800/50 relative overflow-hidden">
                   {selectedPlan.image && (
                     <div className="absolute inset-0 z-0 opacity-20">
                       <img 
-                        src={`${selectedPlan.image}&fm=webp`} 
-                        srcSet={`${selectedPlan.image.replace('w=800', 'w=400')} 400w, ${selectedPlan.image} 800w`}
+                        src={selectedPlan.image} 
+                        srcSet={`${selectedPlan.image.replace('w=600', 'w=400')} 400w, ${selectedPlan.image} 600w`}
                         sizes="(max-width: 768px) 100vw, 50vw"
                         alt={selectedPlan.title} 
                         referrerPolicy="no-referrer" 
                         loading="lazy" 
                         decoding="async" 
                         className="w-full h-full object-cover" 
-                        width="800"
-                        height="800"
+                        width="600"
+                        height="600"
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/80 to-transparent"></div>
                     </div>
@@ -499,10 +486,9 @@ export default function WorkoutPlans() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         )}
-      </AnimatePresence>
 
       {/* Exercise Detail Modal */}
       <ExerciseModal 

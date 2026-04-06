@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { Calculator, Info, RefreshCw, ChevronRight, Zap, Target, Activity } from 'lucide-react';
 
 interface MacroResults {
@@ -88,17 +87,10 @@ export function MacroCalculator() {
         </div>
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="pt-6">
-              <div className="bg-zinc-900/60 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] p-8 md:p-12 shadow-inner">
+      <div className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+        <div className="overflow-hidden">
+          <div className="pt-6">
+            <div className="bg-zinc-900/60 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] p-8 md:p-12 shadow-inner">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                   {/* Form */}
                   <div className="space-y-8">
@@ -214,14 +206,10 @@ export function MacroCalculator() {
 
                   {/* Results */}
                   <div className="relative">
-                    <AnimatePresence mode="wait">
                       {results ? (
-                        <motion.div
+                        <div
                           key="results"
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.95 }}
-                          className="h-full flex flex-col"
+                          className="h-full flex flex-col animate-fade-in"
                         >
                           <div className="bg-zinc-950/50 rounded-[2rem] p-8 border border-white/5 flex-1 flex flex-col justify-center text-center">
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-red-600 mb-4">Daily Target</span>
@@ -252,29 +240,25 @@ export function MacroCalculator() {
                               </p>
                             </div>
                           </div>
-                        </motion.div>
+                        </div>
                       ) : (
-                        <motion.div
+                        <div
                           key="placeholder"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          className="h-full flex flex-col items-center justify-center text-center p-12 bg-zinc-950/30 rounded-[2rem] border border-dashed border-white/10"
+                          className="h-full flex flex-col items-center justify-center text-center p-12 bg-zinc-950/30 rounded-[2rem] border border-dashed border-white/10 animate-fade-in"
                         >
                           <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6">
                             <Calculator className="w-10 h-10 text-zinc-700" />
                           </div>
                           <h3 className="text-xl font-black uppercase italic text-zinc-500 mb-2">Ready to Calculate?</h3>
                           <p className="text-zinc-600 text-sm max-w-xs">Fill in your details to see your personalized macronutrient breakdown.</p>
-                        </motion.div>
+                        </div>
                       )}
-                    </AnimatePresence>
                   </div>
                 </div>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
     </section>
   );
 }

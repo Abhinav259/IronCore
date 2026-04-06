@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, User as UserIcon, ArrowRight, Search, Zap, Clock, Flame, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../data';
@@ -78,25 +77,22 @@ export default function Blog() {
         {/* Blog Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {filteredPosts.map((post, i) => (
-            <motion.article 
+            <article 
               key={post.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              transition={{ delay: i * 0.1 }}
-              className="group cursor-pointer"
+              className="group cursor-pointer animate-fade-in transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]"
+              style={{ animationDelay: `${i * 0.1}s` }}
               onClick={() => setSelectedPost(post)}
             >
               <div className="relative h-80 rounded-3xl overflow-hidden mb-6">
-                <img src={`${post.image}&fm=webp`} 
-                  srcSet={`${post.image.replace('w=800', 'w=400')} 400w, ${post.image} 800w`}
+                <img src={post.image} 
+                  srcSet={`${post.image.replace('w=600', 'w=400')} 400w, ${post.image} 600w`}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   alt={post.title} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
-                  width="800"
+                  width="600"
                   height="320"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
@@ -127,7 +123,7 @@ export default function Blog() {
                   Read Article <ArrowRight className="w-4 h-4" />
                 </div>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
 
@@ -189,70 +185,62 @@ export default function Blog() {
       </section>
 
       {/* Blog Post Modal */}
-      <AnimatePresence>
-        {selectedPost && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-            onClick={() => setSelectedPost(null)}
+      {selectedPost && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
+          onClick={() => setSelectedPost(null)}
+        >
+          <div
+            className="bg-zinc-950 border border-white/10 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto animate-slide-up"
+            onClick={(e) => e.stopPropagation()}
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-zinc-950 border border-white/10 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative h-64 md:h-96 w-full">
-                <img 
-                  src={`${selectedPost.image}&fm=webp`} 
-                  srcSet={`${selectedPost.image.replace('w=800', 'w=400')} 400w, ${selectedPost.image} 800w`}
-                  sizes="(max-width: 768px) 100vw, 800px"
-                  alt={selectedPost.title} 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                  decoding="async"
-                  width="800"
-                  height="384"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
-                <button 
-                  onClick={() => setSelectedPost(null)}
-                  className="absolute top-6 right-6 bg-black/50 hover:bg-red-600 text-white p-2 rounded-full backdrop-blur-md transition-colors"
-                  aria-label="Close post"
-                >
-                  <X className="w-6 h-6" />
-                </button>
+            <div className="relative h-64 md:h-96 w-full">
+              <img 
+                src={`${selectedPost.image}&fm=webp`} 
+                srcSet={`${selectedPost.image.replace('w=800', 'w=400')} 400w, ${selectedPost.image} 800w`}
+                sizes="(max-width: 768px) 100vw, 800px"
+                alt={selectedPost.title} 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
+                width="800"
+                height="384"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+              <button 
+                onClick={() => setSelectedPost(null)}
+                className="absolute top-6 right-6 bg-black/50 hover:bg-red-600 text-white p-2 rounded-full backdrop-blur-md transition-colors"
+                aria-label="Close post"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            
+            <div className="p-8 md:p-12">
+              <div className="flex flex-wrap items-center gap-6 text-xs font-black uppercase tracking-widest text-gray-500 mb-6">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-red-600" />
+                  {selectedPost.date}
+                </div>
+                <span className="bg-red-600/10 text-red-600 px-3 py-1 rounded-full">
+                  Expert Tip
+                </span>
               </div>
               
-              <div className="p-8 md:p-12">
-                <div className="flex flex-wrap items-center gap-6 text-xs font-black uppercase tracking-widest text-gray-500 mb-6">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-red-600" />
-                    {selectedPost.date}
-                  </div>
-                  <span className="bg-red-600/10 text-red-600 px-3 py-1 rounded-full">
-                    Expert Tip
-                  </span>
-                </div>
-                
-                <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tight mb-8">
-                  {selectedPost.title}
-                </h2>
-                
-                <div className="prose prose-invert prose-red max-w-none">
-                  <p className="text-gray-300 text-lg md:text-xl leading-relaxed md:leading-loose font-medium tracking-wide whitespace-pre-line px-2 md:px-4">
-                    {selectedPost.content}
-                  </p>
-                </div>
+              <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tight mb-8">
+                {selectedPost.title}
+              </h2>
+              
+              <div className="prose prose-invert prose-red max-w-none">
+                <p className="text-gray-300 text-lg md:text-xl leading-relaxed md:leading-loose font-medium tracking-wide whitespace-pre-line px-2 md:px-4">
+                  {selectedPost.content}
+                </p>
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

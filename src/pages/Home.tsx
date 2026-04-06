@@ -1,4 +1,3 @@
-import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Play, Users, Trophy, Zap, ChevronDown, Calendar, User as UserIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { testimonials, blogPosts } from '../data';
@@ -273,20 +272,20 @@ export default function Home() {
                   aria-expanded={activeFaq === i}
                 >
                   <span className="font-bold text-lg">{faq.q}</span>
-                  <ChevronDown className={cn("w-5 h-5 text-red-600 transition-transform", activeFaq === i && "rotate-180")} />
+                  <ChevronDown className={cn("w-5 h-5 text-red-600 transition-transform duration-300", activeFaq === i && "rotate-180")} />
                 </button>
-                <AnimatePresence>
-                  {activeFaq === i && (
-                    <motion.div 
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="px-8 pb-6 text-gray-400 leading-relaxed"
-                    >
-                      {faq.a}
-                    </motion.div>
+                <div 
+                  className={cn(
+                    "grid transition-all duration-300 ease-in-out",
+                    activeFaq === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                   )}
-                </AnimatePresence>
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-8 pb-6 text-gray-400 leading-relaxed">
+                      {faq.a}
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -322,8 +321,8 @@ export default function Home() {
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1920&auto=format&fit=crop&fm=webp" 
-            srcSet="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=800&auto=format&fit=crop&fm=webp 800w, https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1920&auto=format&fit=crop&fm=webp 1920w"
+            src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=60&w=1400&auto=format&fit=crop&fm=webp" 
+            srcSet="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=60&w=600&auto=format&fit=crop&fm=webp 600w, https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=60&w=1400&auto=format&fit=crop&fm=webp 1400w"
             sizes="100vw"
             alt="CTA BG" 
             className="w-full h-full object-cover opacity-20"

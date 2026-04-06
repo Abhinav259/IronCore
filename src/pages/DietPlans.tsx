@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Search, ChevronRight, Apple, Flame, Zap, X, Coffee, Utensils, Moon, Cookie, RefreshCw, ChevronDown } from 'lucide-react';
+import { Search, ChevronRight, Apple, Flame, Zap, X, Coffee, Utensils, Moon, Cookie, RefreshCw, ChevronDown, Droplets, CalendarDays, Leaf } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { dietPlans, mealAlternatives } from '../data';
 import { DietPlan } from '../types';
-import { jsPDF } from 'jspdf';
-import autoTable from 'jspdf-autotable';
 import { SEO } from '../components/SEO';
 import { getMealImage, getFeaturedImage } from '../utils/dietUtils';
 import { MacroCalculator } from '../components/MacroCalculator';
@@ -32,8 +29,11 @@ export default function DietPlans() {
     setCustomMeals(prev => ({ ...prev, [mealType]: newMeal }));
   };
 
-  const handleDownloadPDF = () => {
+  const handleDownloadPDF = async () => {
     if (!selectedPlan) return;
+
+    const { jsPDF } = await import('jspdf');
+    const autoTable = (await import('jspdf-autotable')).default;
 
     const doc = new jsPDF();
     
@@ -192,7 +192,6 @@ export default function DietPlans() {
 
         {/* Diet Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative min-h-[400px]">
-          <AnimatePresence mode="popLayout">
             {isSearching ? (
               Array.from({ length: 6 }).map((_, i) => (
                 <div key={`skeleton-${i}`} className="bg-zinc-900/50 border border-white/5 rounded-3xl overflow-hidden animate-pulse">
@@ -210,15 +209,11 @@ export default function DietPlans() {
               ))
             ) : filteredPlans.length > 0 ? (
               filteredPlans.map((plan, index) => (
-                <motion.div 
+                <div 
                   key={plan.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
                   onClick={() => handleSelectPlan(plan)}
-                  className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/30 hover:bg-zinc-900 transition-all duration-500 shadow-xl hover:shadow-red-600/5"
+                  className="bg-zinc-900/80 backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden cursor-pointer group hover:border-red-600/30 hover:bg-zinc-900 transition-all duration-500 shadow-xl hover:shadow-red-600/5 animate-fade-in"
+                  style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   <div className="h-56 bg-zinc-800 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent z-10"></div>
@@ -273,13 +268,11 @@ export default function DietPlans() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))
             ) : (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="col-span-full text-center py-32"
+              <div 
+                className="col-span-full text-center py-32 animate-fade-in"
               >
                 <div className="w-24 h-24 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto mb-8 border border-white/5">
                   <Search className="w-10 h-10 text-zinc-700" />
@@ -295,10 +288,54 @@ export default function DietPlans() {
                 >
                   Reset All Filters
                 </button>
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
+          </div>
+
+        {/* General Nutrition Tips Section */}
+        <div className="mt-32 max-w-6xl mx-auto">
+          <h2 className="text-4xl font-display font-black uppercase italic tracking-tighter mb-12 text-center">
+            General Nutrition <span className="text-red-600">Tips</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="bg-zinc-900/50 border border-white/10 p-8 rounded-3xl hover:border-red-600/30 transition-colors">
+              <div className="w-14 h-14 bg-red-600/10 rounded-2xl flex items-center justify-center mb-6">
+                <Leaf className="w-7 h-7 text-red-600" />
+              </div>
+              <h3 className="text-2xl font-black uppercase italic mb-4">Dietary Preferences</h3>
+              <ul className="space-y-4 text-gray-400">
+                <li><strong className="text-white">Vegetarian/Vegan:</strong> Focus on combining plant proteins (e.g., rice and beans) to get all essential amino acids. Supplement with B12 and consider a plant-based protein powder.</li>
+                <li><strong className="text-white">Keto:</strong> Prioritize healthy fats like avocados, nuts, and olive oil. Keep electrolytes balanced, especially sodium and potassium, to avoid the "keto flu."</li>
+                <li><strong className="text-white">Paleo:</strong> Stick to whole, unprocessed foods. Lean meats, fish, fruits, vegetables, nuts, and seeds are your staples. Avoid dairy, grains, and processed sugar.</li>
+              </ul>
+            </div>
+
+            <div className="bg-zinc-900/50 border border-white/10 p-8 rounded-3xl hover:border-red-600/30 transition-colors">
+              <div className="w-14 h-14 bg-red-600/10 rounded-2xl flex items-center justify-center mb-6">
+                <CalendarDays className="w-7 h-7 text-red-600" />
+              </div>
+              <h3 className="text-2xl font-black uppercase italic mb-4">Meal Prepping</h3>
+              <ul className="space-y-4 text-gray-400">
+                <li><strong className="text-white">Plan Ahead:</strong> Dedicate a specific day (like Sunday) to plan your meals for the week and create a comprehensive grocery list.</li>
+                <li><strong className="text-white">Batch Cooking:</strong> Cook large portions of staples like rice, chicken, or roasted vegetables. Store them in airtight containers to mix and match throughout the week.</li>
+                <li><strong className="text-white">Portion Control:</strong> Divide your cooked meals into individual containers immediately. This prevents overeating and makes grabbing a meal on the go effortless.</li>
+              </ul>
+            </div>
+
+            <div className="bg-zinc-900/50 border border-white/10 p-8 rounded-3xl hover:border-red-600/30 transition-colors">
+              <div className="w-14 h-14 bg-red-600/10 rounded-2xl flex items-center justify-center mb-6">
+                <Droplets className="w-7 h-7 text-red-600" />
+              </div>
+              <h3 className="text-2xl font-black uppercase italic mb-4">Hydration</h3>
+              <ul className="space-y-4 text-gray-400">
+                <li><strong className="text-white">Daily Intake:</strong> Aim for at least 3-4 liters of water per day, more if you are highly active or live in a hot climate.</li>
+                <li><strong className="text-white">Electrolytes:</strong> If you sweat heavily during workouts, consider adding an electrolyte supplement to your water to replenish lost sodium, potassium, and magnesium.</li>
+                <li><strong className="text-white">Timing:</strong> Drink a large glass of water first thing in the morning. Keep a reusable water bottle with you throughout the day to encourage consistent sipping.</li>
+              </ul>
+            </div>
+          </div>
         </div>
+
         {/* FAQ Section */}
         <div className="mt-32 max-w-4xl mx-auto">
           <h2 className="text-4xl font-display font-black uppercase italic tracking-tighter mb-12 text-center">
@@ -338,31 +375,28 @@ export default function DietPlans() {
       </div>
 
       {/* Detail Modal */}
-      <AnimatePresence>
-        {selectedPlan && (
-          <div className="fixed inset-0 z-[60] flex items-center justify-center px-6">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+      {selectedPlan && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center px-6">
+          <div 
+            onClick={handleClosePlan}
+            className="absolute inset-0 bg-black/90 backdrop-blur-sm animate-fade-in"
+          ></div>
+          <div 
+            className="bg-zinc-900 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-10 border border-white/10 shadow-2xl animate-slide-up"
+          >
+            <button 
               onClick={handleClosePlan}
-              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
-            ></motion.div>
-            <motion.div 
-              layoutId={selectedPlan.id}
-              className="bg-zinc-900 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-10 border border-white/10 shadow-2xl"
+              className="absolute top-6 right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
+              aria-label="Close plan"
             >
-              <button 
-                onClick={handleClosePlan}
-                className="absolute top-6 right-6 p-2 bg-black/50 hover:bg-red-600 rounded-full transition-colors z-20"
-                aria-label="Close plan"
-              >
-                <X className="w-6 h-6" />
-              </button>
+              <X className="w-6 h-6" />
+            </button>
 
               <div className="h-48 md:h-64 w-full relative">
                 <img 
                   src={getFeaturedImage(selectedPlan.type, selectedPlan.goal).url} 
+                  srcSet={`${getFeaturedImage(selectedPlan.type, selectedPlan.goal).url.replace('w=800', 'w=400')} 400w, ${getFeaturedImage(selectedPlan.type, selectedPlan.goal).url} 800w`}
+                  sizes="(max-width: 768px) 100vw, 800px"
                   alt={getFeaturedImage(selectedPlan.type, selectedPlan.goal).alt}
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -476,10 +510,9 @@ export default function DietPlans() {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         )}
-      </AnimatePresence>
     </div>
   );
 }

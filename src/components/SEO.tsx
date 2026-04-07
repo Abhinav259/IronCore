@@ -6,16 +6,29 @@ interface SEOProps {
   description?: string;
   urlPath: string;
   schema?: object;
+  breadcrumbs?: { name: string; item: string }[];
 }
 
 export const SEO: React.FC<SEOProps> = ({ 
   title = "Iron Core: Elite Gym Workout & Macronutrient Diet Plans", 
   description = "Master hypertrophy training and progressive overload with expert gym workout plans and macronutrient-focused diet guides. Achieve your body transformation with Iron Core.", 
   urlPath, 
-  schema 
+  schema,
+  breadcrumbs
 }) => {
   const baseUrl = 'https://iron-core-neon.vercel.app';
   const fullUrl = `${baseUrl}${urlPath}`;
+
+  const breadcrumbSchema = breadcrumbs ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": crumb.name,
+      "item": `${baseUrl}${crumb.item}`
+    }))
+  } : null;
 
   return (
     <Helmet>
@@ -39,6 +52,11 @@ export const SEO: React.FC<SEOProps> = ({
       {schema && (
         <script type="application/ld+json">
           {JSON.stringify(schema)}
+        </script>
+      )}
+      {breadcrumbSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
         </script>
       )}
     </Helmet>

@@ -234,6 +234,11 @@ export default function MuscleGroups() {
         title="Muscle Group Exercises"
         description="Target specific muscle groups with our comprehensive exercise guide. Learn how to effectively train your chest, back, legs, and more."
         urlPath="/muscle-groups" 
+        breadcrumbs={[
+          { name: "Home", item: "/" },
+          { name: "Workouts", item: "/workouts" },
+          { name: "Muscle Groups", item: "/muscle-groups" }
+        ]}
         schema={{
           "@context": "https://schema.org",
           "@type": "ItemList",

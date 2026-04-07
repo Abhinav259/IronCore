@@ -28,6 +28,11 @@ export interface DietPlan {
   goal: Goal;
   type: string;
   calorieGuidance: string;
+  macros: {
+    protein: string;
+    carbs: string;
+    fats: string;
+  };
   meals: {
     breakfast: string;
     lunch: string;

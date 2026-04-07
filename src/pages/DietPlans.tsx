@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Search, ChevronRight, Apple, Flame, Zap, X, Coffee, Utensils, Moon, Cookie, RefreshCw, ChevronDown, Droplets, CalendarDays, Leaf } from 'lucide-react';
+import { Search, ChevronRight, Apple, Flame, Zap, X, Coffee, Utensils, Moon, Cookie, RefreshCw, ChevronDown, Droplets, CalendarDays, Leaf, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { dietPlans, mealAlternatives } from '../data';
 import { DietPlan } from '../types';
@@ -111,6 +111,10 @@ export default function DietPlans() {
         title="Weight Loss Diet Plans"
         description="Healthy meal plans for effective weight loss. Explore our expert nutrition guides for every goal."
         urlPath="/diets" 
+        breadcrumbs={[
+          { name: "Home", item: "/" },
+          { name: "Diet Plans", item: "/diets" }
+        ]}
         schema={{
           "@context": "https://schema.org",
           "@type": "ItemList",
@@ -251,14 +255,18 @@ export default function DietPlans() {
                       <Flame className="w-6 h-6 text-white" />
                     </div>
                     <h3 className="text-2xl font-black uppercase italic mb-4 group-hover:text-red-500 transition-colors duration-300 pt-2">{plan.title}</h3>
-                    <div className="flex items-center gap-6 mb-6">
+                    <div className="flex items-center gap-4 mb-6 flex-wrap">
                       <div className="flex flex-col">
                         <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-1">Goal</span>
                         <span className="text-xs font-black uppercase text-white tracking-wider">{plan.goal.replace('-', ' ')}</span>
                       </div>
-                      <div className="flex flex-col border-l border-white/10 pl-6">
+                      <div className="flex flex-col border-l border-white/10 pl-4">
                         <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-1">Calories</span>
-                        <span className="text-xs font-black uppercase text-white tracking-wider">{plan.calorieGuidance}</span>
+                        <span className="text-xs font-black uppercase text-white tracking-wider">{plan.calorieGuidance.split(' ')[0]}</span>
+                      </div>
+                      <div className="flex flex-col border-l border-white/10 pl-4">
+                        <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-1">Macros</span>
+                        <span className="text-xs font-black uppercase text-white tracking-wider">{plan.macros.protein}P {plan.macros.carbs}C {plan.macros.fats}F</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between pt-6 border-t border-white/5">
@@ -440,6 +448,15 @@ export default function DietPlans() {
                       <div>
                         <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Primary Goal</p>
                         <p className="text-lg font-black uppercase italic">{selectedPlan.goal.replace('-', ' ')}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center">
+                        <Activity className="w-6 h-6 text-red-600" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Macros (P / C / F)</p>
+                        <p className="text-lg font-black uppercase italic">{selectedPlan.macros.protein} / {selectedPlan.macros.carbs} / {selectedPlan.macros.fats}</p>
                       </div>
                     </div>
                   </div>

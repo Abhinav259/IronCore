@@ -23,6 +23,10 @@ export default function Supplements() {
         title="Fitness Supplements Guide"
         description="Optimize your results with the right supplementation. We break down the science, benefits, and usage for maximum gains."
         urlPath="/supplements" 
+        breadcrumbs={[
+          { name: "Home", item: "/" },
+          { name: "Supplements", item: "/supplements" }
+        ]}
         schema={{
           "@context": "https://schema.org",
           "@type": "ItemList",
@@ -130,6 +134,44 @@ export default function Supplements() {
           ))}
         </div>
 
+        {/* The Importance of Supplementation */}
+        <div className="mt-32 max-w-6xl mx-auto mb-20">
+          <h2 className="text-4xl font-display font-black uppercase italic tracking-tighter mb-12 text-center">
+            The Importance of <span className="text-red-600">Supplementation</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-zinc-900/50 border border-white/10 p-8 rounded-3xl hover:border-red-600/30 transition-colors">
+              <div className="w-14 h-14 bg-red-600/10 rounded-2xl flex items-center justify-center mb-6">
+                <CheckCircle2 className="w-7 h-7 text-red-600" />
+              </div>
+              <h3 className="text-2xl font-black uppercase italic mb-4">Filling Nutritional Gaps</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Even with a perfect diet, it can be difficult to get all the necessary vitamins and minerals your body needs, especially when training hard. Supplements like multivitamins, Vitamin D, and Magnesium help fill these gaps to ensure your body functions optimally.
+              </p>
+            </div>
+
+            <div className="bg-zinc-900/50 border border-white/10 p-8 rounded-3xl hover:border-red-600/30 transition-colors">
+              <div className="w-14 h-14 bg-red-600/10 rounded-2xl flex items-center justify-center mb-6">
+                <Zap className="w-7 h-7 text-red-600" />
+              </div>
+              <h3 className="text-2xl font-black uppercase italic mb-4">Enhancing Performance</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Certain supplements are scientifically proven to enhance athletic performance. Creatine increases ATP production for explosive power, while pre-workouts and BCAAs can improve focus, endurance, and reduce perceived exertion during intense training sessions.
+              </p>
+            </div>
+
+            <div className="bg-zinc-900/50 border border-white/10 p-8 rounded-3xl hover:border-red-600/30 transition-colors">
+              <div className="w-14 h-14 bg-red-600/10 rounded-2xl flex items-center justify-center mb-6">
+                <ShieldCheck className="w-7 h-7 text-red-600" />
+              </div>
+              <h3 className="text-2xl font-black uppercase italic mb-4">Accelerating Recovery</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Recovery is where growth happens. Protein powders provide fast-absorbing amino acids to repair muscle tissue, while Omega-3s and antioxidants help reduce exercise-induced inflammation, allowing you to bounce back faster for your next workout.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Safety Disclaimer */}
         <div className="bg-red-600/10 border border-red-600/20 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row items-start gap-8 mb-16">
           <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center shrink-0 shadow-xl shadow-red-600/20">
@@ -167,6 +209,8 @@ export default function Supplements() {
           <ul className="list-disc pl-6 mb-6 space-y-2">
             <li><strong>Whey Protein:</strong> Essential for muscle repair and growth. Consuming protein post-workout ensures your muscles have the necessary amino acids to recover quickly.</li>
             <li><strong>Creatine Monohydrate:</strong> One of the most researched supplements available. It helps increase ATP production, leading to improved strength and power output during high-intensity training.</li>
+            <li><strong>Vitamins & Minerals:</strong> Micronutrients like <strong>Vitamin D3</strong>, <strong>Magnesium</strong>, and <strong>Zinc</strong> are crucial for immune function, bone health, and hormone regulation. A high-quality multivitamin can act as an insurance policy against dietary deficiencies.</li>
+            <li><strong>Omega-3 Fish Oil:</strong> Vital for cardiovascular health, joint lubrication, and reducing exercise-induced inflammation.</li>
             <li><strong>Pre-Workout:</strong> Designed to enhance focus, energy, and blood flow, allowing you to train harder and longer.</li>
             <li><strong>BCAAs & EAAs:</strong> Branched-Chain Amino Acids help reduce muscle breakdown during prolonged workouts and support recovery.</li>
           </ul>

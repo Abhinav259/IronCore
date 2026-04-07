@@ -111,6 +111,10 @@ export default function WorkoutPlans() {
         title="Muscle Gain Workout Plans"
         description="Achieve muscle growth with our tailored workout plans. Explore scientifically designed training programs for every goal."
         urlPath="/workouts" 
+        breadcrumbs={[
+          { name: "Home", item: "/" },
+          { name: "Workouts", item: "/workouts" }
+        ]}
         schema={{
           "@context": "https://schema.org",
           "@type": "ItemList",

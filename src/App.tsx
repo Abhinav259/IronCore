@@ -67,6 +67,7 @@ export default function App() {
                   <Route path="/supplements" element={<Supplements />} />
                   <Route path="/profile" element={<Profile user={user} />} />
                   <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:id" element={<Blog />} />
                 </Routes>
               </Suspense>
             )}

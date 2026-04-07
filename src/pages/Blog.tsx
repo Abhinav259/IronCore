@@ -7,21 +7,21 @@ import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 export default function Blog() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [selectedPost, setSelectedPost] = useState<typeof blogPosts[0] | null>(null);
 
   useEffect(() => {
-    if (id) {
-      const post = blogPosts.find(p => p.id.toString() === id);
+    if (slug) {
+      const post = blogPosts.find(p => p.slug === slug);
       if (post) {
         setSelectedPost(post);
       }
     } else {
       setSelectedPost(null);
     }
-  }, [id]);
+  }, [slug]);
 
   const handleCloseModal = () => {
     setSelectedPost(null);
@@ -30,7 +30,7 @@ export default function Blog() {
 
   const handleOpenModal = (post: typeof blogPosts[0]) => {
     setSelectedPost(post);
-    navigate(`/blog/${post.id}`);
+    navigate(`/blog/${post.slug}`);
   };
 
   const filteredPosts = blogPosts
@@ -46,16 +46,17 @@ export default function Blog() {
         <SEO 
           title={selectedPost.title}
           description={selectedPost.content.substring(0, 160).replace(/\n/g, ' ') + "..."}
-          urlPath={`/blog/${selectedPost.id}`}
+          urlPath={`/blog/${selectedPost.slug}`}
           breadcrumbs={[
             { name: "Home", item: "/" },
             { name: "Blog", item: "/blog" },
-            { name: selectedPost.title, item: `/blog/${selectedPost.id}` }
+            { name: selectedPost.title, item: `/blog/${selectedPost.slug}` }
           ]}
           schema={{
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             "headline": selectedPost.title,
+            "url": `https://iron-core-neon.vercel.app/blog/${selectedPost.slug}`,
             "description": selectedPost.content.substring(0, 160).replace(/\n/g, ' ') + "...",
             "image": selectedPost.image,
             "datePublished": selectedPost.date,
@@ -83,6 +84,7 @@ export default function Blog() {
             "blogPost": blogPosts.map(post => ({
               "@type": "BlogPosting",
               "headline": post.title,
+              "url": `https://iron-core-neon.vercel.app/blog/${post.slug}`,
               "description": post.content.substring(0, 160).replace(/\n/g, ' ') + "...",
               "image": post.image,
               "datePublished": post.date,

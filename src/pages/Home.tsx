@@ -219,7 +219,7 @@ export default function Home() {
                 key={post.id}
                 className="group transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]"
               >
-                <Link to="/blog" className="block">
+                <Link to={`/blog/${post.slug}`} className="block">
                   <div className="relative h-72 rounded-3xl overflow-hidden mb-6">
                     <img 
                       src={`${post.image}&fm=webp`} 

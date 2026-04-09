@@ -29,7 +29,6 @@ export default function Navbar({ user }: { user: User | null }) {
     { name: 'Diets', path: '/diets' },
     { name: 'Supplements', path: '/supplements' },
     { name: 'Blog', path: '/blog' },
-    { name: 'Feedback', path: '/feedback' },
   ];
 
   return (

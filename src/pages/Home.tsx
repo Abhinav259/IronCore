@@ -1,6 +1,6 @@
 import { ArrowRight, CheckCircle2, Play, Users, Trophy, Zap, ChevronDown, Calendar, User as UserIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { blogPosts } from '../data';
+import { testimonials, blogPosts } from '../data';
 import { useState } from 'react';
 import { SEO } from '../components/SEO';
 

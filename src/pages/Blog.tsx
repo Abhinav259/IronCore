@@ -53,8 +53,8 @@ export default function Blog() {
     <div className="min-h-screen bg-black pt-12 pb-32">
       {selectedPost ? (
         <SEO 
-          title={selectedPost.title}
-          description={getCleanDescription(selectedPost.content)}
+          title={selectedPost.seoTitle || selectedPost.title}
+          description={selectedPost.seoDescription || getCleanDescription(selectedPost.content)}
           urlPath={`/blog/${selectedPost.slug}`}
           breadcrumbs={[
             { name: "Home", item: "/" },
@@ -66,7 +66,7 @@ export default function Blog() {
             "@type": "BlogPosting",
             "headline": selectedPost.title,
             "url": `https://iron-core-neon.vercel.app/blog/${selectedPost.slug}`,
-            "description": getCleanDescription(selectedPost.content),
+            "description": selectedPost.seoDescription || getCleanDescription(selectedPost.content),
             "image": selectedPost.image,
             "datePublished": selectedPost.date,
             "author": {
@@ -94,7 +94,7 @@ export default function Blog() {
               "@type": "BlogPosting",
               "headline": post.title,
               "url": `https://iron-core-neon.vercel.app/blog/${post.slug}`,
-              "description": getCleanDescription(post.content),
+              "description": post.seoDescription || getCleanDescription(post.content),
               "image": post.image,
               "datePublished": post.date,
               "author": {

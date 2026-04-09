@@ -2269,23 +2269,6 @@ export const supplements = [
   }
 ];
 
-export const testimonials = [
-  {
-    id: 1,
-    name: 'Alex Johnson',
-    transformation: 'Lost 30 lbs in 6 months',
-    quote: 'IronCore changed my life. The personalized plans were exactly what I needed.',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=600&auto=format&fit=crop&fm=webp'
-  },
-  {
-    id: 2,
-    name: 'Sarah Miller',
-    transformation: 'Gained 10 lbs of muscle',
-    quote: 'The diet plans are so easy to follow, even for a busy professional like me.',
-    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=60&w=600&auto=format&fit=crop&fm=webp'
-  }
-];
-
 export const blogPosts = [
   {
     "id": 1,

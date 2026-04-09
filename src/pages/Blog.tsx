@@ -40,12 +40,21 @@ export default function Blog() {
     )
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+  const getCleanDescription = (content: string) => {
+    // Remove markdown headers, bold, italic, links, etc.
+    const cleanText = content
+      .replace(/[#*`_\[\]()]/g, '')
+      .replace(/\n+/g, ' ')
+      .trim();
+    return cleanText.length > 160 ? cleanText.substring(0, 160) + "..." : cleanText;
+  };
+
   return (
     <div className="min-h-screen bg-black pt-12 pb-32">
       {selectedPost ? (
         <SEO 
           title={selectedPost.title}
-          description={selectedPost.content.substring(0, 160).replace(/\n/g, ' ') + "..."}
+          description={getCleanDescription(selectedPost.content)}
           urlPath={`/blog/${selectedPost.slug}`}
           breadcrumbs={[
             { name: "Home", item: "/" },
@@ -57,7 +66,7 @@ export default function Blog() {
             "@type": "BlogPosting",
             "headline": selectedPost.title,
             "url": `https://iron-core-neon.vercel.app/blog/${selectedPost.slug}`,
-            "description": selectedPost.content.substring(0, 160).replace(/\n/g, ' ') + "...",
+            "description": getCleanDescription(selectedPost.content),
             "image": selectedPost.image,
             "datePublished": selectedPost.date,
             "author": {
@@ -85,7 +94,7 @@ export default function Blog() {
               "@type": "BlogPosting",
               "headline": post.title,
               "url": `https://iron-core-neon.vercel.app/blog/${post.slug}`,
-              "description": post.content.substring(0, 160).replace(/\n/g, ' ') + "...",
+              "description": getCleanDescription(post.content),
               "image": post.image,
               "datePublished": post.date,
               "author": {

@@ -83,6 +83,20 @@
         "imageUrl": { "type": "string" }
       },
       "required": ["title", "content"]
+    },
+    "feedback": {
+      "title": "Feedback",
+      "description": "User feedback and reviews",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userPhoto": { "type": "string" },
+        "rating": { "type": "number" },
+        "comment": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "rating", "comment"]
     }
   },
   "firestore": {
@@ -109,6 +123,10 @@
     "/blogPosts/{postId}": {
       "schema": "blogPosts",
       "description": "Fitness blog posts"
+    },
+    "/feedback/{feedbackId}": {
+      "schema": "feedback",
+      "description": "User feedback and reviews"
     }
   }
 }

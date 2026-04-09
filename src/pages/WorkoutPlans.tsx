@@ -512,6 +512,12 @@ export default function WorkoutPlans() {
         isOpen={!!selectedExerciseForModal} 
         onClose={() => setSelectedExerciseForModal(null)} 
         exerciseName={selectedExerciseForModal?.name || ''} 
+        primaryMuscle={selectedExerciseForModal?.details?.primaryMuscle}
+        secondaryMuscles={selectedExerciseForModal?.details?.secondaryMuscles}
+        equipment={selectedExerciseForModal?.details?.equipment}
+        tips={selectedExerciseForModal?.details?.tips}
+        image={selectedExerciseForModal?.details?.image}
+        altText={selectedExerciseForModal?.details?.alt}
       />
     </div>
   );

@@ -65,6 +65,16 @@ service cloud.firestore {
     //   - createdAt: timestamp
     //   - imageUrl: string
     //
+    // Collection: feedback
+    // Document ID: feedbackId
+    // Fields:
+    //   - userId: string (required)
+    //   - userName: string
+    //   - userPhoto: string
+    //   - rating: number (required)
+    //   - comment: string (required)
+    //   - createdAt: timestamp
+    //
     // ===============================================================
 
     // ===============================================================
@@ -97,6 +107,15 @@ service cloud.firestore {
              (!('goal' in data) || data.goal in ['muscle-gain', 'fat-loss', 'weight-management', 'strength', 'endurance', 'flexibility']) &&
              (!('trainingPreference' in data) || data.trainingPreference in ['gym', 'home']) &&
              (!('dietPreference' in data) || data.dietPreference in ['vegetarian', 'non-vegetarian']);
+    }
+
+    function isValidFeedback(data) {
+      return data.keys().hasAll(['userId', 'rating', 'comment']) &&
+             data.userId == request.auth.uid &&
+             data.rating is number && data.rating >= 1 && data.rating <= 5 &&
+             data.comment is string && data.comment.size() > 0 && data.comment.size() <= 1000 &&
+             (!('userName' in data) || data.userName is string) &&
+             (!('userPhoto' in data) || data.userPhoto is string);
     }
 
     // ===============================================================
@@ -133,6 +152,13 @@ service cloud.firestore {
     match /blogPosts/{postId} {
       allow read: if true;
       allow write: if isAdmin();
+    }
+
+    match /feedback/{feedbackId} {
+      allow read: if true;
+      allow create: if isAuthenticated() && isValidFeedback(request.resource.data);
+      allow update: if isOwner(resource.data.userId) && isValidFeedback(request.resource.data) && request.resource.data.userId == resource.data.userId;
+      allow delete: if isAdmin() || isOwner(resource.data.userId);
     }
   }
 }

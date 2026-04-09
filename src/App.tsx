@@ -14,6 +14,7 @@ const Supplements = lazy(() => import('./pages/Supplements'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Blog = lazy(() => import('./pages/Blog'));
 const MuscleGroups = lazy(() => import('./pages/MuscleGroups'));
+const Feedback = lazy(() => import('./pages/Feedback'));
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -68,6 +69,7 @@ export default function App() {
                   <Route path="/profile" element={<Profile user={user} />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/:slug" element={<Blog />} />
+                  <Route path="/feedback" element={<Feedback user={user} />} />
                 </Routes>
               </Suspense>
             )}

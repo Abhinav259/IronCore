@@ -220,7 +220,7 @@ export default function DietPlans() {
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   <div className="h-56 bg-zinc-800 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent z-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/10 to-transparent z-10"></div>
                     <div className="absolute top-4 right-4 z-20 flex gap-2">
                       <span className={cn(
                         "text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-lg border border-white/10",
@@ -241,7 +241,7 @@ export default function DietPlans() {
                         srcSet={`${getFeaturedImage(plan.type, plan.goal).url.replace('w=800', 'w=400')} 400w, ${getFeaturedImage(plan.type, plan.goal).url} 800w`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         alt={getFeaturedImage(plan.type, plan.goal).alt}
-                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
                         loading="lazy"
                         decoding="async"
                         referrerPolicy="no-referrer"

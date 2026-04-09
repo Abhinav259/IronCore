@@ -240,6 +240,20 @@ export default function WorkoutPlans() {
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   <div className="h-56 bg-zinc-800 relative overflow-hidden">
+                    {plan.image && (
+                      <img 
+                        src={plan.image} 
+                        srcSet={`${plan.image.replace('w=600', 'w=400')} 400w, ${plan.image} 600w`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        alt={plan.title} 
+                        referrerPolicy="no-referrer" 
+                        loading="lazy" 
+                        decoding="async" 
+                        className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110"
+                        width="400"
+                        height="224"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent z-10"></div>
                     <div className="absolute top-4 right-4 z-20 flex gap-2">
                       <span className="bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-lg">
@@ -249,24 +263,6 @@ export default function WorkoutPlans() {
                         {plan.preference}
                       </span>
                     </div>
-                    {plan.image ? (
-                      <img 
-                        src={plan.image} 
-                        srcSet={`${plan.image.replace('w=600', 'w=400')} 400w, ${plan.image} 600w`}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        alt={plan.title} 
-                        referrerPolicy="no-referrer" 
-                        loading="lazy" 
-                        decoding="async" 
-                        className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out" 
-                        width="400"
-                        height="224"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:scale-110 transition-transform duration-700">
-                        <Dumbbell className="w-32 h-32 text-white" />
-                      </div>
-                    )}
                   </div>
                   <div className="p-8 relative">
                     <div className="absolute -top-6 left-8 w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center shadow-xl shadow-red-600/30 group-hover:scale-110 transition-transform duration-500 z-20">
@@ -450,22 +446,39 @@ export default function WorkoutPlans() {
                             return (
                               <div key={uniqueKey} className="bg-black/40 rounded-2xl border border-white/5 overflow-hidden transition-colors">
                                 <div 
-                                  className={`flex items-center justify-between p-4 ${isRest ? '' : 'cursor-pointer hover:bg-white/5'}`}
+                                  className={`flex flex-col p-4 ${isRest ? '' : 'cursor-pointer hover:bg-white/5'}`}
                                   onClick={() => !isRest && setSelectedExerciseForModal({ ...ex, details })}
                                 >
-                                  <div className="flex-1 pr-4 flex items-center gap-3">
-                                    <div>
-                                      <p className="font-bold text-white flex flex-wrap items-center gap-2 text-sm md:text-base">
-                                        {ex.name}
-                                        {!isRest && <ChevronRight className="w-4 h-4 text-gray-500 shrink-0" />}
-                                      </p>
-                                      {!isRest && <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">{ex.sets} Sets</p>}
+                                  <div className="flex items-center justify-between mb-2">
+                                    <div className="flex-1 pr-4 flex items-center gap-3">
+                                      <div>
+                                        <p className="font-bold text-white flex flex-wrap items-center gap-2 text-sm md:text-base">
+                                          {ex.name}
+                                          {!isRest && <ChevronRight className="w-4 h-4 text-gray-500 shrink-0" />}
+                                        </p>
+                                        {!isRest && <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">{ex.sets} Sets</p>}
+                                      </div>
                                     </div>
+                                    {!isRest && (
+                                      <div className="text-right shrink-0">
+                                        <span className="text-red-600 font-black italic text-sm md:text-base">{ex.reps}</span>
+                                        <p className="text-[8px] md:text-[10px] text-gray-500 uppercase tracking-widest font-bold">Reps</p>
+                                      </div>
+                                    )}
                                   </div>
-                                  {!isRest && (
-                                    <div className="text-right shrink-0">
-                                      <span className="text-red-600 font-black italic text-sm md:text-base">{ex.reps}</span>
-                                      <p className="text-[8px] md:text-[10px] text-gray-500 uppercase tracking-widest font-bold">Reps</p>
+                                  {!isRest && details && (
+                                    <div className="mt-2 pt-2 border-t border-white/5 space-y-2">
+                                      <div className="flex flex-wrap gap-2">
+                                        <span className="text-[10px] font-bold uppercase tracking-widest bg-red-600/20 text-red-500 px-2 py-1 rounded-md">
+                                          {details.primaryMuscle}
+                                        </span>
+                                        <span className="text-[10px] font-bold uppercase tracking-widest bg-white/10 text-gray-300 px-2 py-1 rounded-md">
+                                          {details.equipment}
+                                        </span>
+                                      </div>
+                                      <p className="text-xs text-gray-400 leading-relaxed">
+                                        {details.tips}
+                                      </p>
                                     </div>
                                   )}
                                 </div>

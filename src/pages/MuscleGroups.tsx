@@ -362,14 +362,14 @@ export default function MuscleGroups() {
                           srcSet={`${group.image.replace('w=600', 'w=400')} 400w, ${group.image} 600w`}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           alt={group.title} 
-                          className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700 ease-out"
+                          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out"
                           referrerPolicy="no-referrer"
                           loading="lazy"
                           decoding="async"
                           width="400"
                           height="192"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent z-10"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent z-10"></div>
                         <div className="absolute top-4 right-4 z-20">
                           <span className="bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-lg shadow-lg border border-white/10">
                             {group.level}
@@ -483,7 +483,7 @@ export default function MuscleGroups() {
                     srcSet={`${selectedGroup.image.replace('w=600', 'w=400')} 400w, ${selectedGroup.image} 600w`}
                     sizes="(max-width: 768px) 100vw, 600px"
                     alt={selectedGroup.title} 
-                    className="absolute inset-0 w-full h-full object-cover opacity-10"
+                    className="absolute inset-0 w-full h-full object-cover opacity-30"
                     referrerPolicy="no-referrer"
                     loading="lazy"
                     decoding="async"

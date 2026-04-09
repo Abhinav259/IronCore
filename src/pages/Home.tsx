@@ -70,7 +70,7 @@ export default function Home() {
             srcSet="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=800&auto=format&fit=crop&fm=webp 800w, https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=60&w=1400&auto=format&fit=crop&fm=webp 1400w"
             sizes="100vw"
             alt="Gym Hero" 
-            className="w-full h-full object-cover opacity-40 grayscale"
+            className="w-full h-full object-cover opacity-60"
             referrerPolicy="no-referrer"
             fetchPriority="high"
             width="1400"
@@ -170,7 +170,7 @@ export default function Home() {
                   srcSet={`${program.img.replace('w=600', 'w=400')} 400w, ${program.img} 600w`}
                   sizes="(max-width: 768px) 100vw, 33vw"
                   alt={program.title} 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
@@ -224,7 +224,7 @@ export default function Home() {
                     <img 
                       src={`${post.image}&fm=webp`} 
                       alt={post.title} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"

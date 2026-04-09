@@ -89,34 +89,55 @@ export default function Supplements() {
           {filteredSupps.map((supp, i) => (
             <div 
               key={i}
-              className="bg-zinc-900 border border-white/5 rounded-3xl p-8 hover:border-red-600/50 transition-all group animate-fade-in hover:-translate-y-1"
+              className="bg-zinc-900 border border-white/5 rounded-3xl overflow-hidden hover:border-red-600/50 transition-all group animate-fade-in hover:-translate-y-1 flex flex-col"
               style={{ animationDelay: `${i * 0.1}s` }}
             >
-              <div className="flex items-center justify-between mb-8">
-                <div className="w-14 h-14 bg-red-600/10 rounded-2xl flex items-center justify-center group-hover:bg-red-600 transition-colors">
-                  <Pill className="w-8 h-8 text-red-600 group-hover:text-white" />
+              <div className="h-48 relative overflow-hidden">
+                <img 
+                  src={supp.image} 
+                  srcSet={`${supp.image?.replace('w=600', 'w=400')} 400w, ${supp.image} 600w`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  alt={supp.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="192"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent"></div>
+                <div className="absolute top-4 left-4 z-20">
+                  <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-600/20">
+                    <Pill className="w-6 h-6 text-white" />
+                  </div>
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 bg-white/5 px-3 py-1 rounded-full">
-                  {supp.category}
-                </span>
+                <div className="absolute top-4 right-4 z-20">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-white bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                    {supp.category}
+                  </span>
+                </div>
               </div>
-              <h2 className="text-2xl font-black uppercase italic mb-4">{supp.name}</h2>
-              <div className="space-y-6">
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <CheckCircle2 className="w-4 h-4 text-red-600" />
-                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Benefits</span>
+              
+              <div className="p-8 flex-1 flex flex-col">
+                <h2 className="text-2xl font-black uppercase italic mb-4 group-hover:text-red-500 transition-colors">{supp.name}</h2>
+                <div className="space-y-6 flex-1">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <CheckCircle2 className="w-4 h-4 text-red-600" />
+                      <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Benefits</span>
+                    </div>
+                    <p className="text-sm text-gray-300 leading-relaxed">{supp.benefits}</p>
                   </div>
-                  <p className="text-sm text-gray-300 leading-relaxed">{supp.benefits}</p>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Zap className="w-4 h-4 text-red-600" />
-                    <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Usage</span>
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Zap className="w-4 h-4 text-red-600" />
+                      <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Usage</span>
+                    </div>
+                    <p className="text-sm text-gray-300 leading-relaxed">{supp.usage}</p>
                   </div>
-                  <p className="text-sm text-gray-300 leading-relaxed">{supp.usage}</p>
                 </div>
-                <div className="pt-6 border-t border-white/5 flex items-center justify-between">
+                
+                <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between">
                   <span className={cn(
                     "text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full",
                     supp.type === 'vegetarian' ? "bg-green-600/20 text-green-500" : 

@@ -2,6 +2,119 @@ import { WorkoutPlan, DietPlan, MealAlternatives } from './types';
 
 export const workoutPlans: WorkoutPlan[] = [
   {
+    "id": "endurance-cardio-blast",
+    "title": "Endurance & Cardio Blast",
+    "goal": "endurance",
+    "level": "intermediate",
+    "gender": "both",
+    "preference": "home",
+    "description": "Boost your stamina and cardiovascular health with this high-energy endurance plan. Perfect for those looking to improve their heart health, burn calories, and build lasting stamina without needing a gym.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?q=60&w=600&auto=format&fit=crop&fm=webp",
+    "exercises": [
+      {"name":"Jumping Jacks","sets":3,"reps":"60 sec","day":"Monday"},
+      {"name":"High Knees","sets":3,"reps":"45 sec","day":"Monday"},
+      {"name":"Burpees","sets":3,"reps":"15","day":"Monday"},
+      {"name":"Mountain Climbers","sets":3,"reps":"60 sec","day":"Monday"},
+      {"name":"Rest / Light Stretching","sets":1,"reps":"15 min","day":"Tuesday"},
+      {"name":"Jump Rope","sets":5,"reps":"3 min","day":"Wednesday"},
+      {"name":"Squat Jumps","sets":4,"reps":"20","day":"Wednesday"},
+      {"name":"Alternating Lunges","sets":4,"reps":"30","day":"Wednesday"},
+      {"name":"Plank Jacks","sets":3,"reps":"45 sec","day":"Wednesday"},
+      {"name":"Active Recovery (Brisk Walk)","sets":1,"reps":"45 min","day":"Thursday"},
+      {"name":"Shadow Boxing","sets":4,"reps":"3 min","day":"Friday"},
+      {"name":"Bicycle Crunches","sets":4,"reps":"40","day":"Friday"},
+      {"name":"Skater Jumps","sets":4,"reps":"30","day":"Friday"},
+      {"name":"Long Run / Jog","sets":1,"reps":"45-60 min","day":"Saturday"},
+      {"name":"Rest","sets":0,"reps":"0","day":"Sunday"}
+    ]
+  },
+  {
+    "id": "yoga-flexibility-flow",
+    "title": "Yoga & Flexibility Flow",
+    "goal": "general-fitness",
+    "level": "beginner",
+    "gender": "both",
+    "preference": "home",
+    "description": "Improve your mobility, reduce stress, and enhance your overall flexibility with this calming yoga and stretching routine. Ideal for beginners or as a recovery plan.",
+    "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=60&w=600&auto=format&fit=crop&fm=webp",
+    "exercises": [
+      {"name":"Child's Pose","sets":1,"reps":"2 min","day":"Monday"},
+      {"name":"Cat-Cow Stretch","sets":2,"reps":"10","day":"Monday"},
+      {"name":"Downward-Facing Dog","sets":3,"reps":"1 min","day":"Monday"},
+      {"name":"Cobra Pose","sets":2,"reps":"30 sec","day":"Monday"},
+      {"name":"Sun Salutations","sets":5,"reps":"1 flow","day":"Tuesday"},
+      {"name":"Warrior I & II","sets":2,"reps":"1 min/side","day":"Tuesday"},
+      {"name":"Triangle Pose","sets":2,"reps":"45 sec/side","day":"Tuesday"},
+      {"name":"Seated Forward Fold","sets":2,"reps":"2 min","day":"Wednesday"},
+      {"name":"Pigeon Pose","sets":2,"reps":"1.5 min/side","day":"Wednesday"},
+      {"name":"Supine Spinal Twist","sets":2,"reps":"1 min/side","day":"Wednesday"},
+      {"name":"Rest / Meditation","sets":1,"reps":"15 min","day":"Thursday"},
+      {"name":"Standing Forward Bend","sets":2,"reps":"1 min","day":"Friday"},
+      {"name":"Lunge with Spinal Twist","sets":2,"reps":"1 min/side","day":"Friday"},
+      {"name":"Bridge Pose","sets":3,"reps":"45 sec","day":"Friday"},
+      {"name":"Full Body Flow (Combine moves)","sets":1,"reps":"30 min","day":"Saturday"},
+      {"name":"Rest / Savasana","sets":1,"reps":"10 min","day":"Sunday"}
+    ]
+  },
+  {
+    "id": "advanced-hiit-fat-burner",
+    "title": "Advanced HIIT Fat Burner",
+    "goal": "fat-loss",
+    "level": "advanced",
+    "gender": "both",
+    "preference": "home",
+    "description": "A high-octane, sweat-inducing HIIT program designed to torch calories and melt fat. This advanced routine requires no equipment but demands maximum effort.",
+    "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=60&w=600&auto=format&fit=crop&fm=webp",
+    "exercises": [
+      {"name":"Burpee Broad Jumps","sets":5,"reps":"45s work/15s rest","day":"Monday"},
+      {"name":"Tuck Jumps","sets":5,"reps":"45s work/15s rest","day":"Monday"},
+      {"name":"Plyo Push-ups","sets":5,"reps":"45s work/15s rest","day":"Monday"},
+      {"name":"V-Ups","sets":5,"reps":"45s work/15s rest","day":"Monday"},
+      {"name":"Active Recovery (Light Jog)","sets":1,"reps":"30 min","day":"Tuesday"},
+      {"name":"Sprint Intervals","sets":10,"reps":"30s sprint/30s walk","day":"Wednesday"},
+      {"name":"Jump Lunges","sets":4,"reps":"40s work/20s rest","day":"Wednesday"},
+      {"name":"Commandos (Plank to Push-up)","sets":4,"reps":"40s work/20s rest","day":"Wednesday"},
+      {"name":"Rest","sets":0,"reps":"0","day":"Thursday"},
+      {"name":"Box Jumps (or Squat Jumps)","sets":5,"reps":"45s work/15s rest","day":"Friday"},
+      {"name":"Spiderman Push-ups","sets":5,"reps":"45s work/15s rest","day":"Friday"},
+      {"name":"Russian Twists","sets":5,"reps":"45s work/15s rest","day":"Friday"},
+      {"name":"High Knees Sprint","sets":5,"reps":"45s work/15s rest","day":"Friday"},
+      {"name":"Full Body Circuit (All exercises)","sets":1,"reps":"30 min AMRAP","day":"Saturday"},
+      {"name":"Rest","sets":0,"reps":"0","day":"Sunday"}
+    ]
+  },
+  {
+    "id": "ultimate-muscle-builder",
+    "title": "Ultimate Muscle Builder",
+    "goal": "muscle-gain",
+    "level": "intermediate",
+    "gender": "both",
+    "preference": "gym",
+    "description": "Pack on serious mass with this classic bodybuilding split. Focus on heavy compound lifts and targeted isolation work to maximize hypertrophy.",
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=60&w=600&auto=format&fit=crop&fm=webp",
+    "exercises": [
+      {"name":"Barbell Bench Press","sets":4,"reps":"8-10","day":"Monday"},
+      {"name":"Incline Dumbbell Press","sets":3,"reps":"10-12","day":"Monday"},
+      {"name":"Cable Crossovers","sets":3,"reps":"12-15","day":"Monday"},
+      {"name":"Triceps Pushdown","sets":4,"reps":"10-12","day":"Monday"},
+      {"name":"Barbell Row","sets":4,"reps":"8-10","day":"Tuesday"},
+      {"name":"Lat Pulldown","sets":3,"reps":"10-12","day":"Tuesday"},
+      {"name":"Seated Cable Row","sets":3,"reps":"10-12","day":"Tuesday"},
+      {"name":"Barbell Curls","sets":4,"reps":"10-12","day":"Tuesday"},
+      {"name":"Rest","sets":0,"reps":"0","day":"Wednesday"},
+      {"name":"Barbell Squat","sets":4,"reps":"8-10","day":"Thursday"},
+      {"name":"Leg Press","sets":3,"reps":"10-12","day":"Thursday"},
+      {"name":"Leg Extensions","sets":3,"reps":"12-15","day":"Thursday"},
+      {"name":"Calf Raises","sets":4,"reps":"15-20","day":"Thursday"},
+      {"name":"Overhead Press","sets":4,"reps":"8-10","day":"Friday"},
+      {"name":"Lateral Raises","sets":4,"reps":"12-15","day":"Friday"},
+      {"name":"Front Raises","sets":3,"reps":"12-15","day":"Friday"},
+      {"name":"Shrugs","sets":4,"reps":"12-15","day":"Friday"},
+      {"name":"Rest / Active Recovery","sets":1,"reps":"30 min","day":"Saturday"},
+      {"name":"Rest","sets":0,"reps":"0","day":"Sunday"}
+    ]
+  },
+  {
     "id": "best-weight-loss-workout",
     "title": "Best Workout Plan for Weight Loss",
     "goal": "fat-loss",
@@ -2070,7 +2183,8 @@ export const supplements = [
     category: 'Protein',
     benefits: 'Muscle repair and growth, high bioavailability.',
     usage: '1 scoop post-workout or as a snack.',
-    type: 'both'
+    type: 'both',
+    image: 'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 'creatine',
@@ -2078,7 +2192,8 @@ export const supplements = [
     category: 'Performance',
     benefits: 'Increased strength, power output, and muscle volume.',
     usage: '3-5g daily, anytime.',
-    type: 'both'
+    type: 'both',
+    image: 'https://images.unsplash.com/photo-1550345332-09e3ac987658?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 'bcaa',
@@ -2086,7 +2201,8 @@ export const supplements = [
     category: 'Recovery',
     benefits: 'Reduced muscle soreness and fatigue during workouts.',
     usage: '5-10g during workout.',
-    type: 'both'
+    type: 'both',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 'multivitamin',
@@ -2094,7 +2210,8 @@ export const supplements = [
     category: 'Vitamins & Minerals',
     benefits: 'Fills nutritional gaps, supports immune function and overall health.',
     usage: '1 serving daily with a meal.',
-    type: 'both'
+    type: 'both',
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 'vitamin-d3',
@@ -2102,7 +2219,8 @@ export const supplements = [
     category: 'Vitamins & Minerals',
     benefits: 'Supports bone health, immune system, and testosterone production.',
     usage: '2,000-5,000 IU daily, preferably with a fat-containing meal.',
-    type: 'both'
+    type: 'both',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 'omega-3',
@@ -2110,7 +2228,8 @@ export const supplements = [
     category: 'Health & Wellness',
     benefits: 'Reduces inflammation, supports heart and brain health, aids joint recovery.',
     usage: '1-3g of combined EPA/DHA daily with meals.',
-    type: 'both'
+    type: 'both',
+    image: 'https://images.unsplash.com/photo-1514733670139-4d87a1941d55?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 'magnesium',
@@ -2118,7 +2237,8 @@ export const supplements = [
     category: 'Vitamins & Minerals',
     benefits: 'Improves sleep quality, muscle function, and reduces cramping.',
     usage: '200-400mg before bed.',
-    type: 'both'
+    type: 'both',
+    image: 'https://images.unsplash.com/photo-1550573104-4f9646515f99?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 'zinc',
@@ -2126,7 +2246,8 @@ export const supplements = [
     category: 'Vitamins & Minerals',
     benefits: 'Supports immune function, hormone production, and cellular repair.',
     usage: '15-30mg daily with food.',
-    type: 'both'
+    type: 'both',
+    image: 'https://images.unsplash.com/photo-1584017947486-5c9c2e787dce?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 'pre-workout',
@@ -2134,7 +2255,8 @@ export const supplements = [
     category: 'Performance',
     benefits: 'Enhances energy, focus, and blood flow during training.',
     usage: '1 scoop 20-30 minutes before training.',
-    type: 'both'
+    type: 'both',
+    image: 'https://images.unsplash.com/photo-1594882645126-14020914d58d?q=60&w=600&auto=format&fit=crop&fm=webp'
   },
   {
     id: 'vitamin-c',
@@ -2142,7 +2264,8 @@ export const supplements = [
     category: 'Vitamins & Minerals',
     benefits: 'Potent antioxidant, supports collagen synthesis and immune defense.',
     usage: '500-1000mg daily.',
-    type: 'both'
+    type: 'both',
+    image: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=60&w=600&auto=format&fit=crop&fm=webp'
   }
 ];
 
@@ -2226,5 +2349,14 @@ export const blogPosts = [
     "author": "Dr. Julian Hayes, Sleep Specialist",
     "date": "2024-04-15",
     "image": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "id": 8,
+    "title": "The Ultimate Guide to Hydration for Athletic Performance and Recovery",
+    "slug": "ultimate-guide-to-hydration-athletic-performance-recovery",
+    "content": "\n# The Ultimate Guide to Hydration for Athletic Performance and Recovery\n\nWhen we think about improving athletic performance and speeding up recovery, we often focus on [protein intake](/diets), [progressive overload](/blog/the-ultimate-guide-to-progressive-overload-how-to-keep-growing), and [supplements](/supplements). However, one of the most critical and frequently overlooked factors is **hydration**.\n\nWater makes up about 60% of your body weight and is involved in almost every bodily function. Even a slight drop in hydration levels can significantly impair your physical and cognitive performance. In this guide, we'll explore why hydration is essential for athletes and provide practical tips to ensure you stay optimally hydrated.\n\n## Why Hydration Matters for Performance\n\n### 1. Temperature Regulation\nDuring intense [workouts](/workouts), your body generates a massive amount of heat. Sweating is your body's primary cooling mechanism. If you are dehydrated, your blood volume decreases, making it harder for your body to dissipate heat. This leads to an increased core temperature, faster fatigue, and a higher risk of heat exhaustion.\n\n### 2. Cardiovascular Strain\nAs you lose water through sweat, your blood becomes thicker. This forces your heart to work harder to pump oxygen and nutrients to your working muscles. A higher heart rate at a given intensity means you will tire out much faster than if you were fully hydrated.\n\n### 3. Muscle Function and Cramping\nWater and electrolytes (like sodium, potassium, and magnesium) are crucial for muscle contractions. Dehydration disrupts this balance, leading to decreased strength, reduced endurance, and an increased likelihood of painful muscle cramps.\n\n## Hydration and Recovery\n\nHydration isn't just about what happens during your workout; it's equally important for what happens after.\n\n### 1. Nutrient Delivery and Waste Removal\nWater is the transport system of your body. It delivers essential nutrients (like amino acids from your post-workout meal) to your muscle cells for repair. It also helps flush out metabolic waste products, such as lactic acid, reducing muscle soreness and stiffness.\n\n### 2. Joint Lubrication\nYour joints are cushioned by synovial fluid, which is primarily made of water. Staying hydrated ensures your joints remain lubricated, reducing friction and the risk of injury, especially during heavy lifting.\n\n## Practical Tips for Staying Hydrated\n\nSo, how much water do you actually need, and how can you ensure you're getting enough? Here are some practical tips:\n\n### 1. Establish a Baseline\nThe old rule of \"eight glasses a day\" is a myth. A better baseline is to drink half your body weight in ounces of water daily. For example, a 200 lb athlete should aim for at least 100 ounces of water per day, *before* factoring in exercise.\n\n### 2. Hydrate Before, During, and After Exercise\n*   **Before:** Drink 16-20 ounces of water 2-3 hours before your workout, and another 8 ounces 20-30 minutes before you start.\n*   **During:** Aim for 7-10 ounces every 10-20 minutes during exercise.\n*   **After:** Weigh yourself before and after a heavy sweat session. Drink 16-24 ounces of fluid for every pound of body weight lost.\n\n### 3. Don't Forget Electrolytes\nIf you are sweating heavily for more than an hour, plain water isn't enough. You need to replace the electrolytes lost in sweat. Consider adding an electrolyte powder to your water or consuming a sports drink to maintain the delicate balance of sodium and potassium.\n\n### 4. Monitor Your Urine\nThe simplest way to gauge your hydration status is to check the color of your urine. It should be a pale, straw-like yellow. If it's dark yellow or amber, you are dehydrated and need to drink more water immediately. If it's completely clear, you may be over-hydrating.\n\n## Conclusion\n\nHydration is the unsung hero of athletic performance and recovery. By prioritizing your fluid intake and paying attention to your body's signals, you can train harder, recover faster, and unlock your full physical potential. Grab your water bottle and make hydration a non-negotiable part of your fitness routine!\n    ",
+    "author": "Dr. Sarah Jenkins, Sports Nutritionist",
+    "date": "2024-04-18",
+    "image": "https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=800&auto=format&fit=crop"
   }
 ];
